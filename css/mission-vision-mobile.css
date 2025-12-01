@@ -1,0 +1,524 @@
+/* ============================================
+   MISSION VISION VALUES - MODERN MOBILE DESIGN
+   ERATECH Website - Premium Style
+   ============================================ */
+
+/* ===== HERO SECTION ===== */
+@media (max-width: 767px) {
+    body:has(.mission-vision-values) .hero {
+        height: 40vh;
+        min-height: 280px;
+        max-height: 350px;
+    }
+    
+    body:has(.mission-vision-values) .hero-title {
+        font-size: 1.5rem !important;
+        line-height: 1.35;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    }
+    
+    body:has(.mission-vision-values) .hero-subtitle {
+        font-size: 0.85rem !important;
+        margin-top: 12px;
+        opacity: 0.95;
+    }
+}
+
+/* ===== MAIN CONTENT ===== */
+@media (max-width: 767px) {
+    .mission-vision-values {
+        padding: 25px 0 40px !important;
+        background: linear-gradient(180deg, #f0f4f0 0%, #ffffff 30%, #f8faf8 100%) !important;
+    }
+    
+    .mission-vision-values .container {
+        padding: 0 14px !important;
+        max-width: 100% !important;
+    }
+}
+
+/* ===== MISSION SECTION - PREMIUM CARD ===== */
+@media (max-width: 767px) {
+    .mission-section {
+        background: #fff !important;
+        border-radius: 24px !important;
+        padding: 0 !important;
+        margin-bottom: 20px !important;
+        box-shadow: 
+            0 10px 40px rgba(31, 115, 50, 0.12),
+            0 2px 10px rgba(0,0,0,0.06) !important;
+        overflow: hidden !important;
+        position: relative !important;
+    }
+    
+    .mission-section::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 4px !important;
+        background: linear-gradient(90deg, #1f7332, #2d8b3d, #20c997, #2d8b3d, #1f7332) !important;
+        background-size: 200% 100% !important;
+    }
+    
+    .mission-box {
+        background: linear-gradient(135deg, #1f7332 0%, #2d8b3d 50%, #1f7332 100%) !important;
+        padding: 22px 20px !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+    
+    .mission-box::before {
+        content: '🎯' !important;
+        position: absolute !important;
+        right: 15px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        font-size: 2.5rem !important;
+        opacity: 0.2 !important;
+    }
+    
+    .mission-box h2 {
+        color: #fff !important;
+        font-size: 1.3rem !important;
+        font-weight: 800 !important;
+        text-align: center !important;
+        margin: 0 !important;
+        letter-spacing: 3px !important;
+        text-transform: uppercase !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    .mission-content {
+        padding: 22px 18px !important;
+        position: relative !important;
+    }
+    
+    .mission-content::before {
+        content: '"' !important;
+        position: absolute !important;
+        top: 10px !important;
+        left: 12px !important;
+        font-size: 4rem !important;
+        color: rgba(31, 115, 50, 0.08) !important;
+        font-family: Georgia, serif !important;
+        line-height: 1 !important;
+    }
+    
+    .mission-content p {
+        font-size: 0.9rem !important;
+        line-height: 1.75 !important;
+        color: #444 !important;
+        margin-bottom: 14px !important;
+        text-align: justify !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    .mission-content p:last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
+/* ===== VISION SECTION - MODERN GRID ===== */
+@media (max-width: 767px) {
+    .vision-section {
+        background: #fff !important;
+        border-radius: 24px !important;
+        padding: 22px 16px 20px !important;
+        margin-bottom: 20px !important;
+        box-shadow: 
+            0 10px 40px rgba(31, 115, 50, 0.12),
+            0 2px 10px rgba(0,0,0,0.06) !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+    
+    .vision-section::before {
+        content: '' !important;
+        position: absolute !important;
+        top: -100px !important;
+        right: -100px !important;
+        width: 200px !important;
+        height: 200px !important;
+        background: radial-gradient(circle, rgba(31, 115, 50, 0.06) 0%, transparent 70%) !important;
+        border-radius: 50% !important;
+    }
+    
+    .vision-section .section-title {
+        font-size: 1.3rem !important;
+        font-weight: 800 !important;
+        color: #1f7332 !important;
+        text-align: center !important;
+        margin-bottom: 18px !important;
+        letter-spacing: 3px !important;
+        text-transform: uppercase !important;
+        position: relative !important;
+    }
+    
+    .vision-section .section-title::after {
+        content: '' !important;
+        display: block !important;
+        width: 50px !important;
+        height: 3px !important;
+        background: linear-gradient(90deg, #1f7332, #20c997) !important;
+        margin: 10px auto 0 !important;
+        border-radius: 2px !important;
+    }
+    
+    .vision-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+    
+    .vision-item {
+        background: linear-gradient(145deg, #ffffff 0%, #f8faf8 100%) !important;
+        border: 1px solid rgba(31, 115, 50, 0.12) !important;
+        border-radius: 16px !important;
+        padding: 16px 12px !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+    
+    .vision-item::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 4px !important;
+        height: 100% !important;
+        background: linear-gradient(180deg, #1f7332, #20c997) !important;
+        border-radius: 4px 0 0 4px !important;
+    }
+    
+    .vision-item:active {
+        transform: scale(0.97) !important;
+        box-shadow: 0 4px 15px rgba(31, 115, 50, 0.2) !important;
+    }
+    
+    .vision-item h3 {
+        font-size: 0.7rem !important;
+        font-weight: 700 !important;
+        color: #1f7332 !important;
+        margin-bottom: 6px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.3px !important;
+        line-height: 1.3 !important;
+    }
+    
+    .vision-item p {
+        font-size: 0.75rem !important;
+        line-height: 1.5 !important;
+        color: #666 !important;
+        margin: 0 !important;
+    }
+}
+
+/* ===== VALUES SECTION - ERATECH LETTERS ===== */
+@media (max-width: 767px) {
+    .values-section {
+        background: linear-gradient(145deg, #ffffff 0%, #f8faf8 100%) !important;
+        border-radius: 24px !important;
+        padding: 22px 16px !important;
+        margin-bottom: 0 !important;
+        box-shadow: 
+            0 10px 40px rgba(31, 115, 50, 0.12),
+            0 2px 10px rgba(0,0,0,0.06) !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+    
+    .values-section::before {
+        content: 'ERATECH' !important;
+        position: absolute !important;
+        bottom: -20px !important;
+        right: -10px !important;
+        font-size: 4rem !important;
+        font-weight: 900 !important;
+        color: rgba(31, 115, 50, 0.04) !important;
+        letter-spacing: 5px !important;
+        pointer-events: none !important;
+    }
+    
+    .values-title {
+        font-size: 1.3rem !important;
+        font-weight: 800 !important;
+        color: #1f7332 !important;
+        text-align: center !important;
+        margin-bottom: 18px !important;
+        letter-spacing: 3px !important;
+        text-transform: uppercase !important;
+    }
+    
+    .values-title::after {
+        content: '' !important;
+        display: block !important;
+        width: 50px !important;
+        height: 3px !important;
+        background: linear-gradient(90deg, #1f7332, #20c997) !important;
+        margin: 10px auto 0 !important;
+        border-radius: 2px !important;
+    }
+    
+    .values-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
+    }
+    
+    .value-item {
+        display: flex !important;
+        align-items: flex-start !important;
+        gap: 14px !important;
+        padding: 14px 0 !important;
+        border-bottom: 1px solid rgba(31, 115, 50, 0.08) !important;
+        margin: 0 !important;
+        position: relative !important;
+    }
+    
+    .value-item:last-child {
+        border-bottom: none !important;
+        padding-bottom: 0 !important;
+    }
+    
+    .value-item::after {
+        display: none !important;
+    }
+    
+    .value-letter {
+        flex-shrink: 0 !important;
+        width: 48px !important;
+        height: 48px !important;
+        min-width: 48px !important;
+        background: linear-gradient(135deg, #1f7332 0%, #2d8b3d 100%) !important;
+        color: #fff !important;
+        font-size: 1.5rem !important;
+        font-weight: 800 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 14px !important;
+        box-shadow: 
+            0 6px 20px rgba(31, 115, 50, 0.35),
+            inset 0 1px 0 rgba(255,255,255,0.2) !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+    
+    .value-letter::before {
+        content: '' !important;
+        position: absolute !important;
+        top: -50% !important;
+        left: -50% !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: rgba(255,255,255,0.15) !important;
+        border-radius: 50% !important;
+    }
+    
+    .value-content {
+        flex: 1 !important;
+        padding: 2px 0 0 0 !important;
+        background: transparent !important;
+    }
+    
+    .value-content h3 {
+        font-size: 0.9rem !important;
+        font-weight: 700 !important;
+        color: #1a1a1a !important;
+        margin-bottom: 8px !important;
+        padding-bottom: 8px !important;
+        line-height: 1.35 !important;
+        background: transparent !important;
+        border-bottom: 2px solid rgba(31, 115, 50, 0.2) !important;
+        position: relative !important;
+    }
+    
+    .value-content h3::after {
+        content: '' !important;
+        position: absolute !important;
+        bottom: -2px !important;
+        left: 0 !important;
+        width: 40px !important;
+        height: 2px !important;
+        background: linear-gradient(90deg, #1f7332, #2d8b3d) !important;
+        border-radius: 1px !important;
+    }
+    
+    .value-content p {
+        font-size: 0.8rem !important;
+        line-height: 1.55 !important;
+        color: #666 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        padding: 0 !important;
+    }
+    
+    /* Override parent styles */
+    .mission-vision-values .value-item::after {
+        display: none !important;
+    }
+    
+    .mission-vision-values .value-content,
+    .mission-vision-values .value-content h3,
+    .mission-vision-values .value-content p {
+        background: transparent !important;
+    }
+}
+
+/* ===== EXTRA SMALL SCREENS ===== */
+@media (max-width: 400px) {
+    .mission-vision-values {
+        padding: 20px 0 35px !important;
+    }
+    
+    .mission-vision-values .container {
+        padding: 0 10px !important;
+    }
+    
+    .mission-section,
+    .vision-section,
+    .values-section {
+        border-radius: 20px !important;
+        margin-bottom: 16px !important;
+    }
+    
+    .mission-box {
+        padding: 18px 16px !important;
+    }
+    
+    .mission-box h2,
+    .vision-section .section-title,
+    .values-title {
+        font-size: 1.15rem !important;
+        letter-spacing: 2px !important;
+    }
+    
+    .mission-content {
+        padding: 18px 14px !important;
+    }
+    
+    .mission-content p {
+        font-size: 0.85rem !important;
+        line-height: 1.7 !important;
+    }
+    
+    .vision-section,
+    .values-section {
+        padding: 18px 12px !important;
+    }
+    
+    .vision-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+    
+    .vision-item {
+        padding: 14px 12px !important;
+        border-radius: 14px !important;
+    }
+    
+    .vision-item h3 {
+        font-size: 0.75rem !important;
+    }
+    
+    .vision-item p {
+        font-size: 0.8rem !important;
+    }
+    
+    .value-item {
+        gap: 12px !important;
+        padding: 12px 0 !important;
+    }
+    
+    .value-letter {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        font-size: 1.35rem !important;
+        border-radius: 12px !important;
+    }
+    
+    .value-content h3 {
+        font-size: 0.85rem !important;
+        margin-bottom: 6px !important;
+        padding-bottom: 6px !important;
+    }
+    
+    .value-content h3::after {
+        width: 35px !important;
+    }
+    
+    .value-content p {
+        font-size: 0.78rem !important;
+    }
+    
+    .values-section::before {
+        font-size: 3rem !important;
+    }
+}
+
+/* ===== SMOOTH ANIMATIONS ===== */
+@media (max-width: 767px) {
+    .mission-section,
+    .vision-section,
+    .values-section {
+        animation: fadeInUp 0.6s ease-out;
+    }
+    
+    .vision-item {
+        animation: fadeInUp 0.5s ease-out;
+        animation-fill-mode: both;
+    }
+    
+    .vision-item:nth-child(1) { animation-delay: 0.1s; }
+    .vision-item:nth-child(2) { animation-delay: 0.15s; }
+    .vision-item:nth-child(3) { animation-delay: 0.2s; }
+    .vision-item:nth-child(4) { animation-delay: 0.25s; }
+    .vision-item:nth-child(5) { animation-delay: 0.3s; }
+    .vision-item:nth-child(6) { animation-delay: 0.35s; }
+    
+    .value-item {
+        animation: slideInLeft 0.5s ease-out;
+        animation-fill-mode: both;
+    }
+    
+    .value-item:nth-child(1) { animation-delay: 0.1s; }
+    .value-item:nth-child(2) { animation-delay: 0.15s; }
+    .value-item:nth-child(3) { animation-delay: 0.2s; }
+    .value-item:nth-child(4) { animation-delay: 0.25s; }
+    .value-item:nth-child(5) { animation-delay: 0.3s; }
+    .value-item:nth-child(6) { animation-delay: 0.35s; }
+    .value-item:nth-child(7) { animation-delay: 0.4s; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

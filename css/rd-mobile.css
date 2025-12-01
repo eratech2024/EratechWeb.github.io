@@ -1,0 +1,1157 @@
+/* ============================================
+   RESEARCH & DEVELOPMENT PAGE
+   ULTRA MODERN PREMIUM DESIGN 2024
+   ERATECH Website - Next-Gen Experience
+   ============================================ */
+
+/* ===== CSS VARIABLES ===== */
+:root {
+    --rd-primary: #1f7332;
+    --rd-secondary: #20c997;
+    --rd-accent: #17a2b8;
+    --rd-dark: #0d1b2a;
+    --rd-light: #f8fdf9;
+    --rd-gradient-1: linear-gradient(135deg, #1f7332 0%, #20c997 50%, #17a2b8 100%);
+    --rd-gradient-2: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --rd-gradient-3: linear-gradient(180deg, #0d1b2a 0%, #1b3a4b 100%);
+    --rd-glass: rgba(255, 255, 255, 0.1);
+    --rd-shadow: 0 25px 80px rgba(31, 115, 50, 0.15);
+    --rd-shadow-hover: 0 35px 100px rgba(31, 115, 50, 0.25);
+}
+
+/* ===== R&D INTRO - GLASSMORPHISM HERO ===== */
+.rd-intro {
+    padding: 100px 0;
+    background: 
+        radial-gradient(ellipse at 20% 0%, rgba(31, 115, 50, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(32, 201, 151, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(23, 162, 184, 0.08) 0%, transparent 70%),
+        linear-gradient(180deg, #f0f9f4 0%, #e8f5e9 50%, #f8fdf9 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.rd-intro::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: conic-gradient(from 0deg, rgba(31, 115, 50, 0.1), rgba(32, 201, 151, 0.1), rgba(23, 162, 184, 0.1), rgba(31, 115, 50, 0.1));
+    border-radius: 50%;
+    animation: rotateGlow 20s linear infinite;
+}
+
+.rd-intro::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    background: conic-gradient(from 180deg, rgba(32, 201, 151, 0.08), rgba(23, 162, 184, 0.08), rgba(31, 115, 50, 0.08), rgba(32, 201, 151, 0.08));
+    border-radius: 50%;
+    animation: rotateGlow 15s linear infinite reverse;
+}
+
+@keyframes rotateGlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.rd-intro-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.rd-intro .intro-text {
+    font-size: 1.25rem;
+    line-height: 2;
+    color: #2d3748;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 50px 60px;
+    border-radius: 30px;
+    box-shadow: 
+        0 30px 80px rgba(31, 115, 50, 0.12),
+        0 0 0 1px rgba(255, 255, 255, 0.5),
+        inset 0 0 80px rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(31, 115, 50, 0.1);
+    position: relative;
+    text-align: center;
+}
+
+.rd-intro .intro-text::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: var(--rd-gradient-1);
+    border-radius: 32px;
+    z-index: -1;
+    opacity: 0.3;
+    filter: blur(10px);
+}
+
+.rd-intro .intro-text::after {
+    display: none;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.05); }
+}
+
+.rd-intro .intro-text strong {
+    background: var(--rd-gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+}
+
+/* ===== LAB GALLERY - CLEAN 2x2 GRID WITH CAPTIONS BELOW ===== */
+.lab-gallery {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #f8fdf9 0%, #ffffff 50%, #f0f9f4 100%);
+    position: relative;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-8px);
+}
+
+.gallery-image-wrapper {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.1),
+        0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 3px solid #1f7332;
+    aspect-ratio: 4/3;
+    transition: all 0.4s ease;
+}
+
+.gallery-item:hover .gallery-image-wrapper {
+    box-shadow: 
+        0 20px 60px rgba(31, 115, 50, 0.2),
+        0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: #20c997;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover .gallery-img {
+    transform: scale(1.05);
+}
+
+.gallery-caption {
+    padding: 20px 10px 10px;
+    text-align: center;
+}
+
+.gallery-caption p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #2d3748;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.gallery-caption p br {
+    display: block;
+    margin-top: 5px;
+}
+
+/* ===== RESEARCH AREAS - FLOATING CARDS ===== */
+.research-areas {
+    padding: 120px 0;
+    background: 
+        radial-gradient(ellipse at 0% 50%, rgba(31, 115, 50, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 100% 50%, rgba(32, 201, 151, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, #f8fdf9 0%, #ffffff 50%, #e8f5e9 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.research-areas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--rd-gradient-1);
+}
+
+.research-areas .section-header {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.research-areas .section-header h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    background: var(--rd-gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    position: relative;
+    display: inline-block;
+}
+
+.research-areas .section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 5px;
+    background: var(--rd-gradient-1);
+    border-radius: 3px;
+}
+
+.research-areas .section-header p {
+    font-size: 1.2rem;
+    color: #5a6c7d;
+    margin-top: 30px;
+}
+
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+}
+
+.area-card {
+    background: white;
+    border-radius: 28px;
+    padding: 45px 35px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(31, 115, 50, 0.08);
+    text-align: center;
+}
+
+.area-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--rd-gradient-1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+
+.area-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--rd-gradient-1);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+}
+
+.area-card:hover::before {
+    transform: scaleX(1);
+}
+
+.area-card:hover {
+    transform: translateY(-20px) scale(1.02);
+    box-shadow: var(--rd-shadow-hover);
+}
+
+.area-card:hover::after {
+    opacity: 0.03;
+}
+
+.area-icon {
+    width: 90px;
+    height: 90px;
+    background: var(--rd-gradient-1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 
+        0 15px 40px rgba(31, 115, 50, 0.35),
+        0 0 0 8px rgba(31, 115, 50, 0.1);
+    transition: all 0.5s ease;
+}
+
+.area-card:hover .area-icon {
+    transform: scale(1.15) rotate(10deg);
+    box-shadow: 
+        0 20px 50px rgba(31, 115, 50, 0.45),
+        0 0 0 12px rgba(31, 115, 50, 0.15);
+}
+
+.area-icon i {
+    font-size: 2.2rem;
+    color: white;
+}
+
+.area-content {
+    position: relative;
+    z-index: 1;
+}
+
+.area-content h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1f7332;
+    margin-bottom: 18px;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.area-card:hover .area-content h3 {
+    background: var(--rd-gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.area-content p {
+    font-size: 1rem;
+    color: #5a6c7d;
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* ===== INNOVATION TIMELINE - PREMIUM DESIGN ===== */
+.innovation-timeline {
+    padding: 120px 0;
+    background: 
+        radial-gradient(ellipse at 50% 0%, rgba(31, 115, 50, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, #e8f5e9 0%, #f0f9f4 30%, #ffffff 70%, #f8fdf9 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.innovation-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 2px 2px, rgba(31, 115, 50, 0.05) 1px, transparent 0);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+.innovation-timeline .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 1;
+}
+
+.innovation-timeline .section-header h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    background: var(--rd-gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+}
+
+.innovation-timeline .section-header p {
+    font-size: 1.2rem;
+    color: #5a6c7d;
+}
+
+.timeline {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 100%;
+    background: var(--rd-gradient-1);
+    border-radius: 3px;
+    box-shadow: 0 0 30px rgba(31, 115, 50, 0.3);
+}
+
+.timeline-item {
+    display: flex;
+    justify-content: flex-end;
+    padding: 40px 0;
+    position: relative;
+    width: 50%;
+    padding-right: 50px;
+}
+
+.timeline-item:nth-child(even) {
+    justify-content: flex-start;
+    margin-left: 50%;
+    padding-right: 0;
+    padding-left: 50px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 100%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 28px;
+    background: var(--rd-gradient-1);
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 
+        0 0 0 4px rgba(31, 115, 50, 0.2),
+        0 8px 25px rgba(31, 115, 50, 0.4);
+    z-index: 2;
+    transition: all 0.4s ease;
+}
+
+.timeline-item:nth-child(even)::before {
+    left: 0;
+    transform: translateX(-50%);
+}
+
+.timeline-item:hover::before {
+    transform: scale(1.3);
+    box-shadow: 
+        0 0 0 10px rgba(31, 115, 50, 0.3),
+        0 12px 35px rgba(31, 115, 50, 0.5);
+}
+
+.timeline-content {
+    background: white;
+    padding: 35px;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(31, 115, 50, 0.08);
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    right: -15px;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid white;
+    filter: drop-shadow(3px 0 3px rgba(0,0,0,0.05));
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+    right: auto;
+    left: -15px;
+    border-left: none;
+    border-right: 15px solid white;
+    filter: drop-shadow(-3px 0 3px rgba(0,0,0,0.05));
+}
+
+.timeline-content:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--rd-shadow-hover);
+}
+
+.timeline-year {
+    display: inline-block;
+    background: var(--rd-gradient-1);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(31, 115, 50, 0.35);
+    letter-spacing: 1px;
+}
+
+.timeline-content h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.timeline-content p {
+    font-size: 1rem;
+    color: #5a6c7d;
+    line-height: 1.75;
+    margin: 0;
+}
+
+
+/* ============================================
+   TABLET RESPONSIVE (768px - 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+    .rd-intro {
+        padding: 80px 0;
+    }
+    
+    .rd-intro .intro-text {
+        font-size: 1.1rem;
+        padding: 45px 40px;
+    }
+    
+    .lab-gallery {
+        padding: 60px 0;
+    }
+    
+    .gallery-grid {
+        gap: 30px;
+    }
+    
+    .research-areas {
+        padding: 90px 0;
+    }
+    
+    .research-areas .section-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    .areas-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .area-card {
+        padding: 35px 28px;
+    }
+    
+    .innovation-timeline {
+        padding: 90px 0;
+    }
+    
+    .innovation-timeline .section-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    .timeline-item {
+        padding-right: 50px;
+    }
+    
+    .timeline-item:nth-child(even) {
+        padding-left: 50px;
+    }
+    
+    .timeline-content {
+        padding: 30px;
+    }
+}
+
+/* ============================================
+   MOBILE RESPONSIVE (max-width: 767px)
+   ============================================ */
+@media (max-width: 767px) {
+    /* ===== HERO MOBILE ===== */
+    .hero-title {
+        font-size: 1.5rem !important;
+        white-space: normal !important;
+        letter-spacing: 1px;
+        line-height: 1.35;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem !important;
+        line-height: 1.6;
+    }
+    
+    /* ===== R&D INTRO MOBILE ===== */
+    .rd-intro {
+        padding: 60px 0;
+    }
+    
+    .rd-intro::before,
+    .rd-intro::after {
+        display: none;
+    }
+    
+    .rd-intro-content {
+        padding: 0 5px;
+    }
+    
+    .rd-intro .intro-text {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        padding: 45px 24px 30px;
+        border-radius: 24px;
+        text-align: left;
+    }
+    
+
+    
+    /* ===== LAB GALLERY MOBILE ===== */
+    .lab-gallery {
+        padding: 50px 0;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 5px;
+    }
+    
+    .gallery-item:hover {
+        transform: none;
+    }
+    
+    .gallery-image-wrapper {
+        border-radius: 12px;
+        border-width: 2px;
+    }
+    
+    .gallery-caption {
+        padding: 15px 8px 5px;
+    }
+    
+    .gallery-caption p {
+        font-size: 0.88rem;
+        line-height: 1.6;
+    }
+    
+    /* ===== RESEARCH AREAS MOBILE ===== */
+    .research-areas {
+        padding: 60px 0;
+    }
+    
+    .research-areas::before {
+        height: 4px;
+    }
+    
+    .research-areas .section-header {
+        margin-bottom: 40px;
+        padding: 0 10px;
+    }
+    
+    .research-areas .section-header h2 {
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+    }
+    
+    .research-areas .section-header h2::after {
+        width: 60px;
+        height: 4px;
+        bottom: -12px;
+    }
+    
+    .research-areas .section-header p {
+        font-size: 0.92rem;
+        margin-top: 25px;
+    }
+    
+    .areas-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0 5px;
+    }
+    
+    .area-card {
+        padding: 25px 20px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 18px;
+        text-align: left;
+    }
+    
+    .area-card::before {
+        height: 4px;
+    }
+    
+    .area-card:hover {
+        transform: translateY(-8px);
+    }
+    
+    .area-icon {
+        width: 65px;
+        height: 65px;
+        min-width: 65px;
+        margin: 0;
+        box-shadow: 
+            0 10px 30px rgba(31, 115, 50, 0.3),
+            0 0 0 5px rgba(31, 115, 50, 0.08);
+    }
+    
+    .area-card:hover .area-icon {
+        transform: scale(1.1) rotate(5deg);
+    }
+    
+    .area-icon i {
+        font-size: 1.6rem;
+    }
+    
+    .area-content {
+        flex: 1;
+    }
+    
+    .area-content h3 {
+        font-size: 1.05rem;
+        margin-bottom: 10px;
+    }
+    
+    .area-content p {
+        font-size: 0.88rem;
+        line-height: 1.65;
+    }
+    
+    /* ===== TIMELINE MOBILE - SINGLE COLUMN ===== */
+    .innovation-timeline {
+        padding: 60px 0;
+    }
+    
+    .innovation-timeline::before {
+        background-size: 30px 30px;
+    }
+    
+    .innovation-timeline .section-header {
+        margin-bottom: 50px;
+        padding: 0 10px;
+    }
+    
+    .innovation-timeline .section-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .innovation-timeline .section-header p {
+        font-size: 0.92rem;
+    }
+    
+    .timeline {
+        padding: 0 15px 0 40px;
+    }
+    
+    .timeline::before {
+        left: 20px;
+        transform: none;
+        width: 4px;
+    }
+    
+    .timeline-item,
+    .timeline-item:nth-child(even) {
+        width: 100%;
+        padding: 0 0 30px 35px;
+        margin-left: 0;
+    }
+    
+    .timeline-item::before,
+    .timeline-item:nth-child(even)::before {
+        left: 6px;
+        right: auto;
+        top: 8px;
+        width: 24px;
+        height: 24px;
+        border-width: 4px;
+    }
+    
+    .timeline-content {
+        padding: 25px 20px;
+        border-radius: 18px;
+    }
+    
+    .timeline-content::before,
+    .timeline-item:nth-child(even) .timeline-content::before {
+        display: none;
+    }
+    
+    .timeline-content:hover {
+        transform: translateY(-5px);
+    }
+    
+    .timeline-year {
+        font-size: 0.95rem;
+        padding: 8px 18px;
+        margin-bottom: 15px;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.05rem;
+        margin-bottom: 12px;
+    }
+    
+    .timeline-content p {
+        font-size: 0.88rem;
+        line-height: 1.65;
+    }
+}
+
+/* ============================================
+   SMALL MOBILE (max-width: 480px)
+   ============================================ */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.35rem !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.85rem !important;
+    }
+    
+    .rd-intro {
+        padding: 50px 0;
+    }
+    
+    .rd-intro .intro-text {
+        font-size: 0.9rem;
+        padding: 40px 20px 26px;
+        border-radius: 20px;
+    }
+    
+
+    
+    .lab-gallery {
+        padding: 40px 0;
+    }
+    
+    .gallery-grid {
+        gap: 25px;
+    }
+    
+    .gallery-image-wrapper {
+        border-radius: 10px;
+    }
+    
+    .gallery-caption {
+        padding: 12px 5px 5px;
+    }
+    
+    .gallery-caption p {
+        font-size: 0.85rem;
+    }
+    
+    .research-areas {
+        padding: 50px 0;
+    }
+    
+    .research-areas .section-header h2 {
+        font-size: 1.4rem;
+    }
+    
+    .research-areas .section-header p {
+        font-size: 0.88rem;
+    }
+    
+    .areas-grid {
+        gap: 14px;
+    }
+    
+    .area-card {
+        padding: 22px 18px;
+        gap: 15px;
+        border-radius: 16px;
+    }
+    
+    .area-icon {
+        width: 55px;
+        height: 55px;
+        min-width: 55px;
+    }
+    
+    .area-icon i {
+        font-size: 1.4rem;
+    }
+    
+    .area-content h3 {
+        font-size: 0.98rem;
+    }
+    
+    .area-content p {
+        font-size: 0.85rem;
+    }
+    
+    .innovation-timeline {
+        padding: 50px 0;
+    }
+    
+    .innovation-timeline .section-header h2 {
+        font-size: 1.4rem;
+    }
+    
+    .timeline {
+        padding: 0 10px 0 35px;
+    }
+    
+    .timeline::before {
+        left: 15px;
+    }
+    
+    .timeline-item,
+    .timeline-item:nth-child(even) {
+        padding: 0 0 25px 30px;
+    }
+    
+    .timeline-item::before,
+    .timeline-item:nth-child(even)::before {
+        left: 4px;
+        width: 22px;
+        height: 22px;
+    }
+    
+    .timeline-content {
+        padding: 20px 16px;
+        border-radius: 14px;
+    }
+    
+    .timeline-year {
+        font-size: 0.88rem;
+        padding: 6px 14px;
+    }
+    
+    .timeline-content h3 {
+        font-size: 0.98rem;
+    }
+    
+    .timeline-content p {
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================================
+   EXTRA SMALL MOBILE (max-width: 360px)
+   ============================================ */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.2rem !important;
+    }
+    
+    .rd-intro .intro-text {
+        font-size: 0.85rem;
+        padding: 35px 16px 22px;
+    }
+    
+
+    
+    .gallery-grid {
+        gap: 20px;
+    }
+    
+    .gallery-caption p {
+        font-size: 0.8rem;
+    }
+    
+    .research-areas .section-header h2 {
+        font-size: 1.25rem;
+    }
+    
+    .area-card {
+        padding: 18px 14px;
+        gap: 12px;
+    }
+    
+    .area-icon {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+    }
+    
+    .area-icon i {
+        font-size: 1.2rem;
+    }
+    
+    .area-content h3 {
+        font-size: 0.92rem;
+    }
+    
+    .area-content p {
+        font-size: 0.82rem;
+    }
+    
+    .innovation-timeline .section-header h2 {
+        font-size: 1.25rem;
+    }
+    
+    .timeline-content {
+        padding: 16px 14px;
+    }
+    
+    .timeline-year {
+        font-size: 0.82rem;
+        padding: 5px 12px;
+    }
+    
+    .timeline-content h3 {
+        font-size: 0.92rem;
+    }
+    
+    .timeline-content p {
+        font-size: 0.82rem;
+    }
+}
+
+/* ============================================
+   LANDSCAPE MOBILE ORIENTATION
+   ============================================ */
+@media (max-width: 767px) and (orientation: landscape) {
+    .hero {
+        min-height: 300px;
+        max-height: 380px;
+    }
+    
+    .hero-title {
+        font-size: 1.3rem !important;
+    }
+    
+    .rd-intro {
+        padding: 40px 0;
+    }
+    
+    .lab-gallery {
+        padding: 40px 0;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .research-areas {
+        padding: 40px 0;
+    }
+    
+    .areas-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .innovation-timeline {
+        padding: 40px 0;
+    }
+}
+
+/* ============================================
+   TOUCH & INTERACTION ENHANCEMENTS
+   ============================================ */
+@media (max-width: 767px) {
+    .area-card,
+    .gallery-item,
+    .timeline-content {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .area-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    .gallery-item:active {
+        transform: scale(0.98);
+    }
+    
+    .timeline-content:active {
+        transform: scale(0.98);
+    }
+    
+    /* Reduced motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        .rd-intro::before,
+        .rd-intro::after {
+            animation: none;
+        }
+        
+        .area-card,
+        .gallery-item,
+        .timeline-content,
+        .area-icon,
+        .timeline-item::before {
+            transition: none;
+        }
+        
+        .area-card:hover,
+        .gallery-item:hover,
+        .timeline-content:hover,
+        .timeline-item:hover::before {
+            transform: none;
+        }
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+    .rd-intro,
+    .lab-gallery,
+    .research-areas,
+    .innovation-timeline {
+        padding: 30px 0;
+        background: white !important;
+    }
+    
+    .rd-intro::before,
+    .rd-intro::after,
+    .lab-gallery::before,
+    .research-areas::before,
+    .innovation-timeline::before {
+        display: none;
+    }
+    
+    .area-card,
+    .gallery-item,
+    .timeline-content {
+        box-shadow: none !important;
+        border: 1px solid #ddd;
+    }
+    
+    .gallery-caption {
+        position: static;
+        background: #f5f5f5;
+        color: #333;
+        transform: none;
+        opacity: 1;
+    }
+}

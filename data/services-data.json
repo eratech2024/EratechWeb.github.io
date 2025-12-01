@@ -1,0 +1,70 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "title": "Xử lý nước thải công nghiệp",
+      "category": "Xử lý nước thải",
+      "date": "2024-01-15",
+      "author": "ERATECH",
+      "image": "images/KenVT.jpg",
+      "excerpt": "Giải pháp xử lý nước thải công nghiệp hiệu quả, đáp ứng các tiêu chuẩn môi trường nghiêm ngặt.",
+      "content": "<h3>Giải pháp xử lý nước thải công nghiệp toàn diện</h3><p>ERATECH cung cấp giải pháp xử lý nước thải công nghiệp toàn diện với công nghệ tiên tiến, giúp doanh nghiệp đáp ứng các quy chuẩn môi trường nghiêm ngặt nhất.</p><h3>Công nghệ tiên tiến</h3><p>Chúng tôi thiết kế và thi công hệ thống xử lý nước thải phù hợp với từng ngành nghề, đảm bảo hiệu quả cao và tiết kiệm chi phí vận hành.</p><h3>Cam kết chất lượng</h3><ul><li>Đáp ứng QCVN 40:2011/BTNMT</li><li>Tiết kiệm năng lượng và chi phí vận hành</li><li>Bảo hành và bảo trì dài hạn</li><li>Đội ngũ kỹ sư giàu kinh nghiệm</li></ul>",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "Hệ thống xử lý nước cấp",
+      "category": "Xử lý nước cấp",
+      "date": "2024-01-10",
+      "author": "ERATECH",
+      "image": "images/Nuoccap.jpg",
+      "excerpt": "Cung cấp nước sạch đạt tiêu chuẩn cho khu công nghiệp, khu dân cư và các dự án lớn.",
+      "content": "<h3>Hệ thống xử lý nước cấp hiện đại</h3><p>Hệ thống xử lý nước cấp của ERATECH đảm bảo cung cấp nước sạch đạt tiêu chuẩn QCVN, phù hợp cho mọi mục đích sử dụng.</p><h3>Ưu điểm vượt trội</h3><ul><li>Công nghệ lọc hiện đại</li><li>Vận hành tự động, dễ dàng</li><li>Tiết kiệm năng lượng</li><li>Chi phí bảo trì thấp</li></ul><h3>Ứng dụng</h3><p>Phù hợp cho khu công nghiệp, khu dân cư, bệnh viện, trường học và các dự án lớn.</p>",
+      "featured": false
+    },
+    {
+      "id": 3,
+      "title": "Xử lý khí thải và khử mùi",
+      "category": "Xử lý khí thải",
+      "date": "2024-01-05",
+      "author": "ERATECH",
+      "image": "images/DJI_0565.jpg",
+      "excerpt": "Giải pháp xử lý khí thải và khử mùi hiệu quả cho các nhà máy, xí nghiệp.",
+      "content": "<h3>Xử lý khí thải công nghiệp chuyên nghiệp</h3><p>ERATECH chuyên thiết kế và lắp đặt hệ thống xử lý khí thải công nghiệp, giúp giảm thiểu ô nhiễm không khí và bảo vệ sức khỏe cộng đồng.</p><h3>Các giải pháp</h3><ul><li>Hệ thống hấp thụ khí thải</li><li>Lọc bụi công nghiệp</li><li>Khử mùi sinh học</li><li>Xử lý khí thải VOC</li></ul><h3>Tiêu chuẩn</h3><p>Đáp ứng QCVN 19:2009/BTNMT và các quy chuẩn môi trường hiện hành.</p>",
+      "featured": false
+    },
+    {
+      "id": 4,
+      "title": "Tái sử dụng nước thải",
+      "category": "Xử lý nước thải",
+      "date": "2024-01-20",
+      "author": "ERATECH",
+      "image": "images/tsdkenvt.jpg",
+      "excerpt": "Zero Wastewater - Giải pháp tái sử dụng nước thải, tiết kiệm nguồn nước và chi phí.",
+      "content": "<h3>Zero Wastewater - Tương lai bền vững</h3><p>Chúng tôi giúp khách hàng tái sử dụng nguồn nước thải, giảm thiểu lượng nước xả thải ra môi trường và tiết kiệm chi phí đáng kể.</p><h3>Lợi ích</h3><ul><li>Tiết kiệm 50-70% chi phí nước</li><li>Giảm thiểu ô nhiễm môi trường</li><li>Đáp ứng yêu cầu sản xuất xanh</li><li>Nâng cao hình ảnh doanh nghiệp</li></ul><h3>Công nghệ</h3><p>Sử dụng công nghệ màng lọc tiên tiến, RO, UF, MBR để đạt chất lượng nước tái sử dụng cao nhất.</p>",
+      "featured": true
+    },
+    {
+      "id": 5,
+      "title": "Tổng thầu EPC xử lý nước thải",
+      "category": "Thi công",
+      "date": "2024-01-18",
+      "author": "ERATECH",
+      "image": "images/DJI_0570.jpg",
+      "excerpt": "Tổng thầu EPC - Thiết kế, Mua sắm, Thi công trọn gói hệ thống xử lý nước thải.",
+      "content": "<h3>Tổng thầu EPC chuyên nghiệp</h3><p>ERATECH - Đối tác đáng tin cậy trong lĩnh vực tổng thầu EPC xử lý nước thải, từ thiết kế đến vận hành bàn giao.</p><h3>Quy trình EPC</h3><ul><li><strong>E - Engineering:</strong> Thiết kế kỹ thuật chi tiết</li><li><strong>P - Procurement:</strong> Mua sắm thiết bị, vật tư</li><li><strong>C - Construction:</strong> Thi công lắp đặt hoàn thiện</li></ul><h3>Cam kết</h3><p>Đúng tiến độ, đúng chất lượng, đúng ngân sách. Bảo hành toàn diện và hỗ trợ vận hành.</p>",
+      "featured": true
+    },
+    {
+      "id": 6,
+      "title": "Vận hành và bảo trì hệ thống",
+      "category": "Vận hành",
+      "date": "2024-01-12",
+      "author": "ERATECH",
+      "image": "images/DJI_0576.jpg",
+      "excerpt": "Dịch vụ vận hành và bảo trì chuyên nghiệp, đảm bảo hệ thống hoạt động ổn định.",
+      "content": "<h3>Vận hành chuyên nghiệp</h3><p>Đội ngũ vận hành giàu kinh nghiệm, đảm bảo hệ thống hoạt động ổn định, hiệu quả và đạt tiêu chuẩn môi trường.</p><h3>Dịch vụ bảo trì</h3><ul><li>Bảo trì định kỳ theo lịch</li><li>Sửa chữa khẩn cấp 24/7</li><li>Cung cấp hóa chất, phụ tùng</li><li>Đào tạo vận hành cho khách hàng</li></ul><h3>Gói dịch vụ</h3><p>Linh hoạt theo nhu cầu: Vận hành toàn phần, bán phần hoặc chỉ bảo trì định kỳ.</p>",
+      "featured": false
+    }
+  ]
+}

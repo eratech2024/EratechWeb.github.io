@@ -1,0 +1,58 @@
+{
+  "investments": [
+    {
+      "id": 1,
+      "title": "Dự án Nhà máy Xử lý Nước thải Khu công nghiệp",
+      "category": "Môi trường",
+      "location": "Bình Dương",
+      "investmentAmount": "50 tỷ VNĐ",
+      "status": "Đang triển khai",
+      "progress": 65,
+      "startDate": "2024-01-15",
+      "expectedEndDate": "2024-12-31",
+      "date": "2024-02-01",
+      "image": "images/KenVT.jpg",
+      "excerpt": "Dự án xây dựng nhà máy xử lý nước thải công suất 5000m³/ngày phục vụ khu công nghiệp.",
+      "content": "<h3>Giới thiệu dự án</h3><p>Dự án xây dựng nhà máy xử lý nước thải với công suất 5000m³/ngày, áp dụng công nghệ tiên tiến từ Châu Âu.</p><h3>Mục tiêu</h3><ul><li>Xử lý nước thải đạt tiêu chuẩn QCVN 40:2011/BTNMT</li><li>Phục vụ 50 doanh nghiệp trong khu công nghiệp</li><li>Bảo vệ môi trường và phát triển bền vững</li></ul><h3>Tiến độ thực hiện</h3><ul><li>Hoàn thành thiết kế chi tiết: 100%</li><li>Thi công xây dựng: 65%</li><li>Lắp đặt thiết bị: 40%</li></ul>",
+      "investor": "ERATECH Group",
+      "partner": "Khu công nghiệp Bình Dương",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "Hệ thống Xử lý Khí thải Nhà máy Sản xuất",
+      "category": "Công nghiệp",
+      "location": "Đồng Nai",
+      "investmentAmount": "30 tỷ VNĐ",
+      "status": "Hoàn thành",
+      "progress": 100,
+      "startDate": "2023-06-01",
+      "expectedEndDate": "2024-01-31",
+      "date": "2024-01-28",
+      "image": "images/DJI_0565.jpg",
+      "excerpt": "Lắp đặt hệ thống xử lý khí thải hiện đại cho nhà máy sản xuất công suất lớn.",
+      "content": "<h3>Giới thiệu dự án</h3><p>Dự án lắp đặt hệ thống xử lý khí thải công nghiệp với công nghệ lọc tiên tiến.</p><h3>Kết quả đạt được</h3><ul><li>Giảm 95% khí thải độc hại</li><li>Đạt tiêu chuẩn môi trường quốc gia</li><li>Tiết kiệm 30% chi phí vận hành</li></ul>",
+      "investor": "ERATECH Group",
+      "partner": "Công ty TNHH Sản xuất ABC",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "title": "Trạm Xử lý Nước cấp Khu dân cư",
+      "category": "Cấp thoát nước",
+      "location": "TP.HCM",
+      "investmentAmount": "20 tỷ VNĐ",
+      "status": "Đang triển khai",
+      "progress": 45,
+      "startDate": "2024-02-01",
+      "expectedEndDate": "2024-08-31",
+      "date": "2024-01-25",
+      "image": "images/DJI_0570.jpg",
+      "excerpt": "Xây dựng trạm xử lý nước cấp phục vụ 10,000 hộ dân với công nghệ lọc hiện đại.",
+      "content": "<h3>Giới thiệu dự án</h3><p>Trạm xử lý nước cấp công suất 3000m³/ngày phục vụ khu dân cư mới.</p><h3>Công nghệ áp dụng</h3><ul><li>Hệ thống lọc màng RO</li><li>Khử trùng bằng UV</li><li>Hệ thống giám sát tự động</li></ul>",
+      "investor": "ERATECH Group",
+      "partner": "UBND Quận 9",
+      "featured": false
+    }
+  ]
+}

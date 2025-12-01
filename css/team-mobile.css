@@ -1,0 +1,711 @@
+/* ============================================
+   TEAM PAGE - MODERN RESPONSIVE DESIGN
+   ERATECH Website - Premium Mobile Experience
+   ============================================ */
+
+/* ===== TEAM INTRO SECTION ===== */
+.team-intro {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8fdf9 0%, #e8f5e9 50%, #f0f9f4 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.team-intro::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(31, 115, 50, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.team-intro::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(32, 201, 151, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.team-intro-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.intro-text {
+    font-size: 1.25rem;
+    line-height: 1.9;
+    color: #2d3748;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,253,249,0.9) 100%);
+    padding: 40px 50px;
+    border-radius: 24px;
+    box-shadow: 
+        0 20px 60px rgba(31, 115, 50, 0.1),
+        0 8px 25px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(31, 115, 50, 0.1);
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.intro-text::before {
+    content: '"';
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    font-size: 4rem;
+    color: rgba(31, 115, 50, 0.15);
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.intro-text strong {
+    color: #1f7332;
+    font-weight: 700;
+}
+
+/* ===== ORG CHART SECTION - MODERN REDESIGN ===== */
+.org-chart-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fdf9 30%, #e8f5e9 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.org-chart-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #1f7332, #2d8b3d, #20c997, #2d8b3d, #1f7332);
+}
+
+.org-title {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #1f7332;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.org-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #1f7332, #20c997);
+    border-radius: 2px;
+}
+
+.org-subtitle {
+    text-align: center;
+    font-size: 1.15rem;
+    color: #5a6c7d;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    font-weight: 500;
+}
+
+.org-chart-image {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 
+        0 25px 80px rgba(31, 115, 50, 0.12),
+        0 10px 30px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(31, 115, 50, 0.08);
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.org-chart-image:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 35px 100px rgba(31, 115, 50, 0.15),
+        0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.org-chart-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+/* ===== TEAM DESCRIPTION - MODERN CARDS ===== */
+.team-description {
+    padding: 100px 0;
+    background: linear-gradient(180deg, #f8fdf9 0%, #ffffff 50%, #f0f9f4 100%);
+    position: relative;
+}
+
+.description-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.description-box {
+    background: linear-gradient(145deg, #ffffff 0%, #f8fdf9 100%);
+    padding: 40px 35px;
+    border-radius: 20px;
+    box-shadow: 
+        0 15px 50px rgba(31, 115, 50, 0.08),
+        0 5px 20px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(31, 115, 50, 0.08);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.description-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #1f7332, #20c997);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.description-box:hover::before {
+    transform: scaleX(1);
+}
+
+.description-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 
+        0 25px 70px rgba(31, 115, 50, 0.12),
+        0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.description-box p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #3d4f5f;
+    margin: 0;
+}
+
+.description-box strong {
+    color: #1f7332;
+    font-weight: 600;
+}
+
+/* Icon decorations for description boxes */
+.description-box:nth-child(1)::after {
+    content: '\f0c0';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 3rem;
+    color: rgba(31, 115, 50, 0.06);
+}
+
+.description-box:nth-child(2)::after {
+    content: '\f3ed';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 3rem;
+    color: rgba(31, 115, 50, 0.06);
+}
+
+.description-box:nth-child(3)::after {
+    content: '\f0ac';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 3rem;
+    color: rgba(31, 115, 50, 0.06);
+}
+
+
+/* ============================================
+   TABLET RESPONSIVE (768px - 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+    .team-intro {
+        padding: 60px 0;
+    }
+    
+    .intro-text {
+        font-size: 1.15rem;
+        padding: 35px 40px;
+    }
+    
+    .org-chart-section {
+        padding: 70px 0;
+    }
+    
+    .org-title {
+        font-size: 2.2rem;
+    }
+    
+    .org-subtitle {
+        font-size: 1.05rem;
+    }
+    
+    .org-chart-image {
+        padding: 20px;
+        margin: 0 20px;
+    }
+    
+    .team-description {
+        padding: 70px 0;
+    }
+    
+    .description-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 0 20px;
+    }
+    
+    .description-box {
+        padding: 35px 30px;
+    }
+}
+
+/* ============================================
+   MOBILE RESPONSIVE (max-width: 767px)
+   ============================================ */
+@media (max-width: 767px) {
+    /* ===== TEAM HERO MOBILE ===== */
+    .hero {
+        min-height: 450px;
+        max-height: 600px;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem !important;
+        letter-spacing: 1px;
+        line-height: 1.3;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem !important;
+        line-height: 1.6;
+        padding: 0 15px;
+    }
+    
+    /* ===== TEAM INTRO MOBILE ===== */
+    .team-intro {
+        padding: 50px 0;
+    }
+    
+    .team-intro::before,
+    .team-intro::after {
+        display: none;
+    }
+    
+    .team-intro-content {
+        padding: 0 5px;
+    }
+    
+    .intro-text {
+        font-size: 0.95rem;
+        line-height: 1.75;
+        padding: 28px 24px;
+        border-radius: 18px;
+        box-shadow: 
+            0 12px 40px rgba(31, 115, 50, 0.1),
+            0 4px 15px rgba(0, 0, 0, 0.04);
+    }
+    
+    .intro-text::before {
+        font-size: 2.5rem;
+        top: 10px;
+        left: 15px;
+    }
+    
+    /* ===== ORG CHART MOBILE ===== */
+    .org-chart-section {
+        padding: 50px 0 60px;
+    }
+    
+    .org-chart-section::before {
+        height: 4px;
+    }
+    
+    .org-title {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        padding: 0 15px;
+        line-height: 1.3;
+    }
+    
+    .org-title::after {
+        width: 50px;
+        height: 3px;
+        bottom: -10px;
+    }
+    
+    .org-subtitle {
+        font-size: 0.9rem;
+        margin-top: 25px;
+        margin-bottom: 35px;
+        padding: 0 20px;
+        line-height: 1.6;
+    }
+    
+    .org-chart-image {
+        margin: 0 15px;
+        padding: 15px;
+        border-radius: 16px;
+        box-shadow: 
+            0 15px 50px rgba(31, 115, 50, 0.1),
+            0 5px 20px rgba(0, 0, 0, 0.05);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .org-chart-image:hover {
+        transform: none;
+    }
+    
+    .org-chart-image img {
+        min-width: 600px;
+        border-radius: 8px;
+    }
+    
+    /* Scroll hint indicator */
+    .org-chart-image::after {
+        content: '← Vuốt để xem →';
+        display: block;
+        text-align: center;
+        font-size: 0.75rem;
+        color: #888;
+        margin-top: 12px;
+        padding: 8px;
+        background: rgba(31, 115, 50, 0.05);
+        border-radius: 20px;
+    }
+    
+    /* Custom scrollbar for org chart */
+    .org-chart-image::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .org-chart-image::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    .org-chart-image::-webkit-scrollbar-thumb {
+        background: linear-gradient(90deg, #1f7332, #20c997);
+        border-radius: 10px;
+    }
+    
+    /* ===== TEAM DESCRIPTION MOBILE ===== */
+    .team-description {
+        padding: 50px 0;
+    }
+    
+    .description-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .description-box {
+        padding: 28px 24px;
+        border-radius: 16px;
+        box-shadow: 
+            0 10px 35px rgba(31, 115, 50, 0.08),
+            0 4px 15px rgba(0, 0, 0, 0.03);
+    }
+    
+    .description-box::before {
+        height: 4px;
+    }
+    
+    .description-box:hover {
+        transform: translateY(-5px);
+    }
+    
+    .description-box p {
+        font-size: 0.92rem;
+        line-height: 1.75;
+    }
+    
+    .description-box:nth-child(1)::after,
+    .description-box:nth-child(2)::after,
+    .description-box:nth-child(3)::after {
+        font-size: 2rem;
+        bottom: 12px;
+        right: 15px;
+    }
+}
+
+/* ============================================
+   SMALL MOBILE (max-width: 480px)
+   ============================================ */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.5rem !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.85rem !important;
+    }
+    
+    .team-intro {
+        padding: 40px 0;
+    }
+    
+    .intro-text {
+        font-size: 0.88rem;
+        padding: 24px 20px;
+        border-radius: 14px;
+    }
+    
+    .intro-text::before {
+        font-size: 2rem;
+        top: 8px;
+        left: 12px;
+    }
+    
+    .org-chart-section {
+        padding: 40px 0 50px;
+    }
+    
+    .org-title {
+        font-size: 1.3rem;
+    }
+    
+    .org-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 30px;
+    }
+    
+    .org-chart-image {
+        margin: 0 12px;
+        padding: 12px;
+        border-radius: 14px;
+    }
+    
+    .org-chart-image img {
+        min-width: 500px;
+    }
+    
+    .org-chart-image::after {
+        font-size: 0.7rem;
+        padding: 6px;
+        margin-top: 10px;
+    }
+    
+    .team-description {
+        padding: 40px 0;
+    }
+    
+    .description-content {
+        gap: 16px;
+        padding: 0 12px;
+    }
+    
+    .description-box {
+        padding: 24px 20px;
+        border-radius: 14px;
+    }
+    
+    .description-box p {
+        font-size: 0.88rem;
+        line-height: 1.7;
+    }
+    
+    .description-box:nth-child(1)::after,
+    .description-box:nth-child(2)::after,
+    .description-box:nth-child(3)::after {
+        font-size: 1.8rem;
+        bottom: 10px;
+        right: 12px;
+    }
+}
+
+/* ============================================
+   EXTRA SMALL MOBILE (max-width: 360px)
+   ============================================ */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.3rem !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.8rem !important;
+    }
+    
+    .intro-text {
+        font-size: 0.85rem;
+        padding: 20px 16px;
+    }
+    
+    .org-title {
+        font-size: 1.15rem;
+    }
+    
+    .org-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .org-chart-image {
+        margin: 0 10px;
+        padding: 10px;
+    }
+    
+    .org-chart-image img {
+        min-width: 450px;
+    }
+    
+    .description-box {
+        padding: 20px 16px;
+    }
+    
+    .description-box p {
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================================
+   LANDSCAPE MOBILE ORIENTATION
+   ============================================ */
+@media (max-width: 767px) and (orientation: landscape) {
+    .hero {
+        min-height: 350px;
+        max-height: 450px;
+    }
+    
+    .hero-title {
+        font-size: 1.5rem !important;
+        margin-bottom: 10px;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.85rem !important;
+        margin-bottom: 15px;
+    }
+    
+    .team-intro {
+        padding: 35px 0;
+    }
+    
+    .org-chart-section {
+        padding: 35px 0 45px;
+    }
+    
+    .team-description {
+        padding: 35px 0;
+    }
+}
+
+/* ============================================
+   ANIMATIONS & INTERACTIONS
+   ============================================ */
+@media (max-width: 767px) {
+    /* Smooth touch interactions */
+    .description-box {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .description-box:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    .org-chart-image {
+        scroll-behavior: smooth;
+    }
+    
+    /* Reduce motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        .description-box,
+        .org-chart-image,
+        .intro-text {
+            transition: none;
+        }
+        
+        .description-box:hover,
+        .description-box:active {
+            transform: none;
+        }
+    }
+}
+
+/* ============================================
+   DARK MODE SUPPORT (Optional)
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    /* Uncomment below for dark mode support */
+    /*
+    .team-intro {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+    
+    .intro-text {
+        background: rgba(30, 30, 50, 0.95);
+        color: #e0e0e0;
+        border-color: rgba(31, 115, 50, 0.3);
+    }
+    
+    .org-chart-section {
+        background: linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 100%);
+    }
+    
+    .org-title {
+        color: #4ade80;
+    }
+    
+    .org-subtitle {
+        color: #a0aec0;
+    }
+    
+    .org-chart-image {
+        background: #1a1a2e;
+        border-color: rgba(31, 115, 50, 0.2);
+    }
+    
+    .team-description {
+        background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1a 100%);
+    }
+    
+    .description-box {
+        background: linear-gradient(145deg, #1e1e32 0%, #16213e 100%);
+        border-color: rgba(31, 115, 50, 0.2);
+    }
+    
+    .description-box p {
+        color: #d0d0d0;
+    }
+    */
+}

@@ -1,0 +1,428 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết bài viết - ERATECH Group</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/global-mobile.css">
+    <link rel="stylesheet" href="css/mobile-menu-production.css">
+    <style>
+        .article-detail-page {
+            background: #f8f9fa;
+            padding: 40px 0;
+        }
+        
+        .article-detail-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+        }
+        
+        /* Sidebar */
+        .article-sidebar {
+            background: #195927;
+            border-radius: 8px;
+            padding: 0;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-header {
+            background: #0d3316;
+            color: white;
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-menu li {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-menu li:last-child {
+            border-bottom: none;
+        }
+        
+        .sidebar-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .sidebar-menu a:hover {
+            background: rgba(255,255,255,0.1);
+            padding-left: 30px;
+        }
+        
+        .sidebar-menu a.active {
+            background: rgba(255,255,255,0.2);
+            font-weight: 600;
+        }
+        
+        /* Article Content */
+        .article-main-content {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .article-breadcrumb {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .article-breadcrumb a {
+            color: #195927;
+            text-decoration: none;
+        }
+        
+        .article-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .article-header {
+            margin-bottom: 30px;
+        }
+        
+        .article-category-badge {
+            display: inline-block;
+            background: #195927;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .article-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #195927;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .article-meta i {
+            color: #195927;
+        }
+        
+        .article-image {
+            margin: 30px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .article-body {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .article-body p {
+            margin-bottom: 20px;
+        }
+        
+        .article-body h3 {
+            color: #195927;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 30px 0 15px 0;
+        }
+        
+        .article-body ul {
+            margin: 15px 0 20px 20px;
+        }
+        
+        .article-body li {
+            margin-bottom: 10px;
+        }
+        
+        .article-footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .article-share {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .article-share span {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .share-btn:hover {
+            background: #195927;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 968px) {
+            .article-detail-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-sidebar {
+                position: static;
+            }
+            
+            .article-main-content {
+                padding: 25px;
+            }
+            
+            .article-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Header -->
+    <div w3-include-html="includes/header.html"></div>
+
+    <!-- Main Content -->
+    <main class="article-detail-page">
+        <div class="article-detail-container">
+            <!-- Sidebar -->
+            <aside class="article-sidebar">
+                <div class="sidebar-header">
+                    DỰ ÁN NƯỚC THẢI
+                </div>
+                <ul class="sidebar-menu" id="sidebar-menu">
+                    <!-- Menu will be loaded dynamically -->
+                </ul>
+            </aside>
+
+            <!-- Article Content -->
+            <article class="article-main-content">
+                <div class="article-breadcrumb">
+                    <a href="index.html">Trang chủ</a> / 
+                    <a href="news.html">Tin tức</a> / 
+                    <span id="breadcrumb-title">Chi tiết bài viết</span>
+                </div>
+                
+                <div id="article-content">
+                    <!-- Article content will be loaded here -->
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div w3-include-html="includes/footer.html"></div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="js/include.js"></script>
+    <script>
+        includeHTML();
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 1000,
+                once: true
+            });
+
+            // Load news data from localStorage
+            let newsData = [];
+            const stored = localStorage.getItem('newsArticles');
+            if (stored) {
+                newsData = JSON.parse(stored);
+            }
+            
+            // Get article ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = parseInt(urlParams.get('id'));
+
+            // Find article by ID
+            const article = newsData.find(a => a.id === articleId);
+            
+            if (article) {
+                loadArticleDetail(article);
+                loadSidebarMenu(newsData, article.category, articleId);
+            } else {
+                document.getElementById('article-content').innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px;">
+                        <i class="fas fa-exclamation-circle" style="font-size: 4rem; color: #dc3545; margin-bottom: 20px;"></i>
+                        <h2 style="color: #333; margin-bottom: 15px;">Bài viết không tồn tại</h2>
+                        <p style="color: #666; margin-bottom: 25px;">Xin lỗi, bài viết bạn tìm kiếm không có sẵn.</p>
+                        <a href="news.html" class="btn btn-primary">Quay lại trang tin tức</a>
+                    </div>
+                `;
+            }
+        });
+
+        function loadArticleDetail(article) {
+            // Update breadcrumb
+            document.getElementById('breadcrumb-title').textContent = article.title;
+            
+            // Update page title
+            document.title = article.title + ' - ERATECH Group';
+            
+            const articleHTML = `
+                <div class="article-header">
+                    <span class="article-category-badge">${article.category}</span>
+                    <h1 class="article-title">${article.title}</h1>
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> ${formatDate(article.date)}</span>
+                        <span><i class="fas fa-user"></i> ${article.author || 'Admin'}</span>
+                    </div>
+                </div>
+
+                <div class="article-image">
+                    <img src="${article.image}" alt="${article.title}" loading="lazy">
+                </div>
+
+                <div class="article-body">
+                    ${article.content || `<p>${article.excerpt}</p>`}
+                </div>
+
+                <div class="article-footer">
+                    <div class="article-share">
+                        <span>Chia sẻ:</span>
+                        <a href="#" class="share-btn" data-platform="facebook" title="Chia sẻ lên Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="share-btn" data-platform="twitter" title="Chia sẻ lên Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="share-btn" data-platform="linkedin" title="Chia sẻ lên LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('article-content').innerHTML = articleHTML;
+
+            // Add share functionality
+            document.querySelectorAll('.share-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const platform = btn.dataset.platform;
+                    const url = encodeURIComponent(window.location.href);
+                    const title = encodeURIComponent(article.title);
+
+                    let shareUrl = '';
+                    switch(platform) {
+                        case 'facebook':
+                            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                            break;
+                        case 'twitter':
+                            shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+                            break;
+                        case 'linkedin':
+                            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+                            break;
+                    }
+
+                    if (shareUrl) {
+                        window.open(shareUrl, '_blank', 'width=600,height=400');
+                    }
+                });
+            });
+        }
+
+        function loadSidebarMenu(newsData, currentCategory, currentId) {
+            const sidebarMenu = document.getElementById('sidebar-menu');
+            
+            // Filter articles by category
+            const categoryArticles = newsData.filter(a => a.category === currentCategory);
+            
+            if (categoryArticles.length === 0) {
+                sidebarMenu.innerHTML = '<li style="padding: 20px; color: white; text-align: center;">Không có bài viết</li>';
+                return;
+            }
+            
+            sidebarMenu.innerHTML = categoryArticles.map(article => `
+                <li>
+                    <a href="news-detail-new.html?id=${article.id}" class="${article.id === currentId ? 'active' : ''}">
+                        ${article.title}
+                    </a>
+                </li>
+            `).join('');
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('vi-VN', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
+    </script>
+</body>
+</html>

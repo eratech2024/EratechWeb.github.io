@@ -1,0 +1,70 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Dự án xử lý nước thải KCN Long Hậu",
+      "category": "Xử lý nước thải",
+      "status": "Hoàn thành",
+      "date": "2024-01-15",
+      "location": "Long An",
+      "image": "images/KenVT.jpg",
+      "excerpt": "Hệ thống xử lý nước thải công suất 80.000 m³/ngày cho khu công nghiệp Long Hậu, đáp ứng tiêu chuẩn QCVN 40:2011/BTNMT.",
+      "content": "<p>Dự án xử lý nước thải khu công nghiệp Long Hậu là một trong những dự án trọng điểm của ERATECH Group...</p>"
+    },
+    {
+      "id": 2,
+      "title": "Nhà máy xử lý nước cấp Bình Dương",
+      "category": "Xử lý nước cấp",
+      "status": "Hoàn thành",
+      "date": "2024-01-10",
+      "location": "Bình Dương",
+      "image": "images/Nuoccap.jpg",
+      "excerpt": "Cung cấp nước sạch cho 500.000 dân với công suất 150.000 m³/ngày, áp dụng công nghệ lọc hiện đại.",
+      "content": "<p>Nhà máy xử lý nước cấp Bình Dương...</p>"
+    },
+    {
+      "id": 3,
+      "title": "Hệ thống xử lý khí thải Nhà máy Sơn",
+      "category": "Xử lý khí thải",
+      "status": "Hoàn thành",
+      "date": "2023-12-20",
+      "location": "Đồng Nai",
+      "image": "images/DJI_0565.jpg",
+      "excerpt": "Giảm 95% khí thải VOC từ quy trình sản xuất sơn công nghiệp, đạt chuẩn QCVN 19:2009/BTNMT.",
+      "content": "<p>Hệ thống xử lý khí thải...</p>"
+    },
+    {
+      "id": 4,
+      "title": "Dự án tái chế nước thải Nhà máy Dệt",
+      "category": "Xử lý nước thải",
+      "status": "Đang thực hiện",
+      "date": "2024-02-01",
+      "location": "TP.HCM",
+      "image": "images/tsdkenvt.jpg",
+      "excerpt": "Tái sử dụng 70% nước thải trong quy trình sản xuất, tiết kiệm 50 tỷ đồng/năm chi phí nước.",
+      "content": "<p>Dự án tái chế nước thải...</p>"
+    },
+    {
+      "id": 5,
+      "title": "Trạm xử lý nước thải Khu đô thị",
+      "category": "Xử lý nước thải",
+      "status": "Đang thực hiện",
+      "date": "2024-01-25",
+      "location": "Hà Nội",
+      "image": "images/DJI_0570.jpg",
+      "excerpt": "Xử lý nước thải sinh hoạt cho 10.000 hộ dân, công suất 5.000 m³/ngày.",
+      "content": "<p>Trạm xử lý nước thải...</p>"
+    },
+    {
+      "id": 6,
+      "title": "Nhà máy xử lý nước cấp Đà Nẵng",
+      "category": "Xử lý nước cấp",
+      "status": "Hoàn thành",
+      "date": "2023-11-15",
+      "location": "Đà Nẵng",
+      "image": "images/DJI_0576.jpg",
+      "excerpt": "Cung cấp nước sạch cho 300.000 dân, công suất 100.000 m³/ngày.",
+      "content": "<p>Nhà máy xử lý nước cấp...</p>"
+    }
+  ]
+}

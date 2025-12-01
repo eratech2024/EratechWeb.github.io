@@ -1,0 +1,2323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - ERATECH</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Session Check Script -->
+    <script>
+        (function() {
+            const SESSION_KEY = 'eratech_admin_session';
+            
+            function checkAdminSession() {
+                const session = localStorage.getItem(SESSION_KEY);
+                
+                if (!session) {
+                    window.location.href = 'admin-login.html';
+                    return false;
+                }
+                
+                try {
+                    const sessionData = JSON.parse(session);
+                    const now = new Date().getTime();
+                    
+                    if (sessionData.expiry <= now) {
+                        localStorage.removeItem(SESSION_KEY);
+                        alert('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
+                        window.location.href = 'admin-login.html';
+                        return false;
+                    }
+                    
+                    return true;
+                } catch (e) {
+                    localStorage.removeItem(SESSION_KEY);
+                    window.location.href = 'admin-login.html';
+                    return false;
+                }
+            }
+            
+            if (!checkAdminSession()) {
+                document.write('<div style="display:none;">Redirecting to login...</div>');
+            }
+        })();
+    </script>
+    
+    <style>
+        /* Minimal inline styles - Main styles in admin-styles.css */
+        .admin-sidebar {
+            padding: 10px 0;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.05);
+        }
+        
+        .admin-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .admin-menu li {
+            margin: 0;
+        }
+        
+        .admin-menu a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 30px;
+            color: #555;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            position: relative;
+            font-weight: 500;
+        }
+        
+        .admin-menu a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, rgba(25, 89, 39, 0.1) 0%, transparent 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .admin-menu a:hover {
+            background: linear-gradient(90deg, #f0f8f0 0%, transparent 100%);
+            border-left-color: #195927;
+            color: #195927;
+            padding-left: 35px;
+        }
+        
+        .admin-menu a:hover::before {
+            width: 100%;
+        }
+        
+        .admin-menu a.active {
+            background: linear-gradient(90deg, #e8f5e9 0%, rgba(232, 245, 233, 0.3) 100%);
+            border-left-color: #195927;
+            color: #195927;
+            font-weight: 600;
+            box-shadow: inset 0 0 20px rgba(25, 89, 39, 0.1);
+        }
+        
+        .admin-menu i {
+            font-size: 1.1rem;
+            width: 20px;
+        }
+        
+        .admin-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background: transparent;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .admin-form {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            height: fit-content;
+            border: 1px solid rgba(25, 89, 39, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .admin-form:hover {
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        
+        .admin-form h2 {
+            color: #195927;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #e8f5e9;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .admin-form h2::before {
+            content: '✏️';
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 14px;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #195927;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #195927 0%, #0d3316 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0d3316 0%, #195927 100%);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+            color: white;
+            margin-left: 10px;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #5a6268 0%, #6c757d 100%);
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+            padding: 8px 16px;
+            font-size: 12px;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        
+        .btn-edit {
+            background: #007bff;
+            color: white;
+            padding: 8px 16px;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+        
+        .btn-edit:hover {
+            background: #0056b3;
+        }
+        
+        .articles-list {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            max-width: 1200px;
+            border: 1px solid rgba(25, 89, 39, 0.1);
+        }
+        
+        .articles-list h2 {
+            color: #195927;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #e8f5e9;
+        }
+        
+        .articles-count {
+            font-size: 0.95rem;
+            color: #195927;
+            font-weight: 600;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 8px 20px;
+            border-radius: 25px;
+            box-shadow: 0 2px 8px rgba(25, 89, 39, 0.2);
+        }
+        
+        .article-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        .article-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .article-item.featured {
+            border-left: 4px solid #195927;
+        }
+        
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 10px;
+        }
+        
+        .article-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #195927;
+            margin-bottom: 8px;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .article-excerpt {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .article-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .badge-featured {
+            background: #ffc107;
+            color: #000;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* Editor Styles */
+        .editor-toolbar {
+            display: flex;
+            gap: 5px;
+            padding: 10px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            flex-wrap: wrap;
+        }
+        
+        .editor-btn {
+            padding: 8px 12px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .editor-btn:hover {
+            background: #e9ecef;
+            border-color: #195927;
+        }
+        
+        .editor-btn-primary {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        
+        .editor-btn-primary:hover {
+            background: #218838;
+        }
+        
+        .toolbar-separator {
+            width: 1px;
+            background: #ddd;
+            margin: 0 5px;
+        }
+        
+        .content-editor {
+            min-height: 300px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 0 0 4px 4px;
+            background: white;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .content-editor:focus {
+            outline: none;
+            border-color: #195927;
+        }
+        
+        .content-editor h3 {
+            color: #195927;
+            font-size: 1.3rem;
+            margin: 20px 0 10px 0;
+        }
+        
+        .content-editor p {
+            margin: 10px 0;
+        }
+        
+        .content-editor ul,
+        .content-editor ol {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+        
+        .content-editor img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: block;
+            cursor: pointer;
+        }
+        
+        .content-editor img:hover {
+            opacity: 0.9;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        /* ============================================
+           BLOCK EDITOR STYLES (Elementor-like)
+           ============================================ */
+        .block-editor-container {
+            display: flex;
+            gap: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            min-height: 500px;
+            background: #f8f9fa;
+        }
+        
+        /* Widget Panel */
+        .widget-panel {
+            width: 180px;
+            background: #2d2d2d;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .widget-panel-header {
+            padding: 15px;
+            background: #195927;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .widget-list {
+            padding: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            overflow-y: auto;
+        }
+        
+        .widget-item {
+            background: #3d3d3d;
+            border: 1px solid #4d4d4d;
+            border-radius: 6px;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: grab;
+            transition: all 0.2s;
+            color: #ccc;
+            font-size: 11px;
+        }
+        
+        .widget-item:hover {
+            background: #195927;
+            border-color: #28a745;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .widget-item:active {
+            cursor: grabbing;
+        }
+        
+        .widget-item i {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+        
+        .widget-item.dragging {
+            opacity: 0.5;
+        }
+        
+        /* Editor Canvas */
+        .editor-canvas {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+        
+        .canvas-header {
+            padding: 10px 15px;
+            background: #f0f0f0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .canvas-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .canvas-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: #666;
+        }
+        
+        .canvas-btn:hover {
+            background: #195927;
+            color: white;
+            border-color: #195927;
+        }
+        
+        /* Block Canvas */
+        .block-canvas {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            min-height: 400px;
+            position: relative;
+        }
+        
+        .block-canvas:empty::before {
+            content: attr(data-placeholder);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #999;
+            font-size: 14px;
+            text-align: center;
+            pointer-events: none;
+        }
+        
+        .block-canvas.drag-over {
+            background: rgba(25, 89, 39, 0.05);
+            border: 2px dashed #195927;
+        }
+        
+        /* Content Blocks */
+        .content-block {
+            position: relative;
+            margin: 10px 0;
+            padding: 15px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            background: white;
+            transition: all 0.2s;
+            cursor: move;
+        }
+        
+        .content-block:hover {
+            border-color: #195927;
+            box-shadow: 0 4px 15px rgba(25, 89, 39, 0.15);
+        }
+        
+        .content-block.selected {
+            border-color: #195927;
+            box-shadow: 0 0 0 3px rgba(25, 89, 39, 0.2);
+        }
+        
+        .content-block.dragging {
+            opacity: 0.5;
+            border-style: dashed;
+        }
+        
+        /* Block Controls */
+        .block-controls {
+            position: absolute;
+            top: -12px;
+            right: 10px;
+            display: none;
+            gap: 3px;
+            background: white;
+            padding: 3px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+        
+        .content-block:hover .block-controls,
+        .content-block.selected .block-controls {
+            display: flex;
+        }
+        
+        .block-ctrl-btn {
+            width: 26px;
+            height: 26px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+            transition: all 0.2s;
+        }
+        
+        .block-ctrl-btn:hover {
+            background: #195927;
+            color: white;
+        }
+        
+        .block-ctrl-btn.delete:hover {
+            background: #dc3545;
+        }
+        
+        /* Block Type Label */
+        .block-type-label {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: #195927;
+            color: white;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 3px;
+            display: none;
+        }
+        
+        .content-block:hover .block-type-label {
+            display: block;
+        }
+        
+        /* Block Content Styles */
+        .block-content {
+            outline: none;
+            min-height: 30px;
+        }
+        
+        .block-content:empty::before {
+            content: 'Click để nhập nội dung...';
+            color: #999;
+            font-style: italic;
+        }
+        
+        .block-content h3 {
+            margin: 0;
+            color: #195927;
+            font-size: 1.4rem;
+        }
+        
+        .block-content p {
+            margin: 0;
+            line-height: 1.7;
+        }
+        
+        .block-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .block-content blockquote {
+            margin: 0;
+            padding: 15px 20px;
+            border-left: 4px solid #195927;
+            background: #f8f9fa;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .block-content ul, .block-content ol {
+            margin: 0;
+            padding-left: 25px;
+        }
+        
+        .block-content hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 10px 0;
+        }
+        
+        /* Columns Block */
+        .columns-block {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .column {
+            flex: 1;
+            min-height: 120px;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            background: #fafafa;
+            transition: all 0.2s;
+        }
+        
+        .column:hover {
+            border-color: #195927;
+            background: rgba(25, 89, 39, 0.02);
+        }
+        
+        /* Column Drop Zone */
+        .column-drop-zone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 10px;
+            color: #999;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .column-drop-zone:hover {
+            background: rgba(25, 89, 39, 0.05);
+            color: #195927;
+        }
+        
+        .column-drop-zone i {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .column-drop-zone span {
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .column-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 5px;
+        }
+        
+        .col-btn {
+            width: 36px;
+            height: 36px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: #666;
+        }
+        
+        .col-btn:hover {
+            background: #195927;
+            border-color: #195927;
+            color: white;
+        }
+        
+        /* Column Content */
+        .column-content {
+            margin-bottom: 10px;
+        }
+        
+        .column-item {
+            position: relative;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 10px;
+            transition: all 0.2s;
+        }
+        
+        .column-item:hover {
+            border-color: #195927;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .column-item-controls {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: none;
+        }
+        
+        .column-item:hover .column-item-controls {
+            display: block;
+        }
+        
+        .column-item-controls button {
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: #dc3545;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+        
+        .column-item-controls button:hover {
+            background: #c82333;
+        }
+        
+        .column-text {
+            outline: none;
+            min-height: 40px;
+            line-height: 1.6;
+        }
+        
+        .column-text:empty::before {
+            content: 'Nhập văn bản...';
+            color: #999;
+            font-style: italic;
+        }
+        
+        /* Gallery Block */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .gallery-grid img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+        }
+        
+        .add-gallery-btn {
+            width: 100%;
+            height: 120px;
+            border: 2px dashed #ddd;
+            border-radius: 6px;
+            background: #f8f9fa;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            transition: all 0.2s;
+        }
+        
+        .add-gallery-btn:hover {
+            border-color: #195927;
+            color: #195927;
+        }
+        
+        /* Spacer Block */
+        .spacer-block {
+            height: 40px;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 5px,
+                rgba(25, 89, 39, 0.05) 5px,
+                rgba(25, 89, 39, 0.05) 10px
+            );
+            border-radius: 4px;
+        }
+        
+        /* Drop Indicator */
+        .drop-indicator {
+            height: 4px;
+            background: #195927;
+            border-radius: 2px;
+            margin: 5px 0;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Image Upload in Block */
+        .image-upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #999;
+        }
+        
+        .image-upload-area:hover {
+            border-color: #195927;
+            background: rgba(25, 89, 39, 0.05);
+            color: #195927;
+        }
+        
+        .image-upload-area i {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .block-editor-container {
+                flex-direction: column;
+            }
+            
+            .widget-panel {
+                width: 100%;
+                max-height: 200px;
+            }
+            
+            .widget-list {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 968px) {
+            .admin-container {
+                flex-direction: column;
+            }
+            
+            .admin-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            
+            .admin-menu {
+                display: flex;
+            }
+            
+            .admin-menu li {
+                flex: 1;
+            }
+            
+            .admin-menu a {
+                justify-content: center;
+                padding: 15px 10px;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+            }
+            
+            .admin-menu a.active {
+                border-left: none;
+                border-bottom-color: #195927;
+            }
+            
+            .admin-content {
+                padding: 20px 15px;
+            }
+            
+            .admin-form {
+                padding: 20px;
+            }
+            
+            .editor-toolbar {
+                gap: 3px;
+                padding: 8px;
+            }
+            
+            .editor-btn {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .admin-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .admin-header > div {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            #admin-user-info {
+                display: none;
+            }
+            
+            .admin-menu {
+                flex-wrap: wrap;
+            }
+            
+            .admin-menu li {
+                flex: 0 0 auto;
+            }
+            
+            .admin-menu a span {
+                display: none;
+            }
+            
+            .admin-menu a i {
+                margin-right: 0;
+            }
+            
+            .data-table {
+                font-size: 0.85rem;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 10px 8px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .admin-header {
+                padding: 12px 15px;
+            }
+            
+            .admin-header h1 {
+                font-size: 1rem;
+            }
+            
+            .admin-header h1 i {
+                display: none;
+            }
+            
+            .admin-content {
+                padding: 15px 10px;
+            }
+            
+            .admin-form {
+                padding: 15px;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 8px 6px;
+                font-size: 0.8rem;
+            }
+            
+            .action-btn {
+                padding: 5px 8px;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+    <!-- Override styles with external CSS -->
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="admin-header">
+        <h1><i class="fas fa-leaf"></i> <span>ERATECH Admin</span></h1>
+        <div class="header-actions">
+            <span class="header-user">
+                <i class="fas fa-user-circle"></i> <span id="username-display">Admin</span>
+            </span>
+            <button class="header-btn header-btn-export" onclick="exportAllData()" title="Xuất dữ liệu">
+                <i class="fas fa-download"></i> <span>Xuất dữ liệu</span>
+            </button>
+            <button class="header-btn header-btn-logout" onclick="adminLogout()" title="Đăng xuất">
+                <i class="fas fa-sign-out-alt"></i> <span>Đăng xuất</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="admin-wrapper">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Trang chủ</div>
+                <ul class="admin-menu">
+                    <li><a href="#" class="menu-item active" data-tab="hero-banner"><i class="fas fa-images"></i><span>Hero Banner</span></a></li>
+                    <li><a href="#" class="menu-item" data-tab="about-video"><i class="fas fa-video"></i><span>Video</span></a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Tin tức</div>
+                <ul class="admin-menu">
+                    <li><a href="#" class="menu-item" data-tab="list"><i class="fas fa-newspaper"></i><span>Bài viết</span></a></li>
+                    <li><a href="#" class="menu-item" data-tab="new"><i class="fas fa-plus"></i><span>Thêm mới</span></a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Dịch vụ</div>
+                <ul class="admin-menu">
+                    <li><a href="#" class="menu-item" data-tab="services-list"><i class="fas fa-cogs"></i><span>Dịch vụ</span></a></li>
+                    <li><a href="#" class="menu-item" data-tab="services-new"><i class="fas fa-plus"></i><span>Thêm mới</span></a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Dự án</div>
+                <ul class="admin-menu">
+                    <li><a href="#" class="menu-item" data-tab="projects-list"><i class="fas fa-project-diagram"></i><span>Dự án</span></a></li>
+                    <li><a href="#" class="menu-item" data-tab="projects-new"><i class="fas fa-plus"></i><span>Thêm mới</span></a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Tuyển dụng</div>
+                <ul class="admin-menu">
+                    <li><a href="#" class="menu-item" data-tab="jobs-list"><i class="fas fa-briefcase"></i><span>Tuyển dụng</span></a></li>
+                    <li><a href="#" class="menu-item" data-tab="jobs-new"><i class="fas fa-plus"></i><span>Thêm mới</span></a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Đầu tư</div>
+                <ul class="admin-menu">
+                    <li><a href="#" class="menu-item" data-tab="investments-list"><i class="fas fa-chart-line"></i><span>Đầu tư</span></a></li>
+                    <li><a href="#" class="menu-item" data-tab="investments-new"><i class="fas fa-plus"></i><span>Thêm mới</span></a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="admin-content">
+            <!-- Tab: Hero Banner -->
+            <div id="tab-hero-banner" class="tab-content active">
+                <div class="admin-form">
+                    <h2><i class="fas fa-images"></i> Quản lý Hero Banner</h2>
+                    <div id="hero-banner-alert"></div>
+                    
+                    <!-- Thông tin kích thước ảnh -->
+                    <div style="background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 100%); padding: 25px; border-radius: 12px; margin-bottom: 25px; border: 2px solid #1f7332; box-shadow: 0 4px 15px rgba(31, 115, 50, 0.1);">
+                        <h3 style="color: #1f7332; margin-bottom: 20px; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-info-circle"></i> 
+                            Kích thước ảnh khuyến nghị
+                        </h3>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                            <!-- Banner Images -->
+                            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <h4 style="color: #1f7332; margin-bottom: 15px; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-image"></i>
+                                    Hero Banner
+                                </h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 10px 12px; background: #f8f9fa; margin-bottom: 8px; border-radius: 6px; border-left: 3px solid #1f7332; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem;">
+                                        <span style="font-weight: 600; color: #333;">
+                                            <i class="fas fa-desktop" style="color: #1f7332; margin-right: 6px; width: 16px;"></i>
+                                            Desktop:
+                                        </span>
+                                        <span style="color: #666; font-family: monospace; font-size: 0.85rem;">1920 x 900 px</span>
+                                    </li>
+                                    <li style="padding: 10px 12px; background: #f8f9fa; margin-bottom: 8px; border-radius: 6px; border-left: 3px solid #1f7332; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem;">
+                                        <span style="font-weight: 600; color: #333;">
+                                            <i class="fas fa-tablet-alt" style="color: #1f7332; margin-right: 6px; width: 16px;"></i>
+                                            Tablet:
+                                        </span>
+                                        <span style="color: #666; font-family: monospace; font-size: 0.85rem;">1024 x 768 px</span>
+                                    </li>
+                                    <li style="padding: 10px 12px; background: #f8f9fa; border-radius: 6px; border-left: 3px solid #1f7332; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem;">
+                                        <span style="font-weight: 600; color: #333;">
+                                            <i class="fas fa-mobile-alt" style="color: #1f7332; margin-right: 6px; width: 16px;"></i>
+                                            Mobile:
+                                        </span>
+                                        <span style="color: #666; font-family: monospace; font-size: 0.85rem;">768 x 1024 px</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Logo -->
+                            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <h4 style="color: #1f7332; margin-bottom: 15px; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-crown"></i>
+                                    Logo Header
+                                </h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 10px 12px; background: #f8f9fa; margin-bottom: 8px; border-radius: 6px; border-left: 3px solid #1f7332; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem;">
+                                        <span style="font-weight: 600; color: #333;">
+                                            <i class="fas fa-square" style="color: #1f7332; margin-right: 6px; width: 16px;"></i>
+                                            Kích thước:
+                                        </span>
+                                        <span style="color: #666; font-family: monospace; font-size: 0.85rem;">200 x 200 px</span>
+                                    </li>
+                                    <li style="padding: 10px 12px; background: #f8f9fa; margin-bottom: 8px; border-radius: 6px; border-left: 3px solid #1f7332; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem;">
+                                        <span style="font-weight: 600; color: #333;">
+                                            <i class="fas fa-file-image" style="color: #1f7332; margin-right: 6px; width: 16px;"></i>
+                                            Định dạng:
+                                        </span>
+                                        <span style="color: #666; font-family: monospace; font-size: 0.85rem;">PNG (nền trong)</span>
+                                    </li>
+                                    <li style="padding: 10px 12px; background: #f8f9fa; border-radius: 6px; border-left: 3px solid #1f7332; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem;">
+                                        <span style="font-weight: 600; color: #333;">
+                                            <i class="fas fa-compress" style="color: #1f7332; margin-right: 6px; width: 16px;"></i>
+                                            Dung lượng:
+                                        </span>
+                                        <span style="color: #666; font-family: monospace; font-size: 0.85rem;">Tối đa 500KB</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- General Notes -->
+                            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <h4 style="color: #1f7332; margin-bottom: 15px; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-lightbulb"></i>
+                                    Lưu ý chung
+                                </h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 10px 12px; background: #fff3cd; margin-bottom: 8px; border-radius: 6px; border-left: 3px solid #ffc107; font-size: 0.85rem; color: #856404; line-height: 1.5;">
+                                        <i class="fas fa-check-circle" style="margin-right: 6px;"></i>
+                                        Banner: JPG, PNG, WebP (tối đa 2MB)
+                                    </li>
+                                    <li style="padding: 10px 12px; background: #fff3cd; margin-bottom: 8px; border-radius: 6px; border-left: 3px solid #ffc107; font-size: 0.85rem; color: #856404; line-height: 1.5;">
+                                        <i class="fas fa-check-circle" style="margin-right: 6px;"></i>
+                                        Tỷ lệ khung hình: 16:9 (ngang) hoặc 4:3
+                                    </li>
+                                    <li style="padding: 10px 12px; background: #d1ecf1; border-radius: 6px; border-left: 3px solid #17a2b8; font-size: 0.85rem; color: #0c5460; line-height: 1.5;">
+                                        <i class="fas fa-info-circle" style="margin-right: 6px;"></i>
+                                        Nên tối ưu ảnh trước khi upload để tăng tốc độ tải trang
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cài đặt chung -->
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                        <h3 style="color: #1a5c2c; margin-bottom: 15px; font-size: 1rem;"><i class="fas fa-cog"></i> Cài đặt chung</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="hero-slide-duration">Thời gian chuyển slide (giây)</label>
+                                <input type="number" id="hero-slide-duration" min="2" max="20" value="5">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="hero-animation-type">Kiểu Animation</label>
+                                <select id="hero-animation-type">
+                                    <option value="fade">Fade (Mờ dần)</option>
+                                    <option value="slide">Slide (Trượt ngang)</option>
+                                    <option value="zoom">Zoom (Phóng to)</option>
+                                    <option value="flip">Flip (Lật)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="saveHeroBannerSettings()" style="margin-top: 15px;">
+                            <i class="fas fa-save"></i> Lưu cài đặt
+                        </button>
+                    </div>
+                    
+                    <!-- Danh sách Banner -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <h3 style="color: #1a5c2c; font-size: 1rem; margin: 0;"><i class="fas fa-list"></i> Danh sách Banner</h3>
+                            <div id="banner-page-filter">
+                                <!-- Page filter dropdown will be loaded here by JS -->
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="showAddBannerForm()">
+                            <i class="fas fa-plus"></i> Thêm Banner
+                        </button>
+                    </div>
+                    
+                    <div id="hero-banner-list">
+                        <!-- Banner list will be loaded here -->
+                    </div>
+                </div>
+                
+                <!-- Form thêm/sửa Banner (ẩn mặc định) -->
+                <div id="hero-banner-form-container" style="display: none; margin-top: 20px;">
+                    <div class="admin-form">
+                        <h2 id="banner-form-title"><i class="fas fa-plus-circle"></i> Thêm Banner Mới</h2>
+                        
+                        <form id="hero-banner-form" onsubmit="return handleHeroBannerFormSubmit(event);">
+                            <input type="hidden" id="banner-id">
+                            
+                            <div class="form-group">
+                                <label for="banner-image">Ảnh Banner *</label>
+                                <div style="display: flex; gap: 10px;">
+                                    <input type="text" id="banner-image" placeholder="images/banner.jpg" required style="flex: 1;">
+                                    <button type="button" class="btn btn-secondary" onclick="openBannerFileDialog(); return false;">
+                                        <i class="fas fa-upload"></i> Chọn ảnh
+                                    </button>
+                                </div>
+                                <div id="banner-image-preview" style="margin-top: 10px; display: none;">
+                                    <img id="banner-preview-img" src="" alt="Preview" style="max-width: 100%; max-height: 200px; border-radius: 8px;">
+                                </div>
+                                <div style="margin-top: 10px; padding: 12px; background: #e8f5e9; border-radius: 8px; border-left: 3px solid #1f7332;">
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #1f7332; font-size: 13px;">
+                                        <i class="fas fa-image" style="margin-right: 6px;"></i>Kích thước khuyến nghị:
+                                    </p>
+                                    <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #555; line-height: 1.6;">
+                                        <li><strong>1920 x 800 px</strong> - Tỷ lệ 2.4:1 (chuẩn banner website)</li>
+                                        <li><strong>1920 x 1080 px</strong> - Tỷ lệ 16:9 (full HD)</li>
+                                        <li><strong>1920 x 600 px</strong> - Tỷ lệ 3.2:1 (banner mỏng)</li>
+                                    </ul>
+                                    <p style="margin: 8px 0 0 0; font-size: 11px; color: #666;">
+                                        <i class="fas fa-info-circle" style="margin-right: 4px;"></i>
+                                        Ảnh sẽ tự động scale. Hero section điều chỉnh chiều cao theo tỷ lệ hình.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="banner-title">Tiêu đề</label>
+                                <input type="text" id="banner-title" placeholder="VD: Giải pháp môi trường toàn diện">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="banner-subtitle">Nội dung ngắn</label>
+                                <textarea id="banner-subtitle" rows="3" placeholder="VD: Chúng tôi cung cấp các giải pháp xử lý nước thải hiện đại..."></textarea>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div class="form-group">
+                                    <label for="banner-order">Thứ tự hiển thị</label>
+                                    <input type="number" id="banner-order" min="1" value="1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="banner-text-position">Vị trí text</label>
+                                    <select id="banner-text-position">
+                                        <option value="center">Giữa</option>
+                                        <option value="left">Trái</option>
+                                        <option value="right">Phải</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label><i class="fas fa-file-alt"></i> Áp dụng cho trang</label>
+                                <div id="banner-page-checkboxes" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; padding: 15px; background: #f8f9fa; border-radius: 8px; border: 1px solid #e0e0e0; max-height: 200px; overflow-y: auto;">
+                                    <!-- Checkboxes will be loaded by JS -->
+                                </div>
+                                <small style="color: #666;">Không chọn trang nào = áp dụng cho tất cả trang.</small>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="banner-active" checked>
+                                <label for="banner-active">Hiển thị banner này</label>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px;">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Lưu Banner
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="hideAddBannerForm()">
+                                    <i class="fas fa-times"></i> Hủy
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Input file container - sẽ được tạo động bởi JS -->
+            </div>
+
+            <!-- Tab: Video Về ERATECH -->
+            <div id="tab-about-video" class="tab-content">
+                <div class="admin-form">
+                    <h2>Quản lý Video Về ERATECH</h2>
+                    <div id="about-video-alert-container"></div>
+                    
+                    <form id="about-video-form">
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="about-video-enabled" checked>
+                            <label for="about-video-enabled">Hiển thị video trên phần "Về ERATECH"</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="about-video-display-mode">Chế độ hiển thị *</label>
+                            <select id="about-video-display-mode" required>
+                                <option value="autoplay">Video tự động phát (Autoplay)</option>
+                                <option value="click">Ảnh với nút Play (Click to play)</option>
+                            </select>
+                            <small style="color: #666; display: block; margin-top: 5px;">
+                                <strong>Autoplay:</strong> Video sẽ tự động phát khi người dùng xem trang (khuyến nghị cho video ngắn)<br>
+                                <strong>Click to play:</strong> Hiển thị ảnh thumbnail với nút play, click để xem video trong popup
+                            </small>
+                        </div>
+                        
+                        <div class="form-group" id="about-video-thumbnail-field">
+                            <label for="about-video-thumbnail">Ảnh thumbnail *</label>
+                            <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                <input type="text" id="about-video-thumbnail" placeholder="images/about-thumbnail.jpg" required style="flex: 1;">
+                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('aboutVideoThumbnailUpload').click()" style="white-space: nowrap;">
+                                    <i class="fas fa-upload"></i> Chọn ảnh
+                                </button>
+                            </div>
+                            <input type="file" id="aboutVideoThumbnailUpload" accept="image/*" style="display: none;" onchange="handleAboutVideoThumbnailUpload(event); return false;">
+                            <div id="about-video-thumbnail-preview" style="margin-top: 10px; display: none;">
+                                <img id="about-video-thumbnail-img" src="" alt="Preview" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                            </div>
+                            <small style="color: #666; display: block; margin-top: 5px;">
+                                Ảnh hiển thị trước khi phát video (khuyến nghị: 800x600px)
+                            </small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="about-video-type">Loại video *</label>
+                            <select id="about-video-type" required>
+                                <option value="youtube">YouTube</option>
+                                <option value="direct">Video trực tiếp (MP4, WebM)</option>
+                            </select>
+                            <small style="color: #666; display: block; margin-top: 5px;">
+                                Chọn YouTube để nhúng video từ YouTube, hoặc Video trực tiếp để dùng file video
+                            </small>
+                        </div>
+                        
+                        <div class="form-group" id="about-video-youtube-field">
+                            <label for="about-video-youtube-id">YouTube Video ID *</label>
+                            <input type="text" id="about-video-youtube-id" placeholder="VD: dQw4w9WgXcQ">
+                            <small style="color: #666; display: block; margin-top: 5px;">
+                                <strong>Cách lấy YouTube ID:</strong> Từ URL https://www.youtube.com/watch?v=<strong>dQw4w9WgXcQ</strong>, lấy phần sau "v="<br>
+                                <strong>Ví dụ:</strong> https://youtu.be/dQw4w9WgXcQ → ID là: dQw4w9WgXcQ
+                            </small>
+                        </div>
+                        
+                        <div class="form-group" id="about-video-url-field" style="display: none;">
+                            <label for="about-video-url">Đường dẫn video *</label>
+                            <input type="text" id="about-video-url" placeholder="videos/about.mp4">
+                            <small style="color: #666; display: block; margin-top: 5px;">
+                                Đường dẫn đến file video (MP4, WebM). Khuyến nghị: Tối đa 50MB
+                            </small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="about-video-title">Tiêu đề video</label>
+                            <input type="text" id="about-video-title" placeholder="VD: Giới thiệu về ERATECH">
+                            <small style="color: #666; display: block; margin-top: 5px;">
+                                Tiêu đề hiển thị khi phát video (tùy chọn)
+                            </small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="about-video-description">Mô tả video</label>
+                            <textarea id="about-video-description" placeholder="Mô tả ngắn về video..."></textarea>
+                            <small style="color: #666; display: block; margin-top: 5px;">
+                                Mô tả cho SEO (tùy chọn)
+                            </small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Lưu cấu hình
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #195927;">
+                        <h3 style="color: #195927; margin-bottom: 15px;"><i class="fas fa-info-circle"></i> Hướng dẫn</h3>
+                        <ul style="line-height: 1.8; color: #555;">
+                            <li><strong>Chế độ Autoplay:</strong> Video tự động phát ngay trên trang (muted, loop). Phù hợp cho video ngắn, giới thiệu</li>
+                            <li><strong>Chế độ Click to Play:</strong> Hiển thị ảnh thumbnail, click để xem video trong popup. Phù hợp cho video dài, chi tiết</li>
+                            <li><strong>YouTube:</strong> Dễ dàng, không tốn băng thông, tự động tối ưu chất lượng</li>
+                            <li><strong>Video trực tiếp:</strong> Kiểm soát hoàn toàn, nhưng cần file video tối ưu (khuyến nghị: MP4, H.264, tối đa 50MB)</li>
+                            <li><strong>Khuyến nghị:</strong> Sử dụng YouTube + Autoplay cho trải nghiệm tốt nhất</li>
+                            <li><strong>Lưu ý:</strong> Video autoplay sẽ tự động tắt tiếng (muted) theo chuẩn trình duyệt</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Quản lý bài viết -->
+            <div id="tab-list" class="tab-content">
+                <div class="articles-list">
+                    <h2>Danh sách bài viết</h2>
+                    <div id="articles-container">
+                        <!-- Articles will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Thêm mới -->
+            <div id="tab-new" class="tab-content">
+                <div class="admin-form">
+            <h2 id="form-title">Thêm bài viết mới</h2>
+            <div id="alert-container"></div>
+            
+            <form id="article-form">
+                <input type="hidden" id="article-id">
+                
+                <div class="form-group">
+                    <label for="title">Tiêu đề *</label>
+                    <input type="text" id="title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Danh mục *</label>
+                    <select id="category" required>
+                        <option value="">Chọn danh mục</option>
+                        <option value="Dự án">Dự án</option>
+                        <option value="Công nghệ">Công nghệ</option>
+                        <option value="Giải thưởng">Giải thưởng</option>
+                        <option value="Hợp tác">Hợp tác</option>
+                        <option value="Đầu tư">Đầu tư</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Ngày đăng *</label>
+                    <input type="date" id="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="author">Tác giả *</label>
+                    <input type="text" id="author" value="Admin" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="image">Ảnh bài viết *</label>
+                    <div style="display: flex; gap: 10px; align-items: flex-start;">
+                        <input type="text" id="image" placeholder="images/example.jpg" required style="flex: 1;">
+                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('imageUpload').click()" style="white-space: nowrap;">
+                            <i class="fas fa-upload"></i> Chọn ảnh
+                        </button>
+                    </div>
+                    <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(event); return false;">
+                    <div id="imagePreview" style="margin-top: 10px; display: none;">
+                        <img id="previewImg" src="" alt="Preview" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                    </div>
+                    <small style="color: #666; display: block; margin-top: 5px;">
+                        <strong>Khuyến nghị:</strong> Nhập đường dẫn ảnh (ví dụ: images/DJI_0565.jpg) thay vì upload để tiết kiệm dung lượng.
+                    </small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="excerpt">Mô tả ngắn *</label>
+                    <textarea id="excerpt" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="content">Nội dung bài viết *</label>
+                    
+                    <!-- Block Editor Container -->
+                    <div class="block-editor-container">
+                        <!-- Widget Panel - Left Side -->
+                        <div class="widget-panel">
+                            <div class="widget-panel-header">
+                                <i class="fas fa-th-large"></i> Thêm Block
+                            </div>
+                            <div class="widget-list">
+                                <div class="widget-item" draggable="true" data-type="heading">
+                                    <i class="fas fa-heading"></i>
+                                    <span>Tiêu đề</span>
+                                </div>
+                                <div class="widget-item" draggable="true" data-type="text">
+                                    <i class="fas fa-paragraph"></i>
+                                    <span>Văn bản</span>
+                                </div>
+                                <div class="widget-item" draggable="true" data-type="image">
+                                    <i class="fas fa-image"></i>
+                                    <span>Hình ảnh</span>
+                                </div>
+                                <div class="widget-item" draggable="true" data-type="gallery">
+                                    <i class="fas fa-images"></i>
+                                    <span>Thư viện ảnh</span>
+                                </div>
+                                <div class="widget-item" draggable="true" data-type="list">
+                                    <i class="fas fa-list-ul"></i>
+                                    <span>Danh sách</span>
+                                </div>
+                                <div class="widget-item" draggable="true" data-type="quote">
+                                    <i class="fas fa-quote-left"></i>
+                                    <span>Trích dẫn</span>
+                                </div>
+                                <div class="widget-item" draggable="true" data-type="divider">
+                                    <i class="fas fa-minus"></i>
+                                    <span>Đường kẻ</span>
+                                </div>
+                                <div class="widget-item" draggable="true" data-type="spacer">
+                                    <i class="fas fa-arrows-alt-v"></i>
+                                    <span>Khoảng cách</span>
+                                </div>
+                                <div class="widget-item" draggable="true" data-type="columns">
+                                    <i class="fas fa-columns"></i>
+                                    <span>2 Cột</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Editor Canvas - Right Side -->
+                        <div class="editor-canvas">
+                            <div class="canvas-header">
+                                <span><i class="fas fa-edit"></i> Kéo thả block để tạo nội dung</span>
+                                <div class="canvas-actions">
+                                    <button type="button" class="canvas-btn" onclick="previewContent()" title="Xem trước">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button type="button" class="canvas-btn" onclick="toggleHTMLMode()" title="Xem HTML">
+                                        <i class="fas fa-code"></i>
+                                    </button>
+                                    <button type="button" class="canvas-btn" onclick="clearAllBlocks()" title="Xóa tất cả">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="editor" class="block-canvas" data-placeholder="Kéo block từ bên trái hoặc click để thêm nội dung...">
+                                <!-- Blocks will be added here -->
+                            </div>
+                            <!-- Input file đã được di chuyển ra ngoài form -->
+                        </div>
+                    </div>
+                    
+                    <textarea id="content" style="display: none;"></textarea>
+                    <small style="color: #666; display: block; margin-top: 10px;">
+                        <i class="fas fa-info-circle"></i> Kéo thả các block từ panel bên trái vào vùng soạn thảo. Click vào block để chỉnh sửa, kéo để di chuyển.
+                    </small>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="featured">
+                    <label for="featured">Đặt làm bài viết nổi bật</label>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Lưu bài viết
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="cancel-btn">
+                        <i class="fas fa-times"></i> Hủy
+                    </button>
+                </div>
+            </form>
+                </div>
+            </div>
+
+            <!-- Tab: Quản lý dịch vụ -->
+            <div id="tab-services-list" class="tab-content">
+                <div class="articles-list">
+                    <h2>Danh sách dịch vụ</h2>
+                    <div id="services-container">
+                        <!-- Services will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Thêm dịch vụ mới -->
+            <div id="tab-services-new" class="tab-content">
+                <div class="admin-form">
+                    <h2 id="service-form-title">Thêm dịch vụ mới</h2>
+                    <div id="service-alert-container"></div>
+                    
+                    <form id="service-form">
+                        <input type="hidden" id="service-id">
+                        
+                        <div class="form-group">
+                            <label for="service-title">Tiêu đề *</label>
+                            <input type="text" id="service-title" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service-category">Danh mục *</label>
+                            <select id="service-category" required>
+                                <option value="">Chọn danh mục</option>
+                                <option value="Xử lý nước thải">Xử lý nước thải</option>
+                                <option value="Xử lý nước cấp">Xử lý nước cấp</option>
+                                <option value="Xử lý khí thải">Xử lý khí thải</option>
+                                <option value="Tái sử dụng nước">Tái sử dụng nước</option>
+                                <option value="Tư vấn">Tư vấn</option>
+                                <option value="Thiết kế">Thiết kế</option>
+                                <option value="Thi công">Thi công</option>
+                                <option value="Vận hành">Vận hành</option>
+                                <option value="Bảo trì">Bảo trì</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service-date">Ngày đăng *</label>
+                            <input type="date" id="service-date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service-author">Tác giả *</label>
+                            <input type="text" id="service-author" value="Admin" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service-image">Ảnh dịch vụ *</label>
+                            <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                <input type="text" id="service-image" placeholder="images/example.jpg" required style="flex: 1;">
+                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('serviceImageUpload').click()" style="white-space: nowrap;">
+                                    <i class="fas fa-upload"></i> Chọn ảnh
+                                </button>
+                            </div>
+                            <input type="file" id="serviceImageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(event, 'service'); return false;">
+                            <div id="serviceImagePreview" style="margin-top: 10px; display: none;">
+                                <img id="servicePreviewImg" src="" alt="Preview" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                            </div>
+                            <small style="color: #666; display: block; margin-top: 5px;">
+                                <strong>Khuyến nghị:</strong> Nhập đường dẫn ảnh (ví dụ: images/service.jpg) thay vì upload để tiết kiệm dung lượng.
+                            </small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service-excerpt">Mô tả ngắn *</label>
+                            <textarea id="service-excerpt" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service-content">Nội dung dịch vụ *</label>
+                            <div class="editor-toolbar">
+                                <button type="button" class="editor-btn" onclick="formatServiceText('bold')" title="Chữ đậm">
+                                    <i class="fas fa-bold"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatServiceText('italic')" title="Chữ nghiêng">
+                                    <i class="fas fa-italic"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatServiceText('underline')" title="Gạch chân">
+                                    <i class="fas fa-underline"></i>
+                                </button>
+                                <div class="toolbar-separator"></div>
+                                <button type="button" class="editor-btn" onclick="formatServiceText('formatBlock', 'h3')" title="Tiêu đề">
+                                    <i class="fas fa-heading"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatServiceText('insertUnorderedList')" title="Danh sách">
+                                    <i class="fas fa-list-ul"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatServiceText('insertOrderedList')" title="Danh sách số">
+                                    <i class="fas fa-list-ol"></i>
+                                </button>
+                                <div class="toolbar-separator"></div>
+                                <button type="button" class="editor-btn editor-btn-primary" onclick="document.getElementById('serviceContentImageUpload').click()" title="Thêm ảnh">
+                                    <i class="fas fa-image"></i> Thêm ảnh
+                                </button>
+                                <button type="button" class="editor-btn" onclick="toggleServiceHTMLMode()" title="Xem HTML">
+                                    <i class="fas fa-code"></i>
+                                </button>
+                            </div>
+                            <input type="file" id="serviceContentImageUpload" accept="image/*" style="display: none;" onchange="handleServiceContentImageUpload(event); return false;" multiple>
+                            <div id="service-editor" contenteditable="true" class="content-editor"></div>
+                            <textarea id="service-content" style="display: none;"></textarea>
+                            <small style="color: #666; display: block; margin-top: 5px;">
+                                Soạn thảo nội dung trực quan - Thêm ảnh, định dạng text dễ dàng
+                            </small>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="service-featured">
+                            <label for="service-featured">Đặt làm dịch vụ nổi bật</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Lưu dịch vụ
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="service-cancel-btn">
+                                <i class="fas fa-times"></i> Hủy
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tab: Quản lý dự án -->
+            <div id="tab-projects-list" class="tab-content">
+                <div class="articles-list">
+                    <h2>Danh sách dự án</h2>
+                    <div id="projects-container">
+                        <!-- Projects will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Thêm dự án mới -->
+            <div id="tab-projects-new" class="tab-content">
+                <div class="admin-form">
+                    <h2 id="project-form-title">Thêm dự án mới</h2>
+                    <div id="project-alert-container"></div>
+                    
+                    <form id="project-form">
+                        <input type="hidden" id="project-id">
+                        
+                        <div class="form-group">
+                            <label for="project-title">Tiêu đề *</label>
+                            <input type="text" id="project-title" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-category">Danh mục *</label>
+                            <select id="project-category" required>
+                                <option value="">Chọn danh mục</option>
+                                <option value="Xử lý nước thải">Xử lý nước thải</option>
+                                <option value="Xử lý nước cấp">Xử lý nước cấp</option>
+                                <option value="Xử lý khí thải">Xử lý khí thải</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-status">Trạng thái *</label>
+                            <select id="project-status" required>
+                                <option value="">Chọn trạng thái</option>
+                                <option value="Hoàn thành">Hoàn thành</option>
+                                <option value="Đang thực hiện">Đang thực hiện</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-date">Ngày hoàn thành/Bắt đầu *</label>
+                            <input type="date" id="project-date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-location">Địa điểm *</label>
+                            <input type="text" id="project-location" placeholder="TP.HCM, Hà Nội..." required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-image">Ảnh dự án *</label>
+                            <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                <input type="text" id="project-image" placeholder="images/example.jpg" required style="flex: 1;">
+                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('projectImageUpload').click()" style="white-space: nowrap;">
+                                    <i class="fas fa-upload"></i> Chọn ảnh
+                                </button>
+                            </div>
+                            <input type="file" id="projectImageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(event, 'project'); return false;">
+                            <div id="projectImagePreview" style="margin-top: 10px; display: none;">
+                                <img id="projectPreviewImg" src="" alt="Preview" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                            </div>
+                            <small style="color: #666; display: block; margin-top: 5px;">
+                                <strong>Khuyến nghị:</strong> Nhập đường dẫn ảnh (ví dụ: images/project.jpg) thay vì upload để tiết kiệm dung lượng.
+                            </small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-excerpt">Mô tả ngắn *</label>
+                            <textarea id="project-excerpt" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-content">Nội dung dự án *</label>
+                            <div class="editor-toolbar">
+                                <button type="button" class="editor-btn" onclick="formatProjectText('bold')" title="Chữ đậm">
+                                    <i class="fas fa-bold"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatProjectText('italic')" title="Chữ nghiêng">
+                                    <i class="fas fa-italic"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatProjectText('underline')" title="Gạch chân">
+                                    <i class="fas fa-underline"></i>
+                                </button>
+                                <div class="toolbar-separator"></div>
+                                <button type="button" class="editor-btn" onclick="formatProjectText('formatBlock', 'h3')" title="Tiêu đề">
+                                    <i class="fas fa-heading"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatProjectText('insertUnorderedList')" title="Danh sách">
+                                    <i class="fas fa-list-ul"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatProjectText('insertOrderedList')" title="Danh sách số">
+                                    <i class="fas fa-list-ol"></i>
+                                </button>
+                                <div class="toolbar-separator"></div>
+                                <button type="button" class="editor-btn" onclick="toggleProjectHTMLMode()" title="Xem HTML">
+                                    <i class="fas fa-code"></i>
+                                </button>
+                            </div>
+                            <div id="project-editor" contenteditable="true" class="content-editor"></div>
+                            <textarea id="project-content" style="display: none;"></textarea>
+                            <small style="color: #666; display: block; margin-top: 5px;">
+                                Soạn thảo nội dung trực quan - Thêm ảnh, định dạng text dễ dàng
+                            </small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Lưu dự án
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="project-cancel-btn">
+                                <i class="fas fa-times"></i> Hủy
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tab: Quản lý tuyển dụng -->
+            <div id="tab-jobs-list" class="tab-content">
+                <div class="articles-list">
+                    <h2>Danh sách tuyển dụng</h2>
+                    <div id="jobs-container">
+                        <!-- Jobs will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Thêm tin tuyển dụng mới -->
+            <div id="tab-jobs-new" class="tab-content">
+                <div class="admin-form">
+                    <h2 id="job-form-title">Thêm tin tuyển dụng mới</h2>
+                    <div id="job-alert-container"></div>
+                    
+                    <form id="job-form">
+                        <input type="hidden" id="job-id">
+                        
+                        <div class="form-group">
+                            <label for="job-title">Tiêu đề vị trí *</label>
+                            <input type="text" id="job-title" required placeholder="VD: Kỹ sư Xử lý Nước Thải">
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label for="job-position">Cấp bậc *</label>
+                                <select id="job-position" required>
+                                    <option value="">Chọn cấp bậc</option>
+                                    <option value="Nhân viên">Nhân viên</option>
+                                    <option value="Kỹ thuật viên">Kỹ thuật viên</option>
+                                    <option value="Kỹ sư">Kỹ sư</option>
+                                    <option value="Trưởng phòng">Trưởng phòng</option>
+                                    <option value="Giám đốc">Giám đốc</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="job-department">Phòng ban *</label>
+                                <select id="job-department" required>
+                                    <option value="">Chọn phòng ban</option>
+                                    <option value="Kỹ thuật">Kỹ thuật</option>
+                                    <option value="Kinh doanh">Kinh doanh</option>
+                                    <option value="Vận hành">Vận hành</option>
+                                    <option value="Hành chính">Hành chính</option>
+                                    <option value="Nhân sự">Nhân sự</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label for="job-location">Địa điểm *</label>
+                                <input type="text" id="job-location" required placeholder="VD: TP.HCM">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="job-type">Loại hình *</label>
+                                <select id="job-type" required>
+                                    <option value="">Chọn loại hình</option>
+                                    <option value="Toàn thời gian">Toàn thời gian</option>
+                                    <option value="Bán thời gian">Bán thời gian</option>
+                                    <option value="Thực tập">Thực tập</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="job-level">Cấp độ *</label>
+                                <select id="job-level" required>
+                                    <option value="">Chọn cấp độ</option>
+                                    <option value="Mới tốt nghiệp">Mới tốt nghiệp</option>
+                                    <option value="Sơ cấp">Sơ cấp</option>
+                                    <option value="Trung cấp">Trung cấp</option>
+                                    <option value="Cao cấp">Cao cấp</option>
+                                    <option value="Quản lý">Quản lý</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label for="job-salary">Mức lương *</label>
+                                <input type="text" id="job-salary" required placeholder="VD: 15-25 triệu">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="job-deadline">Hạn nộp hồ sơ *</label>
+                                <input type="date" id="job-deadline" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="job-date">Ngày đăng *</label>
+                                <input type="date" id="job-date" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="job-image">Ảnh tin tuyển dụng *</label>
+                            <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                <input type="text" id="job-image" placeholder="images/example.jpg" required style="flex: 1;">
+                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('jobImageUpload').click()" style="white-space: nowrap;">
+                                    <i class="fas fa-upload"></i> Chọn ảnh
+                                </button>
+                            </div>
+                            <input type="file" id="jobImageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(event, 'job'); return false;">
+                            <div id="jobImagePreview" style="margin-top: 10px; display: none;">
+                                <img id="jobPreviewImg" src="" alt="Preview" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="job-excerpt">Mô tả ngắn *</label>
+                            <textarea id="job-excerpt" required placeholder="Mô tả ngắn gọn về vị trí tuyển dụng"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="job-requirements">Yêu cầu tóm tắt</label>
+                            <textarea id="job-requirements" placeholder="VD: Tốt nghiệp Đại học, có 2-3 năm kinh nghiệm..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="job-benefits">Quyền lợi tóm tắt</label>
+                            <textarea id="job-benefits" placeholder="VD: Lương cạnh tranh, BHXH đầy đủ, thưởng theo dự án..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="job-content">Nội dung chi tiết *</label>
+                            <div class="editor-toolbar">
+                                <button type="button" class="editor-btn" onclick="formatJobText('bold')" title="Chữ đậm">
+                                    <i class="fas fa-bold"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatJobText('italic')" title="Chữ nghiêng">
+                                    <i class="fas fa-italic"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatJobText('underline')" title="Gạch chân">
+                                    <i class="fas fa-underline"></i>
+                                </button>
+                                <div class="toolbar-separator"></div>
+                                <button type="button" class="editor-btn" onclick="formatJobText('formatBlock', 'h3')" title="Tiêu đề">
+                                    <i class="fas fa-heading"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatJobText('insertUnorderedList')" title="Danh sách">
+                                    <i class="fas fa-list-ul"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatJobText('insertOrderedList')" title="Danh sách số">
+                                    <i class="fas fa-list-ol"></i>
+                                </button>
+                                <div class="toolbar-separator"></div>
+                                <button type="button" class="editor-btn editor-btn-primary" onclick="document.getElementById('jobContentImageUpload').click()" title="Thêm ảnh">
+                                    <i class="fas fa-image"></i> Thêm ảnh
+                                </button>
+                                <button type="button" class="editor-btn" onclick="toggleJobHTMLMode()" title="Xem HTML">
+                                    <i class="fas fa-code"></i>
+                                </button>
+                            </div>
+                            <input type="file" id="jobContentImageUpload" accept="image/*" style="display: none;" onchange="handleJobContentImageUpload(event); return false;" multiple>
+                            <div id="job-editor" contenteditable="true" class="content-editor"></div>
+                            <textarea id="job-content" style="display: none;"></textarea>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="job-featured">
+                            <label for="job-featured">Đặt làm tin tuyển dụng nổi bật</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Lưu tin tuyển dụng
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="job-cancel-btn">
+                                <i class="fas fa-times"></i> Hủy
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tab: Quản lý đầu tư -->
+            <div id="tab-investments-list" class="tab-content">
+                <div class="articles-list">
+                    <h2>Danh sách dự án đầu tư</h2>
+                    <div id="investments-container">
+                        <!-- Investments will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Thêm dự án đầu tư mới -->
+            <div id="tab-investments-new" class="tab-content">
+                <div class="admin-form">
+                    <h2 id="investment-form-title">Thêm dự án đầu tư mới</h2>
+                    <div id="investment-alert-container"></div>
+                    
+                    <form id="investment-form">
+                        <input type="hidden" id="investment-id">
+                        
+                        <div class="form-group">
+                            <label for="investment-title">Tên dự án *</label>
+                            <input type="text" id="investment-title" required placeholder="VD: Dự án Nhà máy Xử lý Nước thải">
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label for="investment-category">Lĩnh vực *</label>
+                                <select id="investment-category" required>
+                                    <option value="">Chọn lĩnh vực</option>
+                                    <option value="Môi trường">Môi trường</option>
+                                    <option value="Công nghiệp">Công nghiệp</option>
+                                    <option value="Cấp thoát nước">Cấp thoát nước</option>
+                                    <option value="Năng lượng">Năng lượng</option>
+                                    <option value="Hạ tầng">Hạ tầng</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="investment-location">Địa điểm *</label>
+                                <input type="text" id="investment-location" required placeholder="VD: Bình Dương">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="investment-amount">Vốn đầu tư *</label>
+                                <input type="text" id="investment-amount" required placeholder="VD: 50 tỷ VNĐ">
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label for="investment-status">Trạng thái *</label>
+                                <select id="investment-status" required>
+                                    <option value="">Chọn trạng thái</option>
+                                    <option value="Đang triển khai">Đang triển khai</option>
+                                    <option value="Hoàn thành">Hoàn thành</option>
+                                    <option value="Kế hoạch">Kế hoạch</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="investment-progress">Tiến độ (%) *</label>
+                                <input type="number" id="investment-progress" min="0" max="100" value="0" required>
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label for="investment-start-date">Ngày bắt đầu *</label>
+                                <input type="date" id="investment-start-date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="investment-end-date">Ngày dự kiến hoàn thành *</label>
+                                <input type="date" id="investment-end-date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="investment-date">Ngày đăng *</label>
+                                <input type="date" id="investment-date" required>
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label for="investment-investor">Nhà đầu tư *</label>
+                                <input type="text" id="investment-investor" required placeholder="VD: ERATECH Group">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="investment-partner">Đối tác *</label>
+                                <input type="text" id="investment-partner" required placeholder="VD: Khu công nghiệp Bình Dương">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-image">Ảnh dự án *</label>
+                            <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                <input type="text" id="investment-image" placeholder="images/example.jpg" required style="flex: 1;">
+                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('investmentImageUpload').click()" style="white-space: nowrap;">
+                                    <i class="fas fa-upload"></i> Chọn ảnh
+                                </button>
+                            </div>
+                            <input type="file" id="investmentImageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(event, 'investment'); return false;">
+                            <div id="investmentImagePreview" style="margin-top: 10px; display: none;">
+                                <img id="investmentPreviewImg" src="" alt="Preview" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-excerpt">Mô tả ngắn *</label>
+                            <textarea id="investment-excerpt" required placeholder="Mô tả ngắn gọn về dự án đầu tư"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-content">Nội dung chi tiết *</label>
+                            <div class="editor-toolbar">
+                                <button type="button" class="editor-btn" onclick="formatInvestmentText('bold')" title="Chữ đậm">
+                                    <i class="fas fa-bold"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatInvestmentText('italic')" title="Chữ nghiêng">
+                                    <i class="fas fa-italic"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatInvestmentText('underline')" title="Gạch chân">
+                                    <i class="fas fa-underline"></i>
+                                </button>
+                                <div class="toolbar-separator"></div>
+                                <button type="button" class="editor-btn" onclick="formatInvestmentText('formatBlock', 'h3')" title="Tiêu đề">
+                                    <i class="fas fa-heading"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatInvestmentText('insertUnorderedList')" title="Danh sách">
+                                    <i class="fas fa-list-ul"></i>
+                                </button>
+                                <button type="button" class="editor-btn" onclick="formatInvestmentText('insertOrderedList')" title="Danh sách số">
+                                    <i class="fas fa-list-ol"></i>
+                                </button>
+                                <div class="toolbar-separator"></div>
+                                <button type="button" class="editor-btn editor-btn-primary" onclick="document.getElementById('investmentContentImageUpload').click()" title="Thêm ảnh">
+                                    <i class="fas fa-image"></i> Thêm ảnh
+                                </button>
+                                <button type="button" class="editor-btn" onclick="toggleInvestmentHTMLMode()" title="Xem HTML">
+                                    <i class="fas fa-code"></i>
+                                </button>
+                            </div>
+                            <input type="file" id="investmentContentImageUpload" accept="image/*" style="display: none;" onchange="handleInvestmentContentImageUpload(event); return false;" multiple>
+                            <div id="investment-editor" contenteditable="true" class="content-editor"></div>
+                            <textarea id="investment-content" style="display: none;"></textarea>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="investment-featured">
+                            <label for="investment-featured">Đặt làm dự án nổi bật</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Lưu dự án đầu tư
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="investment-cancel-btn">
+                                <i class="fas fa-times"></i> Hủy
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+    <script src="admin-hero-module.js"></script>
+    <script src="admin-hero-banner-module.js"></script>
+    <script src="admin-about-video-module.js"></script>
+    <script src="admin-services-module.js"></script>
+    <script src="admin-projects-module.js"></script>
+    <script src="admin-recruitment-module.js"></script>
+    <script src="admin-investment-module.js"></script>
+    <script>
+        // Tab switching
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all menu items
+                document.querySelectorAll('.menu-item').forEach(mi => mi.classList.remove('active'));
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Hide all tabs
+                document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+                
+                // Show selected tab
+                const tabId = 'tab-' + this.dataset.tab;
+                document.getElementById(tabId).classList.add('active');
+                
+                // Reset form when switching to new tab
+                if (this.dataset.tab === 'new') {
+                    resetForm();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

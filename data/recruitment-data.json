@@ -1,0 +1,58 @@
+{
+  "jobs": [
+    {
+      "id": 1,
+      "title": "Kỹ sư Xử lý Nước Thải",
+      "position": "Kỹ sư",
+      "department": "Kỹ thuật",
+      "location": "TP.HCM",
+      "type": "Toàn thời gian",
+      "level": "Trung cấp",
+      "salary": "15-25 triệu",
+      "deadline": "2024-03-31",
+      "date": "2024-02-01",
+      "image": "images/KenVT.jpg",
+      "excerpt": "Tìm kiếm kỹ sư có kinh nghiệm trong lĩnh vực xử lý nước thải công nghiệp, thiết kế và vận hành hệ thống.",
+      "content": "<h3>Mô tả công việc</h3><ul><li>Thiết kế hệ thống xử lý nước thải công nghiệp</li><li>Giám sát thi công và vận hành hệ thống</li><li>Tư vấn giải pháp cho khách hàng</li><li>Lập báo cáo kỹ thuật</li></ul><h3>Yêu cầu</h3><ul><li>Tốt nghiệp Đại học chuyên ngành Môi trường, Hóa học</li><li>Có 2-3 năm kinh nghiệm</li><li>Sử dụng thành thạo AutoCAD, Excel</li><li>Có khả năng làm việc độc lập và teamwork</li></ul><h3>Quyền lợi</h3><ul><li>Lương cạnh tranh + thưởng theo dự án</li><li>BHXH, BHYT đầy đủ</li><li>Môi trường làm việc chuyên nghiệp</li><li>Cơ hội thăng tiến</li></ul>",
+      "requirements": "Tốt nghiệp Đại học chuyên ngành Môi trường, Hóa học, có 2-3 năm kinh nghiệm",
+      "benefits": "Lương 15-25 triệu, BHXH đầy đủ, thưởng theo dự án",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "Nhân viên Kinh doanh",
+      "position": "Nhân viên",
+      "department": "Kinh doanh",
+      "location": "Hà Nội",
+      "type": "Toàn thời gian",
+      "level": "Mới tốt nghiệp",
+      "salary": "10-15 triệu + hoa hồng",
+      "deadline": "2024-03-25",
+      "date": "2024-01-28",
+      "image": "images/DJI_0565.jpg",
+      "excerpt": "Tuyển dụng nhân viên kinh doanh năng động, nhiệt huyết trong lĩnh vực môi trường.",
+      "content": "<h3>Mô tả công việc</h3><ul><li>Tìm kiếm và phát triển khách hàng mới</li><li>Tư vấn giải pháp môi trường cho khách hàng</li><li>Lập báo giá và hợp đồng</li><li>Chăm sóc khách hàng</li></ul><h3>Yêu cầu</h3><ul><li>Tốt nghiệp Đại học các ngành liên quan</li><li>Kỹ năng giao tiếp tốt</li><li>Nhiệt tình, năng động</li><li>Có kinh nghiệm là lợi thế</li></ul><h3>Quyền lợi</h3><ul><li>Lương cơ bản + hoa hồng hấp dẫn</li><li>Đào tạo bài bản</li><li>Cơ hội thăng tiến cao</li></ul>",
+      "requirements": "Tốt nghiệp Đại học, kỹ năng giao tiếp tốt, nhiệt tình năng động",
+      "benefits": "Lương 10-15 triệu + hoa hồng, đào tạo bài bản, thăng tiến nhanh",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "title": "Kỹ thuật viên Vận hành",
+      "position": "Kỹ thuật viên",
+      "department": "Vận hành",
+      "location": "Bình Dương",
+      "type": "Toàn thời gian",
+      "level": "Sơ cấp",
+      "salary": "8-12 triệu",
+      "deadline": "2024-03-20",
+      "date": "2024-01-25",
+      "image": "images/DJI_0570.jpg",
+      "excerpt": "Tuyển kỹ thuật viên vận hành hệ thống xử lý nước thải tại nhà máy.",
+      "content": "<h3>Mô tả công việc</h3><ul><li>Vận hành hệ thống xử lý nước thải</li><li>Kiểm tra và bảo trì thiết bị</li><li>Ghi chép số liệu vận hành</li><li>Báo cáo sự cố</li></ul><h3>Yêu cầu</h3><ul><li>Tốt nghiệp Trung cấp/Cao đẳng</li><li>Có thể làm ca</li><li>Chịu khó, cẩn thận</li></ul><h3>Quyền lợi</h3><ul><li>Lương ổn định</li><li>Phụ cấp ca</li><li>BHXH đầy đủ</li></ul>",
+      "requirements": "Tốt nghiệp Trung cấp/Cao đẳng, có thể làm ca, chịu khó cẩn thận",
+      "benefits": "Lương 8-12 triệu, phụ cấp ca, BHXH đầy đủ",
+      "featured": false
+    }
+  ]
+}

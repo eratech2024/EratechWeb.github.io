@@ -1,0 +1,12 @@
+{
+  "aboutVideo": {
+    "enabled": true,
+    "displayMode": "autoplay",
+    "thumbnail": "images/DJI_0565.jpg",
+    "videoUrl": "",
+    "videoType": "youtube",
+    "youtubeId": "",
+    "title": "Giới thiệu về ERATECH",
+    "description": "Video giới thiệu về công ty và các dự án môi trường"
+  }
+}

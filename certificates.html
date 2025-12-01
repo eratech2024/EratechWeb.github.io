@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chứng Nhận Và Bằng Khen - ERATECH</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/global-mobile.css" />
+    <link rel="stylesheet" href="css/mobile-menu-production.css" />
+    <link rel="stylesheet" href="css/certificates-mobile.css" />
+    <style>
+        .certificates-container {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .certificate-layout {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 8px;
+        }
+        
+        .certificate-images {
+            flex: 0 0 55%;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .cert-image-wrapper {
+            flex: 1;
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .cert-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+        
+        .certificate-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .certificate-text h2 {
+            color: #195927;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .certificate-text p {
+            color: #333;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        @media (max-width: 968px) {
+            .certificate-layout {
+                flex-direction: column;
+                padding: 30px 20px;
+            }
+            
+            .certificate-images {
+                flex: 1;
+                width: 100%;
+            }
+            
+            .certificate-text h2 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .certificate-images {
+                flex-direction: column;
+            }
+            
+            .certificates-container {
+                padding: 40px 15px;
+            }
+        }
+    </style>
+</head>
+<body class="certificates">
+    <!-- Include Header -->
+    <div w3-include-html="includes/header.html"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-image-container">
+                <img src="images/DJI_0181.JPG" alt="Certificates Banner" class="hero-image active" data-aos="fade">
+            </div>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text" data-aos="fade-up">
+                    <h1 class="hero-title" style="white-space: nowrap;">
+                        CHỨNG NHẬN VÀ BẰNG KHEN
+                    </h1>
+                    <p class="hero-subtitle">
+                        Vinh dự và thành tựu của ERATECH
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Content -->
+    <main class="certificates">
+        <div class="container certificates-container">
+            <!-- Certificate Section -->
+            <section class="certificate-section" data-aos="fade-up">
+                <div class="certificate-layout">
+                    <div class="certificate-images" data-aos="fade-right">
+                        <div class="cert-image-wrapper">
+                            <img src="images/cnvn.jpg" alt="Chứng nhận ISO" class="cert-img">
+                        </div>
+                        <div class="cert-image-wrapper">
+                            <img src="images/bk.jpg" alt="Bằng khen" class="cert-img">
+                        </div>
+                    </div>
+                    <div class="certificate-text" data-aos="fade-left">
+                        <h2>Bằng khen từ chủ tịch tỉnh</h2>
+                        <p>
+                            Sự phát triển mạnh mẽ của KCN An Nghiệp đã thu hút một lượng lớn các nhà đầu tư, vì vậy, việc nâng cấp công suất của HTXLNT là một điều vô cùng cần thiết.
+                        </p>
+                        <p>
+                            Bằng công nghệ hiện đại và tối ưu, Eratech đã thành công trong việc đầu tư, xây dựng và vận hành HTXLNT tập trung tại KCN An Nghiệp và nhận được bằng khen từ chủ tịch tỉnh Sóc Trăng.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Include Footer -->
+    <div w3-include-html="includes/footer.html"></div>
+
+    <script src="js/include.js"></script>
+    <script>
+        includeHTML();
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/hero-banner.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

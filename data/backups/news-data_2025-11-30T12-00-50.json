@@ -1,0 +1,235 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "ERATECH đầu tư hệ thống xử lý nước thải tập trung tại KCN An Nghiệp",
+      "category": "Dự án",
+      "date": "2024-03-15",
+      "author": "Admin",
+      "image": "images/DJI_0565.jpg",
+      "excerpt": "Dự án xử lý nước thải tập trung công suất 5000m³/ngày đêm tại Khu công nghiệp An Nghiệp, Sóc Trăng.",
+      "content": "<p>ERATECH Group tự hào công bố dự án đầu tư hệ thống xử lý nước thải tập trung tại Khu công nghiệp An Nghiệp với công suất 5000m³/ngày đêm.</p><p>Dự án được thiết kế với công nghệ hiện đại, đáp ứng các tiêu chuẩn môi trường nghiêm ngặt, góp phần bảo vệ môi trường và phát triển bền vững.</p><h3>Công nghệ tiên tiến</h3><p>Hệ thống xử lý bao gồm công nghệ lọc màng RO tiên tiến, hệ thống khử trùng UV và công nghệ oxy hóa tiên tiến (AOP). Dự án được thiết kế để đạt chuẩn xả thải nghiêm ngặt nhất của EU và đáp ứng nhu cầu mở rộng sản xuất của các doanh nghiệp trong khu vực.</p><h3>Lợi ích cho cộng đồng</h3><p>Dự án không chỉ giải quyết vấn đề ô nhiễm mà còn tạo ra nguồn nước tái chế có thể tái sử dụng trong sản xuất, tiết kiệm 40% chi phí nước cho các doanh nghiệp.</p>",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "Nhận bằng khen từ Chủ tịch UBND tỉnh Sóc Trăng",
+      "category": "Giải thưởng",
+      "date": "2024-02-20",
+      "author": "Admin",
+      "image": "images/bk.jpg",
+      "excerpt": "ERATECH vinh dự nhận bằng khen từ Chủ tịch UBND tỉnh Sóc Trăng vì những đóng góp xuất sắc.",
+      "content": "<p>Bằng công nghệ hiện đại và tối ưu, ERATECH đã thành công trong việc đầu tư, xây dựng và vận hành HTXLNT tập trung tại KCN An Nghiệp.</p><p>Đây là sự ghi nhận của chính quyền địa phương đối với những nỗ lực và đóng góp của ERATECH trong việc phát triển kinh tế và bảo vệ môi trường.</p><h3>Thành tựu đạt được</h3><p>Sự phát triển mạnh mẽ của KCN An Nghiệp đã thu hút một lượng lớn các nhà đầu tư, vì vậy, việc nâng cấp công suất của HTXLNT là một điều vô cùng cần thiết.</p><p>ERATECH đã đầu tư hệ thống xử lý nước thải hiện đại, đáp ứng nhu cầu ngày càng tăng của khu công nghiệp, góp phần vào sự phát triển bền vững của tỉnh Sóc Trăng.</p><h3>Cam kết tương lai</h3><p>ERATECH cam kết tiếp tục đầu tư và phát triển các dự án môi trường, đóng góp vào sự phát triển kinh tế - xã hội của địa phương.</p>",
+      "featured": false
+    },
+    {
+      "id": 3,
+      "title": "Chứng nhận ISO 9001:2015",
+      "category": "Giải thưởng",
+      "date": "2024-01-10",
+      "author": "Admin",
+      "image": "images/cnvn.jpg",
+      "excerpt": "ERATECH đạt chứng nhận ISO 9001:2015 về hệ thống quản lý chất lượng.",
+      "content": "<p>ERATECH Environmental Technology Joint Stock Company đã được cấp chứng nhận ISO 9001:2015 cho hệ thống quản lý chất lượng.</p><p>Chứng nhận này khẳng định cam kết của ERATECH trong việc cung cấp dịch vụ chất lượng cao và tuân thủ các tiêu chuẩn quốc tế.</p><h3>Ý nghĩa của chứng nhận</h3><p>ISO 9001:2015 là tiêu chuẩn quốc tế về hệ thống quản lý chất lượng, giúp các tổ chức cải thiện hiệu suất hoạt động, tăng cường sự hài lòng của khách hàng và đảm bảo tuân thủ các yêu cầu pháp lý.</p><h3>Quy trình đạt chứng nhận</h3><p>ERATECH đã trải qua quá trình kiểm tra nghiêm ngặt về hệ thống quản lý, quy trình vận hành và chất lượng dịch vụ. Chứng nhận này là minh chứng cho sự nỗ lực không ngừng của toàn thể nhân viên ERATECH.</p><h3>Cam kết chất lượng</h3><p>Với chứng nhận ISO 9001:2015, ERATECH cam kết tiếp tục cải tiến và nâng cao chất lượng dịch vụ, mang đến giá trị tốt nhất cho khách hàng và đối tác.</p>",
+      "featured": false
+    },
+    {
+      "id": 4,
+      "title": "Công nghệ xử lý nước thải sinh hoạt tiên tiến",
+      "category": "Công nghệ",
+      "date": "2024-03-10",
+      "author": "Admin",
+      "image": "images/DJI_0566.jpg",
+      "excerpt": "ERATECH áp dụng công nghệ MBR kết hợp với hệ thống khử trùng UV để xử lý nước thải sinh hoạt đạt chuẩn A.",
+      "content": "<p>ERATECH Group đã triển khai thành công công nghệ MBR (Membrane Bioreactor) kết hợp với hệ thống khử trùng UV tiên tiến để xử lý nước thải sinh hoạt.</p><h3>Công nghệ MBR</h3><p>Công nghệ MBR là sự kết hợp giữa quá trình xử lý sinh học và công nghệ màng lọc, cho phép loại bỏ hiệu quả các chất hữu cơ, vi khuẩn và virus trong nước thải.</p><h3>Ưu điểm vượt trội</h3><ul><li>Chất lượng nước đầu ra đạt chuẩn A (QCVN 14:2008/BTNMT)</li><li>Diện tích lắp đặt nhỏ gọn, tiết kiệm mặt bằng</li><li>Vận hành tự động, ít tốn nhân công</li><li>Không gây mùi hôi, thân thiện môi trường</li></ul><h3>Ứng dụng thực tế</h3><p>Công nghệ này đã được ERATECH triển khai tại nhiều khu đô thị, chung cư cao cấp và khu nghỉ dưỡng, mang lại hiệu quả cao trong việc bảo vệ môi trường.</p>",
+      "featured": false
+    },
+    {
+      "id": 5,
+      "title": "Hợp tác với Đại học Bách Khoa nghiên cứu công nghệ xanh",
+      "category": "Hợp tác",
+      "date": "2024-03-05",
+      "author": "Admin",
+      "image": "images/DJI_0570.jpg",
+      "excerpt": "ERATECH ký kết hợp tác với Đại học Bách Khoa TP.HCM để nghiên cứu và phát triển các giải pháp công nghệ xanh.",
+      "content": "<p>ERATECH Group và Đại học Bách Khoa TP.HCM đã ký kết thỏa thuận hợp tác chiến lược trong lĩnh vực nghiên cứu và phát triển công nghệ môi trường.</p><h3>Nội dung hợp tác</h3><ul><li>Nghiên cứu công nghệ xử lý nước thải tiên tiến</li><li>Phát triển vật liệu lọc sinh học mới</li><li>Ứng dụng AI trong giám sát môi trường</li><li>Đào tạo nguồn nhân lực chất lượng cao</li></ul><h3>Mục tiêu</h3><p>Thỏa thuận hợp tác nhằm kết hợp thế mạnh nghiên cứu của Đại học Bách Khoa với kinh nghiệm thực tiễn của ERATECH để tạo ra các giải pháp công nghệ xanh phù hợp với điều kiện Việt Nam.</p><h3>Kỳ vọng</h3><p>Dự kiến trong 3 năm tới, hợp tác này sẽ cho ra đời ít nhất 5 công nghệ mới được ứng dụng rộng rãi trong thực tế.</p>",
+      "featured": false
+    },
+    {
+      "id": 6,
+      "title": "Đầu tư 100 tỷ đồng mở rộng nhà máy xử lý chất thải rắn",
+      "category": "Đầu tư",
+      "date": "2024-02-28",
+      "author": "Admin",
+      "image": "images/DJI_0576.jpg",
+      "excerpt": "ERATECH công bố kế hoạch đầu tư 100 tỷ đồng để mở rộng công suất nhà máy xử lý chất thải rắn tại Bình Dương.",
+      "content": "<p>ERATECH Group chính thức công bố kế hoạch đầu tư 100 tỷ đồng để mở rộng nhà máy xử lý chất thải rắn tại tỉnh Bình Dương.</p><h3>Quy mô dự án</h3><ul><li>Diện tích: 20.000 m²</li><li>Công suất: 200 tấn/ngày</li><li>Công nghệ: Đốt nhiệt phân kết hợp phát điện</li><li>Thời gian hoàn thành: Quý IV/2024</li></ul><h3>Công nghệ tiên tiến</h3><p>Nhà máy sử dụng công nghệ đốt nhiệt phân hiện đại, cho phép xử lý chất thải rắn đồng thời phát điện, tạo ra nguồn năng lượng tái tạo.</p><h3>Lợi ích</h3><ul><li>Giảm thiểu chất thải chôn lấp</li><li>Phát điện 5 MW/ngày</li><li>Tạo việc làm cho 100 lao động</li><li>Bảo vệ môi trường bền vững</li></ul>",
+      "featured": false
+    },
+    {
+      "id": 7,
+      "title": "Hệ thống xử lý khí thải công nghiệp thông minh",
+      "category": "Công nghệ",
+      "date": "2024-02-25",
+      "author": "Admin",
+      "image": "images/DJI_0577.jpg",
+      "excerpt": "ERATECH phát triển hệ thống xử lý khí thải tích hợp AI để tối ưu hóa hiệu suất và giảm chi phí vận hành.",
+      "content": "<p>ERATECH Group đã phát triển thành công hệ thống xử lý khí thải công nghiệp thông minh tích hợp trí tuệ nhân tạo (AI).</p><h3>Tính năng nổi bật</h3><ul><li>Giám sát chất lượng khí thải 24/7</li><li>Tự động điều chỉnh thông số vận hành</li><li>Dự báo sự cố trước 48 giờ</li><li>Tối ưu hóa tiêu thụ năng lượng</li></ul><h3>Công nghệ AI</h3><p>Hệ thống sử dụng thuật toán machine learning để phân tích dữ liệu thời gian thực, tự động điều chỉnh các thông số vận hành nhằm đạt hiệu suất xử lý tối ưu.</p><h3>Hiệu quả</h3><ul><li>Giảm 30% chi phí vận hành</li><li>Tăng 25% hiệu suất xử lý</li><li>Giảm 40% thời gian bảo trì</li><li>Đạt chuẩn khí thải EU</li></ul>",
+      "featured": false
+    },
+    {
+      "id": 8,
+      "title": "Dự án xử lý nước thải khu công nghiệp Long Hậu",
+      "category": "Dự án",
+      "date": "2024-02-20",
+      "author": "Admin",
+      "image": "images/DJI_0578.jpg",
+      "excerpt": "Hoàn thành dự án xử lý nước thải công suất 10.000 m³/ngày tại KCN Long Hậu, Long An.",
+      "content": "<p>ERATECH Group vừa hoàn thành và đưa vào vận hành dự án xử lý nước thải tập trung tại Khu công nghiệp Long Hậu, tỉnh Long An.</p><h3>Thông tin dự án</h3><ul><li>Công suất: 10.000 m³/ngày</li><li>Tổng đầu tư: 150 tỷ đồng</li><li>Thời gian thi công: 18 tháng</li><li>Công nghệ: A²O kết hợp MBR</li></ul><h3>Công nghệ xử lý</h3><p>Dự án áp dụng công nghệ A²O (Anaerobic-Anoxic-Oxic) kết hợp với màng lọc MBR, đảm bảo nước thải sau xử lý đạt chuẩn QCVN 40:2011/BTNMT cột A.</p><h3>Ý nghĩa</h3><p>Dự án góp phần quan trọng trong việc bảo vệ môi trường, hỗ trợ các doanh nghiệp trong KCN Long Hậu phát triển bền vững.</p>",
+      "featured": false
+    },
+    {
+      "id": 9,
+      "title": "ERATECH nhận giải thưởng Sao Vàng Đất Việt 2024",
+      "category": "Giải thưởng",
+      "date": "2024-02-15",
+      "author": "Admin",
+      "image": "images/DJI_0579.jpg",
+      "excerpt": "ERATECH vinh dự nhận giải thưởng Sao Vàng Đất Việt 2024 cho hạng mục Doanh nghiệp Môi trường tiêu biểu.",
+      "content": "<p>ERATECH Group vinh dự được trao giải thưởng Sao Vàng Đất Việt 2024 trong hạng mục Doanh nghiệp Môi trường tiêu biểu.</p><h3>Về giải thưởng</h3><p>Giải thưởng Sao Vàng Đất Việt là giải thưởng uy tín được tổ chức hàng năm nhằm vinh danh các doanh nghiệp có đóng góp xuất sắc cho nền kinh tế Việt Nam.</p><h3>Tiêu chí đánh giá</h3><ul><li>Uy tín và chất lượng dịch vụ</li><li>Đổi mới sáng tạo</li><li>Trách nhiệm xã hội</li><li>Phát triển bền vững</li><li>Đóng góp cho cộng đồng</li></ul><h3>Cam kết</h3><p>Giải thưởng này là động lực để ERATECH tiếp tục nỗ lực, không ngừng đổi mới và phát triển, mang đến những giải pháp môi trường tốt nhất cho khách hàng.</p>",
+      "featured": false
+    },
+    {
+      "id": 10,
+      "title": "Ký kết hợp tác với tập đoàn Veolia (Pháp)",
+      "category": "Hợp tác",
+      "date": "2024-02-10",
+      "author": "Admin",
+      "image": "images/DJI_0565.jpg",
+      "excerpt": "ERATECH ký kết thỏa thuận hợp tác chiến lược với Veolia - tập đoàn môi trường hàng đầu thế giới.",
+      "content": "<p>ERATECH Group chính thức ký kết thỏa thuận hợp tác chiến lược với Veolia - tập đoàn môi trường hàng đầu thế giới đến từ Pháp.</p><h3>Về Veolia</h3><p>Veolia là tập đoàn môi trường lớn nhất thế giới với hơn 170 năm kinh nghiệm, hoạt động tại 40 quốc gia, chuyên về xử lý nước, chất thải và năng lượng.</p><h3>Nội dung hợp tác</h3><ul><li>Chuyển giao công nghệ xử lý nước tiên tiến</li><li>Đào tạo chuyên gia kỹ thuật</li><li>Hợp tác triển khai dự án lớn</li><li>Nghiên cứu phát triển công nghệ mới</li></ul><h3>Kỳ vọng</h3><p>Thỏa thuận hợp tác này sẽ giúp ERATECH tiếp cận công nghệ tiên tiến nhất thế giới, nâng cao năng lực cạnh tranh và mở rộng thị trường quốc tế.</p>",
+      "featured": false
+    },
+    {
+      "id": 11,
+      "title": "Đầu tư hệ thống năng lượng mặt trời cho nhà máy",
+      "category": "Đầu tư",
+      "date": "2024-02-05",
+      "author": "Admin",
+      "image": "images/DJI_0566.jpg",
+      "excerpt": "ERATECH đầu tư 50 tỷ đồng lắp đặt hệ thống điện mặt trời công suất 3 MWp tại các nhà máy.",
+      "content": "<p>ERATECH Group công bố kế hoạch đầu tư 50 tỷ đồng để lắp đặt hệ thống điện mặt trời tại các nhà máy xử lý nước thải.</p><h3>Quy mô dự án</h3><ul><li>Tổng công suất: 3 MWp</li><li>Số lượng tấm pin: 7.500 tấm</li><li>Diện tích lắp đặt: 15.000 m²</li><li>Sản lượng điện: 4.5 triệu kWh/năm</li></ul><h3>Lợi ích</h3><ul><li>Giảm 40% chi phí điện năng</li><li>Giảm 2.500 tấn CO2/năm</li><li>Thời gian hoàn vốn: 6 năm</li><li>Tuổi thọ hệ thống: 25 năm</li></ul><h3>Cam kết xanh</h3><p>Đây là một phần trong cam kết của ERATECH hướng tới mục tiêu Net Zero vào năm 2050, góp phần bảo vệ môi trường và phát triển bền vững.</p>",
+      "featured": false
+    },
+    {
+      "id": 12,
+      "title": "Công nghệ xử lý bùn thải hiệu quả cao",
+      "category": "Công nghệ",
+      "date": "2024-01-30",
+      "author": "Admin",
+      "image": "images/DJI_0570.jpg",
+      "excerpt": "ERATECH áp dụng công nghệ ép bùn băng tải kết hợp sấy khô để xử lý bùn thải đạt hiệu quả 95%.",
+      "content": "<p>ERATECH Group đã triển khai thành công công nghệ xử lý bùn thải tiên tiến, giúp giảm thiểu thể tích bùn và tạo ra sản phẩm có giá trị.</p><h3>Công nghệ ép bùn băng tải</h3><p>Hệ thống ép bùn băng tải (Belt Filter Press) cho phép tách nước từ bùn thải hiệu quả, giảm độ ẩm xuống còn 70-75%.</p><h3>Hệ thống sấy khô</h3><p>Bùn sau khi ép được đưa vào hệ thống sấy khô nhiệt độ thấp, giảm độ ẩm xuống còn 10-15%, tạo thành viên nén có thể sử dụng làm phân bón hoặc nhiên liệu.</p><h3>Hiệu quả</h3><ul><li>Giảm 95% thể tích bùn thải</li><li>Tiết kiệm 80% chi phí vận chuyển</li><li>Tạo sản phẩm có giá trị kinh tế</li><li>Thân thiện môi trường</li></ul>",
+      "featured": false
+    },
+    {
+      "id": 13,
+      "title": "Khánh thành nhà máy xử lý nước thải Cần Thơ",
+      "category": "Dự án",
+      "date": "2024-03-20",
+      "author": "Admin",
+      "image": "images/DJI_0579.jpg",
+      "excerpt": "Nhà máy xử lý nước thải công suất 8.000 m³/ngày chính thức đi vào hoạt động tại TP. Cần Thơ.",
+      "content": "<p>ERATECH Group tự hào khánh thành nhà máy xử lý nước thải tại TP. Cần Thơ với công suất 8.000 m³/ngày, phục vụ khu công nghiệp Trà Nóc.</p><h3>Công nghệ tiên tiến</h3><p>Nhà máy sử dụng công nghệ A²O kết hợp với hệ thống lọc màng MBR, đảm bảo nước thải sau xử lý đạt chuẩn QCVN 40:2011/BTNMT cột A.</p><h3>Đầu tư và quy mô</h3><ul><li>Tổng vốn đầu tư: 120 tỷ đồng</li><li>Diện tích: 5.000 m²</li><li>Thời gian thi công: 14 tháng</li><li>Tạo việc làm cho 50 lao động</li></ul><h3>Ý nghĩa</h3><p>Dự án góp phần quan trọng trong việc bảo vệ môi trường khu vực đồng bằng sông Cửu Long, hỗ trợ phát triển bền vững các khu công nghiệp tại Cần Thơ.</p>",
+      "featured": false
+    },
+    {
+      "id": 14,
+      "title": "Ứng dụng Blockchain trong quản lý chất thải",
+      "category": "Công nghệ",
+      "date": "2024-03-18",
+      "author": "Admin",
+      "image": "images/DJI_0566.jpg",
+      "excerpt": "ERATECH tiên phong ứng dụng công nghệ Blockchain để theo dõi và quản lý chất thải minh bạch.",
+      "content": "<p>ERATECH Group là doanh nghiệp đầu tiên tại Việt Nam ứng dụng công nghệ Blockchain trong quản lý chất thải công nghiệp.</p><h3>Công nghệ Blockchain</h3><p>Hệ thống sử dụng công nghệ sổ cái phân tán để ghi nhận toàn bộ quá trình từ thu gom, vận chuyển đến xử lý chất thải, đảm bảo tính minh bạch và truy xuất nguồn gốc.</p><h3>Lợi ích</h3><ul><li>Minh bạch 100% quy trình xử lý</li><li>Truy xuất nguồn gốc chất thải</li><li>Giảm gian lận và vi phạm</li><li>Tự động hóa báo cáo</li><li>Tăng cường trách nhiệm giải trình</li></ul><h3>Triển khai</h3><p>Hệ thống đã được thí điểm tại 10 khu công nghiệp và sẽ mở rộng ra toàn quốc trong năm 2024.</p>",
+      "featured": false
+    },
+    {
+      "id": 15,
+      "title": "ERATECH đạt Top 10 Doanh nghiệp Môi trường Việt Nam",
+      "category": "Giải thưởng",
+      "date": "2024-03-12",
+      "author": "Admin",
+      "image": "images/DJI_0570.jpg",
+      "excerpt": "Vinh dự được xếp hạng trong Top 10 doanh nghiệp môi trường uy tín nhất Việt Nam năm 2024.",
+      "content": "<p>ERATECH Group vinh dự được xếp hạng trong Top 10 Doanh nghiệp Môi trường uy tín nhất Việt Nam năm 2024 do Hiệp hội Môi trường Việt Nam bình chọn.</p><h3>Tiêu chí đánh giá</h3><ul><li>Quy mô và năng lực hoạt động</li><li>Công nghệ và đổi mới sáng tạo</li><li>Uy tín và chất lượng dịch vụ</li><li>Đóng góp cho cộng đồng</li><li>Phát triển bền vững</li></ul><h3>Thành tựu nổi bật</h3><p>Trong năm 2023, ERATECH đã hoàn thành 25 dự án lớn, xử lý hơn 50 triệu m³ nước thải, giảm 100.000 tấn CO2 và tạo việc làm cho hơn 1.000 lao động.</p><h3>Định hướng tương lai</h3><p>ERATECH cam kết tiếp tục đầu tư vào công nghệ xanh, mở rộng thị trường quốc tế và đóng góp tích cực vào mục tiêu Net Zero của Việt Nam.</p>",
+      "featured": true
+    },
+    {
+      "id": 16,
+      "title": "Hợp tác với Nhật Bản về công nghệ xử lý rác thải",
+      "category": "Hợp tác",
+      "date": "2024-03-08",
+      "author": "Admin",
+      "image": "images/DJI_0576.jpg",
+      "excerpt": "Ký kết hợp tác với tập đoàn JFE Engineering (Nhật Bản) về công nghệ đốt rác phát điện.",
+      "content": "<p>ERATECH Group ký kết thỏa thuận hợp tác chiến lược với JFE Engineering - tập đoàn hàng đầu Nhật Bản về công nghệ xử lý rác thải và phát điện.</p><h3>Về JFE Engineering</h3><p>JFE Engineering là công ty con của tập đoàn JFE Holdings, chuyên về công nghệ môi trường với hơn 50 năm kinh nghiệm, đã xây dựng hơn 200 nhà máy đốt rác phát điện trên toàn thế giới.</p><h3>Nội dung hợp tác</h3><ul><li>Chuyển giao công nghệ đốt rác phát điện</li><li>Đào tạo kỹ thuật viên chuyên môn cao</li><li>Hợp tác đầu tư dự án tại Việt Nam</li><li>Nghiên cứu phát triển công nghệ mới</li></ul><h3>Dự án đầu tiên</h3><p>Hai bên sẽ hợp tác xây dựng nhà máy đốt rác phát điện công suất 500 tấn/ngày tại TP.HCM với tổng đầu tư 1.500 tỷ đồng, dự kiến khởi công trong quý III/2024.</p>",
+      "featured": false
+    },
+    {
+      "id": 17,
+      "title": "Đầu tư 250 tỷ đồng vào công nghệ xử lý khí thải VOC",
+      "category": "Đầu tư",
+      "date": "2024-03-05",
+      "author": "Admin",
+      "image": "images/DJI_0577.jpg",
+      "excerpt": "ERATECH đầu tư hệ thống xử lý khí thải VOC tiên tiến cho các ngành công nghiệp sơn, in ấn và hóa chất.",
+      "content": "<p>ERATECH Group công bố kế hoạch đầu tư 250 tỷ đồng để phát triển và triển khai công nghệ xử lý khí thải VOC (Volatile Organic Compounds) tiên tiến.</p><h3>Về khí thải VOC</h3><p>VOC là các hợp chất hữu cơ dễ bay hơi, gây ô nhiễm không khí và ảnh hưởng đến sức khỏe con người. Các ngành công nghiệp sơn, in ấn, hóa chất và dược phẩm thường phát sinh lượng lớn khí thải VOC.</p><h3>Công nghệ xử lý</h3><ul><li>Hệ thống RTO (Regenerative Thermal Oxidizer)</li><li>Công nghệ hấp phụ than hoạt tính</li><li>Hệ thống ngưng tụ thu hồi dung môi</li><li>Công nghệ sinh học xử lý VOC</li></ul><h3>Mục tiêu</h3><p>Trong 2 năm tới, ERATECH sẽ triển khai hệ thống xử lý VOC cho 50 doanh nghiệp, giúp giảm 10.000 tấn VOC thải ra môi trường mỗi năm.</p>",
+      "featured": false
+    },
+    {
+      "id": 18,
+      "title": "Hệ thống IoT giám sát nước thải thời gian thực",
+      "category": "Công nghệ",
+      "date": "2024-03-01",
+      "author": "Admin",
+      "image": "images/DJI_0578.jpg",
+      "excerpt": "Triển khai hệ thống IoT giám sát chất lượng nước thải 24/7, cảnh báo tự động khi có bất thường.",
+      "content": "<p>ERATECH Group phát triển và triển khai thành công hệ thống IoT (Internet of Things) giám sát chất lượng nước thải thời gian thực.</p><h3>Tính năng hệ thống</h3><ul><li>Giám sát 24/7 các thông số: pH, COD, BOD, TSS, nhiệt độ</li><li>Cảnh báo tự động qua SMS/Email khi vượt ngưỡng</li><li>Lưu trữ dữ liệu trên Cloud</li><li>Báo cáo tự động theo ngày/tuần/tháng</li><li>Truy cập từ xa qua smartphone/tablet</li></ul><h3>Lợi ích</h3><ul><li>Phát hiện sớm sự cố, giảm thiểu rủi ro</li><li>Tiết kiệm chi phí giám sát thủ công</li><li>Tuân thủ quy định môi trường</li><li>Tối ưu hóa quy trình vận hành</li><li>Minh bạch dữ liệu với cơ quan quản lý</li></ul><h3>Triển khai</h3><p>Hệ thống đã được lắp đặt tại 30 nhà máy xử lý nước thải và đang mở rộng ra 100 nhà máy trong năm 2024.</p>",
+      "featured": false
+    },
+    {
+      "id": 19,
+      "title": "Dự án xử lý nước thải KCN Hiệp Phước đạt chuẩn quốc tế",
+      "category": "Dự án",
+      "date": "2024-02-28",
+      "author": "Admin",
+      "image": "images/DJI_0565.jpg",
+      "excerpt": "Nhà máy xử lý nước thải KCN Hiệp Phước đạt chứng nhận ISO 14001 và chuẩn xả thải EU.",
+      "content": "<p>Dự án xử lý nước thải tập trung tại KCN Hiệp Phước do ERATECH Group đầu tư và vận hành đã chính thức đạt chứng nhận ISO 14001:2015 và chuẩn xả thải theo tiêu chuẩn EU.</p><h3>Thông tin dự án</h3><ul><li>Công suất: 15.000 m³/ngày</li><li>Tổng đầu tư: 200 tỷ đồng</li><li>Công nghệ: MBR + RO + UV</li><li>Diện tích: 8.000 m²</li></ul><h3>Thành tựu</h3><p>Nhà máy đã xử lý hơn 5 triệu m³ nước thải trong năm 2023, đảm bảo 100% nước thải đầu ra đạt chuẩn QCVN 40:2011/BTNMT cột A, thậm chí vượt chuẩn xả thải của EU.</p><h3>Công nhận</h3><p>Dự án được Bộ Tài nguyên và Môi trường công nhận là mô hình xử lý nước thải công nghiệp tiêu biểu, đề xuất nhân rộng trên toàn quốc.</p>",
+      "featured": false
+    },
+    {
+      "id": 20,
+      "title": "Công nghệ Nano trong xử lý nước thải",
+      "category": "Công nghệ",
+      "date": "2024-02-25",
+      "author": "Admin",
+      "image": "images/DJI_0566.jpg",
+      "excerpt": "ERATECH nghiên cứu thành công ứng dụng công nghệ Nano để loại bỏ kim loại nặng trong nước thải.",
+      "content": "<p>ERATECH Group công bố thành công trong nghiên cứu và ứng dụng công nghệ Nano để xử lý kim loại nặng trong nước thải công nghiệp.</p><h3>Công nghệ Nano</h3><p>Sử dụng vật liệu nano có cấu trúc đặc biệt để hấp phụ và loại bỏ các ion kim loại nặng như chì, thủy ngân, cadmium, crom với hiệu suất lên đến 99%.</p><h3>Ưu điểm vượt trội</h3><ul><li>Hiệu suất xử lý cực cao (>99%)</li><li>Thời gian xử lý nhanh</li><li>Không tạo bùn thải thứ cấp</li><li>Có thể tái sinh và tái sử dụng</li><li>Chi phí vận hành thấp</li></ul><h3>Ứng dụng</h3><p>Công nghệ đặc biệt phù hợp cho các ngành mạ điện, sản xuất pin, công nghiệp điện tử và hóa chất. ERATECH đang triển khai thí điểm tại 5 nhà máy và dự kiến thương mại hóa trong năm 2024.</p>",
+      "featured": false
+    },
+    {
+      "id": 21,
+      "title": "ERATECH nhận giải thưởng Doanh nghiệp Xã hội 2024",
+      "category": "Giải thưởng",
+      "date": "2024-02-22",
+      "author": "Admin",
+      "image": "images/DJI_0570.jpg",
+      "excerpt": "Được vinh danh với những đóng góp tích cực cho cộng đồng và phát triển bền vững.",
+      "content": "<p>ERATECH Group vinh dự nhận giải thưởng Doanh nghiệp Xã hội 2024 do Phòng Thương mại và Công nghiệp Việt Nam (VCCI) trao tặng.</p><h3>Hoạt động xã hội</h3><ul><li>Xây dựng 10 hệ thống nước sạch cho vùng nông thôn</li><li>Tài trợ học bổng cho 200 sinh viên ngành môi trường</li><li>Đào tạo nghề miễn phí cho 500 lao động</li><li>Hỗ trợ 50 doanh nghiệp nhỏ về công nghệ xanh</li><li>Trồng 10.000 cây xanh tại các khu công nghiệp</li></ul><h3>Cam kết</h3><p>ERATECH cam kết dành 5% lợi nhuận hàng năm cho các hoạt động xã hội, tập trung vào giáo dục, môi trường và phát triển cộng đồng.</p><h3>Tầm nhìn</h3><p>Trở thành doanh nghiệp tiên phong trong việc kết hợp phát triển kinh doanh với trách nhiệm xã hội, góp phần xây dựng một Việt Nam xanh và bền vững.</p>",
+      "featured": false
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "heroMedia": [
+    {
+      "id": 1,
+      "type": "image",
+      "title": "An Nghiệp",
+      "src": "images/Annghiep.jpg",
+      "alt": "Nhà máy xử lý nước thải An Nghiệp",
+      "order": 1,
+      "active": true
+    },
+    {
+      "id": 2,
+      "type": "image",
+      "title": "Cheng Loong",
+      "src": "images/Chengloongbanner.jpg",
+      "alt": "Dự án Cheng Loong",
+      "order": 2,
+      "active": true
+    },
+    {
+      "id": 3,
+      "type": "image",
+      "title": "Tái sử dụng",
+      "src": "images/Taisudung.jpg",
+      "alt": "Công nghệ tái sử dụng nước",
+      "order": 3,
+      "active": true
+    }
+  ]
+}

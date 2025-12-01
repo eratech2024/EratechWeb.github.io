@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Node.js API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #1f7332; }
+        button {
+            background: #1f7332;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover { background: #195927; }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background: #f8f9fa;
+            border-left: 4px solid #1f7332;
+        }
+        .error {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test Node.js API</h1>
+        <p>Click button để test API lưu dữ liệu</p>
+        
+        <div class="warning" id="url-warning" style="display:none;">
+            ⚠️ <strong>Bạn đang mở file qua Live Server!</strong><br>
+            Hãy mở đúng URL: <a href="http://localhost:3000/api/test-api.html">http://localhost:3000/api/test-api.html</a>
+        </div>
+        
+        <button onclick="checkServer()">Check Server</button>
+        <button onclick="testSaveHeroBanner()">Test Save Hero Banner</button>
+        <button onclick="testGetData()">Test Get Data</button>
+        <button onclick="testListBackups()">List Backups</button>
+        
+        <hr style="margin: 20px 0;">
+        <h3>🖼️ Test Image Upload API</h3>
+        
+        <div style="margin: 15px 0;">
+            <input type="file" id="testImageFile" accept="image/*" style="margin-right: 10px;">
+            <button onclick="testUploadImage()">Upload Image</button>
+        </div>
+        
+        <button onclick="testListImages()">List Uploaded Images</button>
+        <button onclick="testListImages('banners')">List Banner Images</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // API Base URL - always use localhost:3000
+        const API_BASE = 'http://localhost:3000';
+        
+        // Check if opened via wrong server
+        if (window.location.port !== '3000') {
+            document.getElementById('url-warning').style.display = 'block';
+        }
+        
+        async function checkServer() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Đang kiểm tra server...</p>';
+            
+            try {
+                const response = await fetch(API_BASE + '/api/health');
+                const result = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <div class="result ${result.success ? '' : 'error'}">
+                        <h3>${result.success ? '✅ Server is running' : '❌ Server Error'}</h3>
+                        <p><strong>Message:</strong> ${result.message}</p>
+                        <p><strong>Time:</strong> ${result.timestamp}</p>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (e) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <h3>❌ Cannot connect to server</h3>
+                        <p>${e.message}</p>
+                        <p><strong>Hãy chắc chắn:</strong></p>
+                        <ol>
+                            <li>Đã chạy <code>npm start</code> trong terminal</li>
+                            <li>Server đang chạy ở port 3000</li>
+                            <li>Mở đúng URL: <a href="http://localhost:3000/api/test-api.html">http://localhost:3000/api/test-api.html</a></li>
+                        </ol>
+                    </div>
+                `;
+            }
+        }
+        
+        async function testSaveHeroBanner() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Đang test save...</p>';
+            
+            try {
+                const testData = {
+                    type: 'hero-banner',
+                    data: {
+                        banners: [{
+                            id: 1,
+                            title: 'Test Banner',
+                            subtitle: 'This is a test',
+                            image: 'images/test.jpg',
+                            order: 1,
+                            active: true,
+                            pages: ['home']
+                        }],
+                        settings: {
+                            slideDuration: 5,
+                            animationType: 'fade'
+                        }
+                    }
+                };
+                
+                const response = await fetch(API_BASE + '/api/save-data', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(testData)
+                });
+                
+                const result = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <div class="result ${result.success ? '' : 'error'}">
+                        <h3>${result.success ? '✅ Success' : '❌ Error'}</h3>
+                        <p><strong>Message:</strong> ${result.message}</p>
+                        ${result.file ? `<p><strong>File:</strong> ${result.file}</p>` : ''}
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (e) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <h3>❌ Error</h3>
+                        <p>${e.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        async function testGetData() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Đang load data...</p>';
+            
+            try {
+                const response = await fetch(API_BASE + '/api/get-data/hero-banner');
+                const result = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <div class="result ${result.success ? '' : 'error'}">
+                        <h3>${result.success ? '✅ Data loaded' : '❌ Error'}</h3>
+                        <pre>${JSON.stringify(result.data, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (e) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <h3>❌ Error</h3>
+                        <p>${e.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        async function testListBackups() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Đang load backups...</p>';
+            
+            try {
+                const response = await fetch(API_BASE + '/api/backups/hero-banner');
+                const result = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <div class="result ${result.success ? '' : 'error'}">
+                        <h3>${result.success ? '✅ Backups loaded' : '❌ Error'}</h3>
+                        <p><strong>Total:</strong> ${result.backups ? result.backups.length : 0}</p>
+                        <pre>${JSON.stringify(result.backups, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (e) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <h3>❌ Error</h3>
+                        <p>${e.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Test upload image
+        async function testUploadImage() {
+            const resultDiv = document.getElementById('result');
+            const fileInput = document.getElementById('testImageFile');
+            
+            if (!fileInput.files || fileInput.files.length === 0) {
+                resultDiv.innerHTML = '<div class="result error"><h3>❌ Vui lòng chọn file ảnh!</h3></div>';
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            resultDiv.innerHTML = '<p>Đang upload ảnh...</p>';
+            
+            try {
+                // Convert to base64
+                const base64 = await fileToBase64(file);
+                
+                const response = await fetch(API_BASE + '/api/upload-image', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        image: base64,
+                        folder: 'test'
+                    })
+                });
+                
+                const result = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <div class="result ${result.success ? '' : 'error'}">
+                        <h3>${result.success ? '✅ Upload thành công!' : '❌ Upload thất bại'}</h3>
+                        <p><strong>Message:</strong> ${result.message}</p>
+                        ${result.path ? `<p><strong>Path:</strong> ${result.path}</p>` : ''}
+                        ${result.path ? `<p><strong>Preview:</strong></p><img src="../${result.path}" style="max-width: 300px; border-radius: 8px;">` : ''}
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (e) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <h3>❌ Error</h3>
+                        <p>${e.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // List uploaded images
+        async function testListImages(folder = '') {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Đang load danh sách ảnh...</p>';
+            
+            try {
+                const url = folder 
+                    ? API_BASE + '/api/list-images/' + folder
+                    : API_BASE + '/api/list-images';
+                    
+                const response = await fetch(url);
+                const result = await response.json();
+                
+                let imagesHtml = '';
+                if (result.images && result.images.length > 0) {
+                    imagesHtml = '<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">';
+                    result.images.forEach(img => {
+                        imagesHtml += `
+                            <div style="text-align: center;">
+                                <img src="../${img.path}" style="width: 100px; height: 80px; object-fit: cover; border-radius: 5px;">
+                                <p style="font-size: 11px; margin: 5px 0;">${img.filename}</p>
+                            </div>
+                        `;
+                    });
+                    imagesHtml += '</div>';
+                }
+                
+                resultDiv.innerHTML = `
+                    <div class="result ${result.success ? '' : 'error'}">
+                        <h3>${result.success ? '✅ Danh sách ảnh' : '❌ Error'}</h3>
+                        <p><strong>Folder:</strong> ${folder || 'uploads (root)'}</p>
+                        <p><strong>Total:</strong> ${result.count || 0} ảnh</p>
+                        ${imagesHtml}
+                        <pre>${JSON.stringify(result.images, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (e) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <h3>❌ Error</h3>
+                        <p>${e.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Helper: Convert file to base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đầu tư - ERATECH Group</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/global-mobile.css">
+    <link rel="stylesheet" href="css/services-mobile.css">
+    <link rel="stylesheet" href="css/mobile-menu-production.css">
+    <style>
+        /* Fix vệt trắng button mobile */
+        @media (max-width: 767px) {
+            .filter-btn *,
+            .news-filter-magazine .filter-btn * {
+                background: transparent !important;
+            }
+            .filter-btn::before,
+            .filter-btn::after,
+            .news-filter-magazine .filter-btn::before,
+            .news-filter-magazine .filter-btn::after {
+                display: none !important;
+                content: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+                width: 0 !important;
+                height: 0 !important;
+                left: -9999px !important;
+            }
+            .filter-btn,
+            .news-filter-magazine .filter-btn {
+                background: #f5f7f5 !important;
+                border: 1.5px solid #e0e0e0 !important;
+                box-shadow: none !important;
+                outline: none !important;
+                overflow: hidden !important;
+                isolation: isolate !important;
+            }
+            .filter-btn.active,
+            .news-filter-magazine .filter-btn.active {
+                background: #1f7332 !important;
+                border: 1.5px solid #1f7332 !important;
+                color: #fff !important;
+                box-shadow: none !important;
+            }
+            .news-controls-magazine {
+                margin-bottom: 4px !important;
+                padding: 10px !important;
+            }
+            .news-magazine-grid {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .news-pagination {
+                margin-top: 6px !important;
+            }
+            #investment-main {
+                padding: 15px 0 !important;
+            }
+            /* Giảm khoảng cách giữa các card */
+            .news-articles-grid,
+            #investment-grid {
+                gap: 8px !important;
+            }
+            /* Giảm padding trong card */
+            .news-article-content {
+                padding: 12px 14px 14px !important;
+            }
+            .news-article-excerpt {
+                margin-bottom: 4px !important;
+            }
+            .news-article-link {
+                margin-top: 2px !important;
+                padding-top: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Include Header -->
+    <div w3-include-html="includes/header.html"></div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-background">
+                <div class="hero-image-container">
+                    <img src="images/DJI_0565.jpg" alt="Đầu tư ERATECH" class="hero-image active" data-aos="fade">
+                </div>
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text" data-aos="fade-up">
+                        <h1 class="hero-title">Cơ hội đầu tư</h1>
+                        <p class="hero-subtitle">
+                            Đầu tư vào tương lai bền vững cùng ERATECH
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investment Main Content -->
+        <section id="investment-main" class="news-main" role="main">
+            <div class="container">
+                <!-- Investment Controls -->
+                <nav class="news-controls-magazine" data-aos="fade-up" role="navigation" aria-label="Bộ lọc đầu tư">
+                    <div class="news-filter-magazine" role="group" aria-label="Lọc theo danh mục">
+                        <button class="filter-btn active" data-filter="all" data-type="category" aria-pressed="true">Tất cả</button>
+                        <button class="filter-btn" data-filter="Môi trường" data-type="category" aria-pressed="false">Môi trường</button>
+                        <button class="filter-btn" data-filter="Công nghiệp" data-type="category" aria-pressed="false">Công nghiệp</button>
+                        <button class="filter-btn" data-filter="Cấp thoát nước" data-type="category" aria-pressed="false">Cấp thoát nước</button>
+                        <button class="filter-btn" data-filter="Năng lượng" data-type="category" aria-pressed="false">Năng lượng</button>
+                        <button class="filter-btn" data-filter="active" data-type="status" aria-pressed="false">Đang triển khai</button>
+                        <button class="filter-btn" data-filter="completed" data-type="status" aria-pressed="false">Hoàn thành</button>
+                    </div>
+                    <div class="news-search-magazine">
+                        <label for="investment-search" class="sr-only">Tìm kiếm dự án đầu tư</label>
+                        <div class="search-input-wrapper">
+                            <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                            <input type="text" id="investment-search" placeholder="Tìm kiếm dự án đầu tư..." aria-describedby="search-icon">
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Investment Grid -->
+                <section class="news-magazine-grid" aria-label="Danh sách đầu tư">
+                    <div id="investment-grid" class="news-articles-grid" aria-live="polite">
+                        <!-- Investments will be loaded here by JavaScript -->
+                    </div>
+                    <div class="news-pagination">
+                        <div id="pagination-controls" class="pagination-controls">
+                            <button id="prev-page-btn" disabled>
+                                <i class="fas fa-chevron-left"></i> Trước
+                            </button>
+                            <div id="page-numbers" class="page-numbers"></div>
+                            <button id="next-page-btn" disabled>
+                                Sau <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div w3-include-html="includes/footer.html"></div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Về đầu trang">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="js/include.js"></script>
+    <script>
+        includeHTML();
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/hero-banner.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/investment.js"></script>
+    <script>
+        // Include HTML function for header and footer - using shared include.js now
+                }
+            });
+        }
+        
+        // Load header and footer on page load
+        document.addEventListener('DOMContentLoaded', includeHTML);
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "banners": [
+    {
+      "id": 1,
+      "title": "Test Banner",
+      "subtitle": "This is a test",
+      "image": "images/test.jpg",
+      "order": 1,
+      "active": true,
+      "pages": [
+        "home"
+      ]
+    }
+  ],
+  "settings": {
+    "slideDuration": 5,
+    "animationType": "fade"
+  }
+}

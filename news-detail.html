@@ -1,0 +1,899 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết bài viết - ERATECH Group</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/global-mobile.css">
+    <link rel="stylesheet" href="css/mobile-menu-production.css">
+</head>
+<body>
+
+    <!-- Include Header -->
+    <div w3-include-html="includes/header.html"></div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Article Detail Section -->
+        <section id="article-detail" class="article-detail">
+            <div class="container">
+                <div class="article-navigation">
+                    <a href="news.html" class="back-to-news">
+                        <i class="fas fa-arrow-left"></i> Quay lại tin tức
+                    </a>
+                </div>
+                <div id="article-content" class="article-content">
+                    <!-- Article content will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div w3-include-html="includes/footer.html"></div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" title="Back to Top" aria-label="Quay về đầu trang">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="js/include.js"></script>
+    <script>
+        includeHTML();
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Article detail page specific script
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 1000,
+                easing: 'ease-out-cubic',
+                once: false,
+                offset: 120,
+                mirror: true
+            });
+
+            // Load news data from localStorage
+            let newsData = [];
+            const stored = localStorage.getItem('newsArticles');
+            if (stored) {
+                newsData = JSON.parse(stored);
+            }
+            
+            // Get article ID from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = parseInt(urlParams.get('id'));
+
+            // Find article by ID
+            const article = newsData.find(a => a.id === articleId);
+            
+            if (article) {
+                loadArticleDetail(article);
+            } else {
+                // Handle invalid ID
+                document.getElementById('article-content').innerHTML = `
+                    <div class="error-message">
+                        <h2>Bài viết không tồn tại</h2>
+                        <p>Xin lỗi, bài viết bạn tìm kiếm không có sẵn.</p>
+                        <a href="news.html" class="btn btn-primary">Quay lại trang tin tức</a>
+                    </div>
+                `;
+            }
+        });
+
+        function loadArticleDetail(article) {
+            const articleContent = document.getElementById('article-content');
+
+            const articleHTML = `
+                <article class="article-detail-content" data-aos="fade-up">
+                    <header class="article-header">
+                        <div class="article-meta">
+                            <span class="article-date"><i class="far fa-calendar"></i> ${article.date}</span>
+                            <span class="article-category"><i class="fas fa-tags"></i> ${article.category}</span>
+                        </div>
+                        <h1 class="article-title">${article.title}</h1>
+                    </header>
+
+                    <div class="article-image">
+                        <img src="${article.image}" alt="${article.title}" loading="lazy">
+                    </div>
+
+                    <div class="article-body">
+                        ${article.content || `<p>${article.excerpt}</p>`}
+                    </div>
+
+                    <footer class="article-footer">
+                        <div class="article-share">
+                            <span>Chia sẻ:</span>
+                            <a href="#" class="share-btn" data-platform="facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="share-btn" data-platform="twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="share-btn" data-platform="linkedin">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </footer>
+                </article>
+            `;
+
+            articleContent.innerHTML = articleHTML;
+
+            // Add share functionality
+            document.querySelectorAll('.share-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const platform = btn.dataset.platform;
+                    const url = encodeURIComponent(window.location.href);
+                    const title = encodeURIComponent(article.title);
+
+                    let shareUrl = '';
+                    switch(platform) {
+                        case 'facebook':
+                            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                            break;
+                        case 'twitter':
+                            shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+                            break;
+                        case 'linkedin':
+                            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+                            break;
+                    }
+
+                    if (shareUrl) {
+                        window.open(shareUrl, '_blank', 'width=600,height=400');
+                    }
+                });
+            });
+        }
+
+        // News data (same as in script.js)
+        const newsData = [
+            {
+                title: 'Dự án xử lý nước thải khu công nghiệp Long Hậu',
+                excerpt: 'Dự án trị giá 300 tỷ đồng hoàn thành giai đoạn 1, xử lý 80.000 m³ nước thải/ngày cho khu công nghiệp lớn nhất miền Tây.',
+                image: 'images/DJI_0565.jpg',
+                date: '2024-02-01',
+                category: 'Dự án',
+                content: `
+                    <p>ERATECH Group vừa hoàn thành giai đoạn 1 của dự án xử lý nước thải khu công nghiệp Long Hậu với tổng trị giá 300 tỷ đồng. Dự án này phục vụ cho khu công nghiệp lớn nhất miền Tây Nam Bộ, xử lý 80.000 m³ nước thải/ngày.</p>
+
+                    <p>Hệ thống xử lý bao gồm công nghệ lọc màng RO tiên tiến, hệ thống khử trùng UV và công nghệ oxy hóa tiên tiến (AOP). Dự án được thiết kế để đạt chuẩn xả thải nghiêm ngặt nhất của EU và đáp ứng nhu cầu mở rộng sản xuất của các doanh nghiệp trong khu vực.</p>
+
+                    <p>Ông Trần Văn B - Giám đốc dự án chia sẻ: "Dự án không chỉ giải quyết vấn đề ô nhiễm mà còn tạo ra nguồn nước tái chế có thể tái sử dụng trong sản xuất, tiết kiệm 40% chi phí nước cho các doanh nghiệp."</p>
+
+                    <p>Giai đoạn 2 của dự án sẽ được triển khai trong quý III/2024 với công suất tăng lên 120.000 m³/ngày.</p>
+                `
+            },
+            {
+                title: 'Hoàn thành dự án tái chế chất thải điện tử tại TP.HCM',
+                excerpt: 'Dự án đầu tiên tại Việt Nam tái chế 100% linh kiện điện tử, thu hồi 95% kim loại quý hiếm.',
+                image: 'images/DJI_0566.jpg',
+                date: '2024-01-28',
+                category: 'Dự án',
+                content: `
+                    <p>ERATECH Group chính thức hoàn thành dự án tái chế chất thải điện tử đầu tiên tại Việt Nam với công suất 50 tấn/ngày. Dự án này có thể tái chế 100% linh kiện điện tử và thu hồi đến 95% kim loại quý hiếm.</p>
+
+                    <p>Công nghệ tái chế bao gồm hệ thống phân loại tự động bằng AI, công nghệ tách kim loại không độc hại và hệ thống xử lý hóa chất tiên tiến. Dự án được đầu tư 150 tỷ đồng và tạo ra 200 việc làm trực tiếp.</p>
+
+                    <p>Bà Lê Thị C - Giám đốc Trung tâm Tái chế ERATECH cho biết: "Dự án này giải quyết vấn đề chất thải điện tử ngày càng tăng tại Việt Nam, đồng thời tạo ra nguồn nguyên liệu quý hiếm cho ngành công nghiệp điện tử."</p>
+
+                    <p>Dự án đã được Bộ Tài nguyên và Môi trường công nhận là mô hình tái chế xanh tiêu biểu.</p>
+                `
+            },
+            {
+                title: 'Dự án hệ thống giám sát môi trường thông minh cho 15 khu công nghiệp',
+                excerpt: 'Triển khai hệ thống IoT giám sát thời gian thực, cảnh báo sớm 99% vi phạm môi trường.',
+                image: 'images/DJI_0570.jpg',
+                date: '2024-01-25',
+                category: 'Dự án',
+                content: `
+                    <p>ERATECH Group triển khai thành công hệ thống giám sát môi trường thông minh cho 15 khu công nghiệp trên cả nước. Hệ thống sử dụng công nghệ IoT và AI để giám sát thời gian thực, cảnh báo sớm 99% vi phạm môi trường.</p>
+
+                    <p>Hệ thống bao gồm 500 điểm giám sát chất lượng không khí, nước thải và tiếng ồn, được kết nối với trung tâm điều khiển thông minh. Dự án được đầu tư 200 tỷ đồng và giúp giảm 60% thời gian xử lý vi phạm môi trường.</p>
+
+                    <p>Ông Phạm Văn D - Giám đốc Trung tâm Giám sát chia sẻ: "Hệ thống này giúp các cơ quan quản lý môi trường chủ động hơn trong việc bảo vệ môi trường, đồng thời hỗ trợ doanh nghiệp tuân thủ pháp luật một cách hiệu quả."</p>
+
+                    <p>Dự án đã được Tổng cục Môi trường đánh giá cao và đề xuất nhân rộng trên toàn quốc.</p>
+                `
+            },
+            {
+                title: 'Xây dựng nhà máy sản xuất thiết bị môi trường xanh tại Bình Dương',
+                excerpt: 'Nhà máy 50.000 m² với công nghệ sản xuất xanh, công suất 10.000 thiết bị/năm.',
+                image: 'images/DJI_0576.jpg',
+                date: '2024-01-20',
+                category: 'Dự án',
+                content: `
+                    <p>ERATECH Group khởi công xây dựng nhà máy sản xuất thiết bị môi trường xanh tại Bình Dương với diện tích 50.000 m². Nhà máy được thiết kế theo tiêu chuẩn xanh, công suất 10.000 thiết bị/năm.</p>
+
+                    <p>Nhà máy sử dụng công nghệ sản xuất tự động hóa 4.0, hệ thống năng lượng mặt trời và công nghệ tái chế nước. Dự án được đầu tư 400 tỷ đồng và tạo ra 500 việc làm chất lượng cao.</p>
+
+                    <p>Bà Nguyễn Thị E - Tổng Giám đốc ERATECH chia sẻ: "Nhà máy này không chỉ đáp ứng nhu cầu thiết bị môi trường trong nước mà còn xuất khẩu sang các nước Đông Nam Á."</p>
+
+                    <p>Dự án dự kiến hoàn thành trong quý IV/2024 và đạt chứng nhận LEED Platinum.</p>
+                `
+            },
+            {
+                title: 'Dự án xử lý khí thải công nghiệp cho cụm hóa chất miền Bắc',
+                excerpt: 'Giảm 98% khí thải độc hại cho 20 nhà máy hóa chất, đầu tư 250 tỷ đồng.',
+                image: 'images/DJI_0577.jpg',
+                date: '2024-01-18',
+                category: 'Dự án',
+                content: `
+                    <p>ERATECH Group triển khai dự án xử lý khí thải công nghiệp cho cụm nhà máy hóa chất miền Bắc. Dự án giúp giảm 98% khí thải độc hại cho 20 nhà máy hóa chất với tổng đầu tư 250 tỷ đồng.</p>
+
+                    <p>Hệ thống xử lý sử dụng công nghệ RTO (Regenerative Thermal Oxidizer) và công nghệ hấp phụ tiên tiến. Dự án được thiết kế để đạt chuẩn khí thải nghiêm ngặt nhất châu Âu.</p>
+
+                    <p>Ông Hoàng Văn F - Giám đốc dự án cho biết: "Dự án này cải thiện đáng kể chất lượng không khí khu vực, đồng thời giúp các doanh nghiệp hóa chất tiết kiệm chi phí xử lý khí thải."</p>
+
+                    <p>Dự án đã được Bộ Công Thương công nhận là dự án môi trường tiêu biểu năm 2024.</p>
+                `
+            },
+            {
+                title: 'Triển khai dự án năng lượng tái tạo cho khu công nghiệp xanh',
+                excerpt: 'Hệ thống điện mặt trời 10 MWp cung cấp 100% điện cho khu công nghiệp, tiết kiệm 30% chi phí năng lượng.',
+                image: 'images/DJI_0578.jpg',
+                date: '2024-01-15',
+                category: 'Dự án',
+                content: `
+                    <p>ERATECH Group triển khai dự án năng lượng tái tạo cho khu công nghiệp xanh với hệ thống điện mặt trời 10 MWp. Dự án cung cấp 100% điện cho khu công nghiệp, tiết kiệm 30% chi phí năng lượng.</p>
+
+                    <p>Hệ thống bao gồm 25.000 tấm pin mặt trời, hệ thống lưu trữ năng lượng và trung tâm điều khiển thông minh. Dự án được đầu tư 180 tỷ đồng và có thời gian hoàn vốn 6 năm.</p>
+
+                    <p>Bà Trần Thị G - Giám đốc Năng lượng ERATECH chia sẻ: "Dự án này không chỉ giảm phát thải CO2 mà còn tạo ra mô hình khu công nghiệp xanh cho Việt Nam."</p>
+
+                    <p>Dự án đã được Bộ Công Thương và Bộ Tài nguyên và Môi trường hỗ trợ về chính sách.</p>
+                `
+            },
+            {
+                title: 'ERATECH hoàn thành dự án xử lý nước thải lớn nhất miền Nam',
+                excerpt: 'Dự án trị giá 500 tỷ đồng đã được đưa vào vận hành thành công, cung cấp nước sạch cho hơn 100.000 hộ dân khu vực.',
+                image: 'images/DJI_0579.jpg',
+                date: '2024-01-10',
+                category: 'Dự án',
+                content: `
+                    <p>ERATECH Group vừa hoàn thành thành công dự án xử lý nước thải lớn nhất miền Nam Việt Nam với tổng trị giá lên đến 500 tỷ đồng. Dự án này đánh dấu một bước ngoặt quan trọng trong việc cung cấp nước sạch cho hơn 100.000 hộ dân tại khu vực Đồng bằng sông Cửu Long.</p>
+
+                    <p>Dự án được triển khai với công nghệ xử lý nước thải tiên tiến nhất hiện nay, bao gồm hệ thống lọc sinh học, công nghệ màng lọc nano và hệ thống khử trùng bằng ozone. Công suất xử lý đạt 150.000 m³ nước thải/ngày, đảm bảo chất lượng nước đầu ra đạt chuẩn QCVN 14:2008/BTNMT.</p>
+
+                    <p>Ông Nguyễn Văn A - Tổng Giám đốc ERATECH Group chia sẻ: "Dự án này không chỉ giải quyết vấn đề ô nhiễm môi trường mà còn tạo ra nguồn nước tái sử dụng có thể phục vụ cho sản xuất công nghiệp, góp phần vào sự phát triển bền vững của khu vực."</p>
+
+                    <p>Dự án đã được Bộ Tài nguyên và Môi trường đánh giá cao về hiệu quả xử lý và được đề xuất làm mô hình cho các dự án tương tự trên cả nước.</p>
+                `
+            },
+            {
+                title: 'Công nghệ mới trong xử lý khí thải được ERATECH áp dụng',
+                excerpt: 'Công nghệ RTO tiên tiến giúp giảm 95% khí thải độc hại, đạt chuẩn quốc tế về bảo vệ môi trường.',
+                image: 'images/DJI_0566.jpg',
+                date: '2024-01-10',
+                category: 'Công nghệ',
+                content: `
+                    <p>ERATECH Group chính thức áp dụng công nghệ RTO (Regenerative Thermal Oxidizer) tiên tiến trong xử lý khí thải công nghiệp. Công nghệ này giúp giảm đến 95% lượng khí thải độc hại, đạt chuẩn quốc tế về bảo vệ môi trường.</p>
+
+                    <p>Hệ thống RTO hoạt động dựa trên nguyên lý oxy hóa nhiệt các chất hữu cơ bay hơi (VOC) ở nhiệt độ cao, chuyển hóa chúng thành CO2 và H2O. Công nghệ này đặc biệt hiệu quả với các ngành công nghiệp như hóa chất, dược phẩm, sơn và in ấn.</p>
+
+                    <p>Ưu điểm nổi bật của công nghệ RTO:</p>
+                    <ul>
+                        <li>Hiệu suất xử lý lên đến 99%</li>
+                        <li>Tiết kiệm năng lượng nhờ hệ thống tái sinh nhiệt</li>
+                        <li>Hoạt động liên tục, ổn định</li>
+                        <li>Chi phí vận hành thấp</li>
+                    </ul>
+
+                    <p>ERATECH đã triển khai thành công hệ thống RTO cho hơn 20 doanh nghiệp lớn trên cả nước, góp phần cải thiện chất lượng không khí và bảo vệ sức khỏe cộng đồng.</p>
+                `
+            },
+            {
+                title: 'ERATECH nhận giải thưởng doanh nghiệp xanh 2023',
+                excerpt: 'Công ty được vinh danh tại lễ trao giải môi trường quốc gia với các đóng góp xuất sắc cho ngành công nghiệp xanh.',
+                image: 'images/DJI_0570.jpg',
+                date: '2024-01-05',
+                category: 'Giải thưởng',
+                content: `
+                    <p>ERATECH Group vinh dự nhận giải thưởng "Doanh nghiệp xanh 2023" tại Lễ trao giải Môi trường Quốc gia do Bộ Tài nguyên và Môi trường tổ chức. Đây là năm thứ 3 liên tiếp công ty được vinh danh với những đóng góp xuất sắc cho ngành công nghiệp xanh.</p>
+
+                    <p>Giải thưởng được trao dựa trên các tiêu chí:</p>
+                    <ul>
+                        <li>Đổi mới công nghệ xử lý môi trường</li>
+                        <li>Giảm thiểu phát thải khí nhà kính</li>
+                        <li>Tái sử dụng tài nguyên hiệu quả</li>
+                        <li>Đầu tư vào nghiên cứu phát triển</li>
+                        <li>Đóng góp cho cộng đồng</li>
+                    </ul>
+
+                    <p>Bà Trần Thị B - Phó Tổng Giám đốc ERATECH chia sẻ: "Giải thưởng này là động lực để chúng tôi tiếp tục đổi mới và phát triển các giải pháp công nghệ xanh, góp phần xây dựng một Việt Nam xanh và bền vững."</p>
+
+                    <p>ERATECH cam kết sẽ tiếp tục đầu tư mạnh mẽ vào công nghệ môi trường, hướng tới mục tiêu zero waste và carbon neutral trong tương lai gần.</p>
+                `
+            },
+            {
+                title: 'Hợp tác chiến lược với các đối tác quốc tế',
+                excerpt: 'ERATECH ký kết thỏa thuận hợp tác với các công ty công nghệ môi trường hàng đầu châu Âu.',
+                image: 'images/DJI_0576.jpg',
+                date: '2024-01-01',
+                category: 'Hợp tác',
+                content: `
+                    <p>ERATECH Group vừa ký kết thỏa thuận hợp tác chiến lược với các công ty công nghệ môi trường hàng đầu châu Âu. Thỏa thuận này mở ra cơ hội hợp tác sâu rộng trong nghiên cứu, phát triển và chuyển giao công nghệ.</p>
+
+                    <p>Các đối tác bao gồm:</p>
+                    <ul>
+                        <li>Veolia Water Technologies (Pháp)</li>
+                        <li>SUEZ Water Technologies (Pháp)</li>
+                        <li>GE Water & Process Technologies (Mỹ)</li>
+                        <li>Degremont (Pháp)</li>
+                    </ul>
+
+                    <p>Thỏa thuận hợp tác tập trung vào:</p>
+                    <ul>
+                        <li>Chuyển giao công nghệ xử lý nước tiên tiến</li>
+                        <li>Nghiên cứu chung về công nghệ xanh</li>
+                        <li>Đào tạo nhân lực chuyên môn cao</li>
+                        <li>Đầu tư chung vào các dự án môi trường</li>
+                    </ul>
+
+                    <p>Ông David C - Giám đốc Đối ngoại ERATECH cho biết: "Việc hợp tác với các đối tác quốc tế sẽ giúp ERATECH tiếp cận công nghệ tiên tiến nhất trên thế giới, đồng thời góp phần nâng cao vị thế của Việt Nam trong lĩnh vực công nghệ môi trường."</p>
+                `
+            },
+            {
+                title: 'Đầu tư 200 tỷ đồng vào nghiên cứu công nghệ tái chế',
+                excerpt: 'ERATECH cam kết đầu tư mạnh mẽ vào nghiên cứu và phát triển công nghệ tái chế chất thải tiên tiến.',
+                image: 'images/DJI_0577.jpg',
+                date: '2023-12-28',
+                category: 'Đầu tư',
+                content: `
+                    <p>ERATECH Group chính thức công bố đầu tư 200 tỷ đồng vào nghiên cứu và phát triển công nghệ tái chế chất thải. Dự án này được thực hiện trong 3 năm, với mục tiêu phát triển các công nghệ tái chế tiên tiến cho Việt Nam.</p>
+
+                    <p>Đầu tư tập trung vào các lĩnh vực:</p>
+                    <ul>
+                        <li>Công nghệ tái chế nhựa và polymer</li>
+                        <li>Tái chế kim loại hiếm</li>
+                        <li>Xử lý và tái sử dụng chất thải điện tử</li>
+                        <li>Công nghệ upcycling chất thải công nghiệp</li>
+                    </ul>
+
+                    <p>Mục tiêu của dự án:</p>
+                    <ul>
+                        <li>Tăng tỷ lệ tái chế chất thải lên 80%</li>
+                        <li>Giảm phát thải CO2 từ quá trình sản xuất</li>
+                        <li>Tạo ra sản phẩm có giá trị từ chất thải</li>
+                        <li>Phát triển ngành công nghiệp tái chế xanh</li>
+                    </ul>
+
+                    <p>TS. Nguyễn Văn D - Giám đốc Trung tâm Nghiên cứu ERATECH chia sẻ: "Việt Nam đang đối mặt với vấn đề chất thải ngày càng tăng. Đầu tư vào công nghệ tái chế không chỉ giải quyết vấn đề môi trường mà còn tạo ra cơ hội kinh tế mới."</p>
+                `
+            },
+            {
+                title: 'Thành công triển khai hệ thống giám sát môi trường thông minh',
+                excerpt: 'Hệ thống IoT giúp theo dõi chất lượng môi trường thời gian thực tại các khu công nghiệp.',
+                image: 'images/DJI_0578.jpg',
+                date: '2023-12-20',
+                category: 'Công nghệ',
+                content: `
+                    <p>ERATECH Group triển khai thành công hệ thống giám sát môi trường thông minh tại các khu công nghiệp lớn. Hệ thống sử dụng công nghệ IoT và AI để theo dõi chất lượng môi trường thời gian thực.</p>
+
+                    <p>Hệ thống bao gồm:</p>
+                    <ul>
+                        <li>Cảm biến chất lượng không khí</li>
+                        <li>Cảm biến chất lượng nước</li>
+                        <li>Cảm biến tiếng ồn</li>
+                        <li>Camera giám sát tự động</li>
+                        <li>Hệ thống AI phân tích dữ liệu</li>
+                    </ul>
+
+                    <p>Lợi ích của hệ thống:</p>
+                    <ul>
+                        <li>Giám sát 24/7 tự động</li>
+                        <li>Cảnh báo sớm vi phạm môi trường</li>
+                        <li>Phân tích xu hướng và dự báo</li>
+                        <li>Hỗ trợ ra quyết định kịp thời</li>
+                        <li>Giảm chi phí giám sát thủ công</li>
+                    </ul>
+
+                    <p>Hệ thống đã được triển khai tại 15 khu công nghiệp trên cả nước và nhận được đánh giá cao từ các cơ quan quản lý môi trường.</p>
+                `
+            },
+            {
+                title: 'ERATECH mở rộng nhà máy sản xuất thiết bị môi trường',
+                excerpt: 'Nhà máy mới với diện tích 50.000m² sẽ tăng công suất sản xuất lên 300% để đáp ứng nhu cầu thị trường.',
+                image: 'images/DJI_0579.jpg',
+                date: '2023-12-15',
+                category: 'Dự án',
+                content: `
+                    <p>ERATECH Group chính thức mở rộng nhà máy sản xuất thiết bị môi trường với diện tích 50.000m². Dự án này sẽ tăng công suất sản xuất lên 300% để đáp ứng nhu cầu ngày càng tăng của thị trường.</p>
+
+                    <p>Nhà máy mới được trang bị:</p>
+                    <ul>
+                        <li>Dây chuyền sản xuất tự động hóa</li>
+                        <li>Hệ thống kiểm soát chất lượng tiên tiến</li>
+                        <li>Công nghệ sản xuất xanh</li>
+                        <li>Kho bãi thông minh</li>
+                    </ul>
+
+                    <p>Mục tiêu của dự án:</p>
+                    <ul>
+                        <li>Tăng sản lượng thiết bị môi trường</li>
+                        <li>Cải thiện chất lượng sản phẩm</li>
+                        <li>Giảm chi phí sản xuất</li>
+                        <li>Mở rộng thị trường xuất khẩu</li>
+                    </ul>
+
+                    <p>Việc mở rộng nhà máy sẽ tạo thêm 500 việc làm cho lao động địa phương và góp phần thúc đẩy kinh tế khu vực.</p>
+                `
+            },
+            {
+                title: 'Công nghệ AI ứng dụng trong xử lý nước thải thông minh',
+                excerpt: 'Hệ thống trí tuệ nhân tạo giúp tối ưu hóa quy trình xử lý nước thải, tiết kiệm 40% năng lượng tiêu thụ.',
+                image: 'images/DJI_0580.jpg',
+                date: '2023-12-10',
+                category: 'Công nghệ',
+                content: `
+                    <p>ERATECH Group triển khai thành công công nghệ trí tuệ nhân tạo (AI) trong hệ thống xử lý nước thải thông minh. Công nghệ này giúp tối ưu hóa quy trình xử lý, tiết kiệm đến 40% năng lượng tiêu thụ.</p>
+
+                    <p>Hệ thống AI bao gồm:</p>
+                    <ul>
+                        <li>Thuật toán học máy dự đoán chất lượng nước</li>
+                        <li>Tối ưu hóa liều lượng hóa chất</li>
+                        <li>Tự động điều chỉnh quy trình xử lý</li>
+                        <li>Giám sát và cảnh báo thời gian thực</li>
+                    </ul>
+
+                    <p>Lợi ích của công nghệ:</p>
+                    <ul>
+                        <li>Tiết kiệm năng lượng đáng kể</li>
+                        <li>Cải thiện hiệu quả xử lý</li>
+                        <li>Giảm chi phí vận hành</li>
+                        <li>Tăng độ tin cậy của hệ thống</li>
+                    </ul>
+
+                    <p>Hệ thống AI đã được áp dụng thành công tại nhiều nhà máy xử lý nước thải trên cả nước.</p>
+                `
+            },
+            {
+                title: 'ERATECH đạt chứng nhận ISO 14001:2015 về quản lý môi trường',
+                excerpt: 'Chứng nhận quốc tế khẳng định cam kết của ERATECH trong việc bảo vệ môi trường và phát triển bền vững.',
+                image: 'images/DJI_0581.jpg',
+                date: '2023-12-05',
+                category: 'Giải thưởng',
+                content: `
+                    <p>ERATECH Group vinh dự đạt chứng nhận ISO 14001:2015 về hệ thống quản lý môi trường. Chứng nhận này khẳng định cam kết của công ty trong việc bảo vệ môi trường và phát triển bền vững.</p>
+
+                    <p>Chứng nhận ISO 14001:2015 bao gồm:</p>
+                    <ul>
+                        <li>Cam kết lãnh đạo về môi trường</li>
+                        <li>Đánh giá tác động môi trường</li>
+                        <li>Quản lý rủi ro và cơ hội</li>
+                        <li>Tuân thủ pháp luật và quy định</li>
+                        <li>Cải tiến liên tục</li>
+                    </ul>
+
+                    <p>Lợi ích của chứng nhận:</p>
+                    <ul>
+                        <li>Nâng cao uy tín thương hiệu</li>
+                        <li>Tăng cường lòng tin khách hàng</li>
+                        <li>Cải thiện hiệu quả hoạt động</li>
+                        <li>Tuân thủ yêu cầu quốc tế</li>
+                    </ul>
+
+                    <p>ERATECH là một trong những doanh nghiệp đầu tiên trong ngành đạt chứng nhận này tại Việt Nam.</p>
+                `
+            },
+            {
+                title: 'Ký kết hợp đồng xuất khẩu công nghệ sang thị trường Đông Nam Á',
+                excerpt: 'ERATECH chính thức xuất khẩu công nghệ xử lý môi trường sang 5 quốc gia trong khu vực Đông Nam Á.',
+                image: 'images/DJI_0582.jpg',
+                date: '2023-11-30',
+                category: 'Hợp tác',
+                content: `
+                    <p>ERATECH Group chính thức ký kết hợp đồng xuất khẩu công nghệ xử lý môi trường sang 5 quốc gia Đông Nam Á. Đây là bước ngoặt quan trọng trong việc mở rộng thị trường quốc tế.</p>
+
+                    <p>Các quốc gia đối tác:</p>
+                    <ul>
+                        <li>Thái Lan</li>
+                        <li>Indonesia</li>
+                        <li>Malaysia</li>
+                        <li>Philippines</li>
+                        <li>Việt Nam (mở rộng)</li>
+                    </ul>
+
+                    <p>Công nghệ xuất khẩu:</p>
+                    <ul>
+                        <li>Hệ thống xử lý nước thải công nghiệp</li>
+                        <li>Công nghệ xử lý khí thải</li>
+                        <li>Thiết bị giám sát môi trường</li>
+                        <li>Giải pháp tái chế chất thải</li>
+                    </ul>
+
+                    <p>Giá trị hợp đồng đạt 100 triệu USD, tạo tiền đề cho việc mở rộng kinh doanh quốc tế của ERATECH.</p>
+                `
+            },
+            {
+                title: 'Đầu tư 150 tỷ đồng xây dựng trung tâm nghiên cứu xanh',
+                excerpt: 'Trung tâm nghiên cứu mới sẽ tập trung vào các giải pháp công nghệ xanh và năng lượng tái tạo.',
+                image: 'images/DJI_0583.jpg',
+                date: '2023-11-25',
+                category: 'Đầu tư',
+                content: `
+                    <p>ERATECH Group đầu tư 150 tỷ đồng xây dựng Trung tâm Nghiên cứu Xanh tại TP.HCM. Trung tâm này sẽ tập trung vào nghiên cứu các giải pháp công nghệ xanh và năng lượng tái tạo.</p>
+
+                    <p>Trung tâm bao gồm:</p>
+                    <ul>
+                        <li>Phòng thí nghiệm công nghệ xanh</li>
+                        <li>Trung tâm nghiên cứu năng lượng tái tạo</li>
+                        <li>Vườn ươm khởi nghiệp xanh</li>
+                        <li>Trung tâm đào tạo và chuyển giao công nghệ</li>
+                    </ul>
+
+                    <p>Mục tiêu hoạt động:</p>
+                    <ul>
+                        <li>Nghiên cứu công nghệ mới</li>
+                        <li>Phát triển sản phẩm xanh</li>
+                        <li>Hỗ trợ doanh nghiệp chuyển đổi xanh</li>
+                        <li>Đào tạo nhân lực chuyên môn</li>
+                    </ul>
+
+                    <p>Trung tâm dự kiến đi vào hoạt động trong quý II/2024 và sẽ trở thành trung tâm nghiên cứu hàng đầu khu vực.</p>
+                `
+            },
+            {
+                title: 'Triển khai thành công hệ thống tái chế chất thải công nghiệp',
+                excerpt: 'Công nghệ tái chế mới giúp chuyển đổi 90% chất thải công nghiệp thành nguyên liệu có thể tái sử dụng.',
+                image: 'images/DJI_0584.jpg',
+                date: '2023-11-20',
+                category: 'Công nghệ',
+                content: `
+                    <p>ERATECH Group triển khai thành công hệ thống tái chế chất thải công nghiệp với công nghệ tiên tiến. Hệ thống này giúp chuyển đổi 90% chất thải công nghiệp thành nguyên liệu có thể tái sử dụng.</p>
+
+                    <p>Công nghệ tái chế bao gồm:</p>
+                    <ul>
+                        <li>Tái chế nhựa công nghiệp</li>
+                        <li>Tái chế kim loại</li>
+                        <li>Tái chế hóa chất</li>
+                        <li>Tái chế chất thải điện tử</li>
+                    </ul>
+
+                    <p>Lợi ích của hệ thống:</p>
+                    <ul>
+                        <li>Giảm thiểu chất thải ra môi trường</li>
+                        <li>Tái sử dụng tài nguyên hiệu quả</li>
+                        <li>Tiết kiệm chi phí xử lý</li>
+                        <li>Tạo ra sản phẩm có giá trị</li>
+                    </ul>
+
+                    <p>Hệ thống đã được triển khai tại 20 khu công nghiệp và nhận được phản hồi tích cực từ các doanh nghiệp.</p>
+                `
+            },
+            {
+                title: 'Dự án xử lý nước thải tại Hà Nội hoàn thành giai đoạn đầu',
+                excerpt: 'Dự án trị giá 250 tỷ đồng tại khu công nghiệp Bắc Thăng Long, xử lý 60.000 m³ nước thải/ngày.',
+                image: 'images/DJI_0565.jpg',
+                date: '2024-02-15',
+                category: 'Dự án',
+                content: `
+                    <p>ERATECH Group vừa hoàn thành giai đoạn đầu của dự án xử lý nước thải tại khu công nghiệp Bắc Thăng Long, Hà Nội với tổng trị giá 250 tỷ đồng. Dự án này phục vụ cho khu công nghiệp lớn tại phía Bắc, xử lý 60.000 m³ nước thải/ngày.</p>
+
+                    <p>Hệ thống xử lý sử dụng công nghệ màng lọc tiên tiến và oxy hóa tiên tiến (AOP). Dự án được thiết kế để đạt chuẩn xả thải nghiêm ngặt của EU và hỗ trợ phát triển bền vững khu vực.</p>
+
+                    <p>Ông Trần Minh H - Giám đốc dự án chia sẻ: "Dự án này không chỉ cải thiện môi trường mà còn cung cấp nguồn nước tái chế, tiết kiệm 35% chi phí cho doanh nghiệp."</p>
+
+                    <p>Giai đoạn tiếp theo sẽ mở rộng công suất lên 90.000 m³/ngày vào quý IV/2024.</p>
+                `
+            },
+            {
+                title: 'Ứng dụng trí tuệ nhân tạo trong quản lý chất thải',
+                excerpt: 'Hệ thống AI giúp phân loại và xử lý chất thải tự động, tăng hiệu quả 50%.',
+                image: 'images/DJI_0566.jpg',
+                date: '2024-02-10',
+                category: 'Công nghệ',
+                content: `
+                    <p>ERATECH Group triển khai thành công hệ thống trí tuệ nhân tạo (AI) trong quản lý và xử lý chất thải công nghiệp. Công nghệ này giúp phân loại tự động và tối ưu hóa quy trình xử lý, tăng hiệu quả lên đến 50%.</p>
+
+                    <p>Hệ thống AI sử dụng thuật toán học máy để nhận diện loại chất thải, dự đoán lượng phát sinh và tối ưu hóa quy trình xử lý. Công nghệ đặc biệt hữu ích cho các ngành công nghiệp nặng như hóa chất và điện tử.</p>
+
+                    <p>Ưu điểm chính:</p>
+                    <ul>
+                        <li>Phân loại chính xác 95%</li>
+                        <li>Giảm chi phí vận hành</li>
+                        <li>Tự động hóa hoàn toàn</li>
+                        <li>Giảm thiểu lỗi con người</li>
+                    </ul>
+
+                    <p>ERATECH đã áp dụng thành công tại 15 nhà máy và đang mở rộng ra toàn quốc.</p>
+                `
+            },
+            {
+                title: 'ERATECH nhận giải thưởng Sáng tạo Môi trường 2024',
+                excerpt: 'Công ty được vinh danh với các giải pháp công nghệ xanh đột phá trong ngành môi trường.',
+                image: 'images/DJI_0570.jpg',
+                date: '2024-02-05',
+                category: 'Giải thưởng',
+                content: `
+                    <p>ERATECH Group vinh dự nhận giải thưởng "Sáng tạo Môi trường 2024" tại Diễn đàn Công nghệ Xanh Quốc gia. Đây là năm thứ 4 liên tiếp công ty được công nhận với những đóng góp xuất sắc.</p>
+
+                    <p>Giải thưởng được trao dựa trên các tiêu chí đổi mới công nghệ, hiệu quả xử lý và tác động môi trường. ERATECH được khen ngợi về hệ thống xử lý nước thải thông minh và công nghệ tái chế chất thải điện tử.</p>
+
+                    <p>Bà Nguyễn Thị I - Phó Tổng Giám đốc ERATECH chia sẻ: "Giải thưởng này là động lực để chúng tôi tiếp tục nghiên cứu và phát triển các công nghệ xanh, góp phần bảo vệ môi trường Việt Nam."</p>
+
+                    <p>ERATECH cam kết đầu tư thêm 300 tỷ đồng vào nghiên cứu công nghệ xanh trong năm 2024.</p>
+                `
+            },
+            {
+                title: 'Hợp tác với Tập đoàn GE về công nghệ lọc nước',
+                excerpt: 'Thỏa thuận chuyển giao công nghệ lọc nước tiên tiến từ Mỹ, nâng cao chất lượng xử lý.',
+                image: 'images/DJI_0576.jpg',
+                date: '2024-01-30',
+                category: 'Hợp tác',
+                content: `
+                    <p>ERATECH Group ký kết thỏa thuận hợp tác chiến lược với Tập đoàn GE (Mỹ) về chuyển giao công nghệ lọc nước tiên tiến. Thỏa thuận này mở ra cơ hội nâng cao chất lượng xử lý nước thải tại Việt Nam.</p>
+
+                    <p>Hợp tác tập trung vào:</p>
+                    <ul>
+                        <li>Chuyển giao công nghệ màng lọc nano</li>
+                        <li>Đào tạo kỹ thuật viên</li>
+                        <li>Nghiên cứu chung về công nghệ xanh</li>
+                        <li>Đầu tư vào dự án chung</li>
+                    </ul>
+
+                    <p>Ông John K - Giám đốc GE khu vực châu Á chia sẻ: "Việc hợp tác với ERATECH sẽ giúp chúng tôi mở rộng thị trường Đông Nam Á và góp phần giải quyết vấn đề nước sạch."</p>
+
+                    <p>Thỏa thuận có giá trị 50 triệu USD và kéo dài 5 năm.</p>
+                `
+            },
+            {
+                title: 'Đầu tư 180 tỷ đồng vào trung tâm tái chế chất thải',
+                excerpt: 'Trung tâm mới tại Đồng Nai sẽ tái chế 100 tấn chất thải/ngày, tạo 300 việc làm.',
+                image: 'images/DJI_0577.jpg',
+                date: '2024-01-25',
+                category: 'Đầu tư',
+                content: `
+                    <p>ERATECH Group công bố đầu tư 180 tỷ đồng xây dựng Trung tâm Tái chế Chất thải tại Đồng Nai. Trung tâm này sẽ tái chế 100 tấn chất thải công nghiệp/ngày và tạo ra 300 việc làm.</p>
+
+                    <p>Trung tâm bao gồm:</p>
+                    <ul>
+                        <li>Dây chuyền tái chế nhựa</li>
+                        <li>Hệ thống tái chế kim loại</li>
+                        <li>Công nghệ xử lý chất thải nguy hiểm</li>
+                        <li>Kho bãi và logistics thông minh</li>
+                    </ul>
+
+                    <p>Mục tiêu:</p>
+                    <ul>
+                        <li>Tái chế 80% chất thải khu vực</li>
+                        <li>Giảm phát thải CO2</li>
+                        <li>Tạo ra sản phẩm có giá trị từ chất thải</li>
+                        <li>Phát triển ngành tái chế xanh</li>
+                    </ul>
+
+                    <p>Trung tâm dự kiến hoàn thành trong quý III/2024.</p>
+                `
+            },
+            {
+                title: 'Dự án giám sát chất lượng không khí tại TP.HCM',
+                excerpt: 'Hệ thống 200 điểm giám sát thời gian thực, cảnh báo ô nhiễm kịp thời.',
+                image: 'images/DJI_0578.jpg',
+                date: '2024-01-20',
+                category: 'Dự án',
+                content: `
+                    <p>ERATECH Group triển khai dự án giám sát chất lượng không khí tại TP.HCM với 200 điểm giám sát thông minh. Hệ thống cung cấp dữ liệu thời gian thực và cảnh báo ô nhiễm kịp thời.</p>
+
+                    <p>Hệ thống sử dụng cảm biến IoT và AI để phân tích dữ liệu, cảnh báo sớm ô nhiễm. Dự án được đầu tư 120 tỷ đồng và giúp giảm 40% thời gian xử lý vi phạm.</p>
+
+                    <p>Ông Lê Văn L - Giám đốc dự án chia sẻ: "Hệ thống này giúp TP.HCM chủ động trong quản lý chất lượng không khí, bảo vệ sức khỏe người dân."</p>
+
+                    <p>Dự án đã được Sở Tài nguyên và Môi trường TP.HCM phê duyệt và triển khai từ tháng 12/2023.</p>
+                `
+            },
+            {
+                title: 'Công nghệ cảm biến thông minh cho hệ thống xử lý nước',
+                excerpt: 'Cảm biến IoT tự động điều chỉnh quy trình xử lý, tiết kiệm 30% năng lượng.',
+                image: 'images/DJI_0579.jpg',
+                date: '2024-01-15',
+                category: 'Công nghệ',
+                content: `
+                    <p>ERATECH Group phát triển thành công công nghệ cảm biến thông minh cho hệ thống xử lý nước thải. Công nghệ này sử dụng IoT để tự động điều chỉnh quy trình, tiết kiệm đến 30% năng lượng tiêu thụ.</p>
+
+                    <p>Cảm biến đo pH, COD, BOD và TSS thời gian thực, gửi dữ liệu về trung tâm AI để tối ưu hóa liều lượng hóa chất và quy trình xử lý.</p>
+
+                    <p>Lợi ích:</p>
+                    <ul>
+                        <li>Giảm chi phí hóa chất 25%</li>
+                        <li>Tiết kiệm điện năng</li>
+                        <li>Cải thiện chất lượng nước đầu ra</li>
+                        <li>Giảm thiểu bảo trì</li>
+                    </ul>
+
+                    <p>Công nghệ đã được triển khai tại 10 nhà máy xử lý nước và nhận được phản hồi tích cực.</p>
+                `
+            },
+            {
+                title: 'ERATECH đạt chứng nhận LEED Gold cho nhà máy xanh',
+                excerpt: 'Nhà máy sản xuất thiết bị môi trường đạt tiêu chuẩn xanh quốc tế, tiết kiệm 50% năng lượng.',
+                image: 'images/DJI_0580.jpg',
+                date: '2024-01-10',
+                category: 'Giải thưởng',
+                content: `
+                    <p>ERATECH Group vinh dự đạt chứng nhận LEED Gold cho nhà máy sản xuất thiết bị môi trường tại Bình Dương. Đây là nhà máy xanh đầu tiên trong ngành đạt tiêu chuẩn quốc tế.</p>
+
+                    <p>Chứng nhận LEED Gold bao gồm:</p>
+                    <ul>
+                        <li>Thiết kế xanh và tiết kiệm năng lượng</li>
+                        <li>Sử dụng vật liệu thân thiện môi trường</li>
+                        <li>Hệ thống quản lý nước hiệu quả</li>
+                        <li>Giảm thiểu phát thải CO2</li>
+                    </ul>
+
+                    <p>Nhà máy đạt được các tiêu chí:</p>
+                    <ul>
+                        <li>Tiết kiệm 50% năng lượng so với nhà máy thông thường</li>
+                        <li>Sử dụng 100% năng lượng tái tạo</li>
+                        <li>Giảm 70% lượng nước thải</li>
+                        <li>Tái sử dụng 90% chất thải xây dựng</li>
+                    </ul>
+
+                    <p>Bà Trần Thị M - Giám đốc Nhà máy chia sẻ: "Chứng nhận LEED Gold khẳng định cam kết của ERATECH trong việc xây dựng nhà máy xanh, góp phần phát triển bền vững."</p>
+
+                    <p>Đây là bước ngoặt quan trọng trong chiến lược xanh hóa sản xuất của ERATECH.</p>
+                `
+            },
+            {
+                title: 'Dự án khử muối nước biển quy mô lớn tại Phú Yên',
+                excerpt: 'Dự án đầu tiên tại Việt Nam sử dụng công nghệ thẩm thấu ngược tiên tiến, cung cấp nước ngọt cho 50.000 dân.',
+                image: 'images/DJI_0565.jpg',
+                date: '2024-02-20',
+                category: 'Dự án',
+                content: `
+                    <p>ERATECH Group khởi công dự án khử muối nước biển quy mô lớn tại Phú Yên với tổng đầu tư 400 tỷ đồng. Dự án này là dự án đầu tiên tại Việt Nam sử dụng công nghệ thẩm thấu ngược tiên tiến, cung cấp nước ngọt cho 50.000 dân khu vực ven biển.</p>
+
+                    <p>Hệ thống khử muối bao gồm công nghệ RO (Reverse Osmosis) và hệ thống năng lượng mặt trời. Dự án được thiết kế để sản xuất 50.000 m³ nước ngọt/ngày, đáp ứng nhu cầu nước sạch cho khu vực ven biển thường xuyên đối mặt với tình trạng khan hiếm nước ngọt.</p>
+
+                    <p>Công nghệ RO tiên tiến cho phép chuyển đổi nước biển thành nước ngọt với hiệu suất cao, đạt tiêu chuẩn WHO về chất lượng nước uống. Dự án còn tích hợp hệ thống năng lượng tái tạo để giảm thiểu chi phí vận hành và phát thải carbon.</p>
+
+                    <p>Ông Phạm Văn N - Giám đốc dự án chia sẻ: "Dự án này không chỉ giải quyết vấn đề khan hiếm nước ngọt tại các vùng ven biển mà còn góp phần phát triển bền vững kinh tế địa phương, tạo ra nguồn nước ổn định cho sản xuất nông nghiệp và sinh hoạt."</p>
+
+                    <p>Dự án dự kiến hoàn thành trong quý IV/2024 và sẽ được mở rộng ra các tỉnh ven biển khác như Ninh Thuận và Bình Thuận trong giai đoạn tiếp theo.</p>
+                `
+            },
+            {
+                title: 'Ứng dụng công nghệ Blockchain trong quản lý chất thải',
+                excerpt: 'Hệ thống blockchain giúp theo dõi và xác minh quá trình tái chế, tăng tính minh bạch và hiệu quả.',
+                image: 'images/DJI_0566.jpg',
+                date: '2024-02-18',
+                category: 'Công nghệ',
+                content: `
+                    <p>ERATECH Group triển khai thành công ứng dụng công nghệ Blockchain trong quản lý chất thải công nghiệp. Hệ thống này giúp theo dõi và xác minh toàn bộ quá trình tái chế từ nguồn gốc đến sản phẩm cuối cùng, tăng tính minh bạch và hiệu quả quản lý lên đáng kể.</p>
+
+                    <p>Công nghệ Blockchain được sử dụng để:</p>
+                    <ul>
+                        <li>Ghi nhận và xác minh nguồn gốc chất thải</li>
+                        <li>Theo dõi thời gian thực quá trình xử lý và tái chế</li>
+                        <li>Xác minh chất lượng sản phẩm tái chế</li>
+                        <li>Hỗ trợ trao đổi tín dụng carbon và chứng chỉ xanh</li>
+                    </ul>
+
+                    <p>Lợi ích nổi bật của hệ thống:</p>
+                    <ul>
+                        <li>Tăng tính minh bạch 100% trong toàn bộ chuỗi cung ứng</li>
+                        <li>Giảm chi phí quản lý và kiểm soát chất thải</li>
+                        <li>Ngăn chặn hiệu quả các hành vi gian lận và trục lợi</li>
+                        <li>Hỗ trợ doanh nghiệp tham gia thị trường carbon</li>
+                        <li>Tạo nền tảng cho thương mại điện tử chất thải</li>
+                    </ul>
+
+                    <p>TS. Lê Thị Q - Giám đốc Trung tâm Công nghệ ERATECH cho biết: "Công nghệ Blockchain không chỉ cách mạng hóa cách chúng ta quản lý chất thải mà còn mở ra cơ hội kinh tế mới từ việc tái chế và trao đổi carbon credits."</p>
+
+                    <p>ERATECH đã áp dụng thành công hệ thống này tại 5 khu công nghiệp lớn và đang mở rộng ra toàn quốc. Dự án được Bộ Tài nguyên và Môi trường đánh giá cao và đề xuất nhân rộng.</p>
+                `
+            },
+            {
+                title: 'ERATECH nhận giải thưởng Doanh nghiệp Xuất sắc Châu Á 2024',
+                excerpt: 'Công ty được vinh danh tại Diễn đàn Kinh tế Châu Á với các giải pháp công nghệ môi trường đột phá.',
+                image: 'images/DJI_0570.jpg',
+                date: '2024-02-25',
+                category: 'Giải thưởng',
+                content: `
+                    <p>ERATECH Group vinh dự nhận giải thưởng "Doanh nghiệp Xuất sắc Châu Á 2024" tại Diễn đàn Kinh tế Châu Á - Thái Bình Dương tổ chức tại Singapore. Đây là năm thứ 5 liên tiếp công ty được công nhận với những đóng góp xuất sắc cho ngành công nghệ môi trường khu vực.</p>
+
+                    <p>Giải thưởng được trao dựa trên các tiêu chí đánh giá toàn diện:</p>
+                    <ul>
+                        <li>Đổi mới công nghệ và giải pháp xanh</li>
+                        <li>Tác động kinh tế và tạo việc làm</li>
+                        <li>Đóng góp cho cộng đồng và xã hội</li>
+                        <li>Cam kết phát triển bền vững</li>
+                        <li>Hiệu quả quản lý và điều hành</li>
+                    </ul>
+
+                    <p>ERATECH được đặc biệt khen ngợi về các dự án:</p>
+                    <ul>
+                        <li>Hệ thống xử lý nước thải thông minh cho khu công nghiệp</li>
+                        <li>Công nghệ tái chế chất thải điện tử tiên tiến</li>
+                        <li>Nền tảng giám sát môi trường IoT</li>
+                        <li>Giải pháp năng lượng tái tạo cho doanh nghiệp</li>
+                    </ul>
+
+                    <p>Ông Nguyễn Văn O - Tổng Giám đốc ERATECH chia sẻ: "Giải thưởng này là minh chứng cho sự nỗ lực không ngừng của chúng tôi trong việc phát triển các giải pháp công nghệ xanh, góp phần xây dựng một châu Á xanh và bền vững hơn."</p>
+
+                    <p>ERATECH cam kết tiếp tục đầu tư mạnh mẽ vào nghiên cứu và phát triển, hướng tới mục tiêu đạt zero carbon vào năm 2030 và trở thành doanh nghiệp công nghệ xanh hàng đầu khu vực.</p>
+                `
+            },
+            {
+                title: 'Hợp tác với Tập đoàn Mitsubishi về công nghệ hydro xanh',
+                excerpt: 'Thỏa thuận hợp tác phát triển công nghệ hydro tái tạo, hướng tới nền kinh tế hydro tại Việt Nam.',
+                image: 'images/DJI_0576.jpg',
+                date: '2024-02-22',
+                category: 'Hợp tác',
+                content: `
+                    <p>ERATECH Group ký kết thỏa thuận hợp tác chiến lược với Tập đoàn Mitsubishi (Nhật Bản) về phát triển công nghệ hydro xanh. Thỏa thuận này mở ra cơ hội hợp tác sâu rộng trong nghiên cứu, phát triển và thương mại hóa công nghệ hydro tái tạo tại Việt Nam.</p>
+
+                    <p>Hợp tác chiến lược tập trung vào các lĩnh vực chính:</p>
+                    <ul>
+                        <li>Chuyển giao công nghệ sản xuất hydro từ năng lượng tái tạo</li>
+                        <li>Nghiên cứu và phát triển pin nhiên liệu hydro</li>
+                        <li>Xây dựng cơ sở hạ tầng hydro tại Việt Nam</li>
+                        <li>Đào tạo và phát triển nhân lực chuyên môn cao</li>
+                        <li>Thương mại hóa các giải pháp hydro xanh</li>
+                    </ul>
+
+                    <p>Các dự án hợp tác cụ thể:</p>
+                    <ul>
+                        <li>Nhà máy sản xuất hydro quy mô 10 MW tại Bình Dương</li>
+                        <li>Trạm hydro cung cấp nhiên liệu cho phương tiện giao thông</li>
+                        <li>Hệ thống lưu trữ năng lượng hydro cho lưới điện</li>
+                        <li>Nghiên cứu ứng dụng hydro trong công nghiệp</li>
+                    </ul>
+
+                    <p>Ông Tanaka P - Giám đốc Mitsubishi khu vực Đông Nam Á cho biết: "Việc hợp tác với ERATECH sẽ giúp chúng tôi đẩy mạnh quá trình chuyển đổi năng lượng tại Việt Nam, từ đó góp phần thực hiện cam kết giảm phát thải carbon và hướng tới nền kinh tế hydro bền vững."</p>
+
+                    <p>Thỏa thuận có giá trị đầu tư ban đầu 200 triệu USD và kéo dài trong 10 năm. Dự kiến, các dự án hợp tác sẽ tạo ra 500 việc làm chất lượng cao và đóng góp 1 tỷ USD vào GDP Việt Nam trong vòng 5 năm tới.</p>
+                `
+            }
+        ];
+
+        // Back to top functionality
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+    </script>
+
+</body>
+</html>

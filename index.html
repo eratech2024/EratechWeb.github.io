@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERATECH Group - Công Nghệ Môi Trường Tiên Tiến</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/global-mobile.css">
+    <link rel="stylesheet" href="css/home-mobile.css">
+    <link rel="stylesheet" href="css/mobile-menu-production.css">
+</head>
+<body>
+
+    <!-- Include Header -->
+    <div w3-include-html="includes/header.html"></div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-image-container">
+                <img src="images/Annghiep.jpg" alt="Hero 1" class="hero-image active" data-aos="fade">
+                <img src="images/Chengloongbanner.jpg" alt="Hero 2" class="hero-image" data-aos="fade">
+                <img src="images/Taisudung.jpg" alt="Hero 3" class="hero-image" data-aos="fade">
+            </div>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text" data-aos="fade-up">
+                    <h1 class="hero-title">
+                        ERATECH
+                    </h1>
+                    <p class="hero-subtitle">
+                        CHỦ ĐẦU TƯ NHÀ MÁY XỬ LÝ NƯỚC THẢI TẬP TRUNG KCN AN NGHIỆP - CÔNG SUẤT 15.000 M<sup>3</sup>/NGÀY
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#services" class="btn btn-primary">
+                            <i class="fas fa-play"></i> Khám phá dịch vụ
+                        </a>
+                        <a href="#projects" class="btn btn-outline">
+                            <i class="fas fa-eye"></i> Xem dự án
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-dots">
+                    <button class="dot active"></button>
+                    <button class="dot"></button>
+                    <button class="dot"></button>
+                </div>
+                <div class="scroll-indicator">
+                    <span>Cuộn xuống</span>
+                    <div class="scroll-mouse">
+                        <div class="scroll-wheel"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Về ERATECH</h2>
+                <p class="section-subtitle">Công ty công nghệ môi trường hàng đầu Việt Nam</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h3 data-aos="fade-up">Giải pháp môi trường toàn diện</h3>
+                    <p data-aos="fade-up" data-aos-delay="100">Với hơn 10 năm kinh nghiệm, ERATECH cung cấp các giải pháp xử lý nước thải, khí thải và chất thải rắn tiên tiến, giúp doanh nghiệp tuân thủ nghiêm ngặt các quy định môi trường quốc gia và quốc tế.</p>
+                    <p data-aos="fade-up" data-aos-delay="200">Chúng tôi cam kết đổi mới công nghệ, tối ưu hóa chi phí và mang lại giá trị bền vững cho khách hàng.</p>
+                    <div class="stats-grid">
+                        <div class="stat-item" data-aos="zoom-in">
+                            <div class="stat-number" data-count="500">0</div>
+                            <div class="stat-label">Dự án hoàn thành</div>
+                        </div>
+                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="stat-number" data-count="1000">0</div>
+                            <div class="stat-label">Khách hàng hài lòng</div>
+                        </div>
+                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="stat-number" data-count="50">0</div>
+                            <div class="stat-label">Nhân viên chuyên nghiệp</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-video" data-aos="fade-left">
+                    <div class="video-container" id="about-video-container">
+                        <!-- Video will be loaded here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Dịch vụ của chúng tôi</h2>
+                <p class="section-subtitle">Các giải pháp công nghệ môi trường toàn diện</p>
+            </div>
+            <div class="services-grid" id="home-services-grid">
+                <!-- Services will be loaded dynamically from services-data.json -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-image">
+                        <img src="images/tsdkenvt.jpg" alt="Loading..." class="lazy-load">
+                        <div class="service-overlay">
+                            <div class="service-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Đang tải dịch vụ...</h3>
+                        <p>Vui lòng đợi trong giây lát</p>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;" data-aos="fade-up">
+                <a href="services.html" class="btn-primary" style="display: inline-flex; align-items: center; gap: 10px; padding: 15px 30px; background: linear-gradient(135deg, #195927 0%, #0d3316 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
+                    <span>Xem tất cả dịch vụ</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Dự án tiêu biểu</h2>
+                <p class="section-subtitle">Các dự án môi trường thành công</p>
+            </div>
+            <div class="projects-filter" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active" data-filter="all">Tất cả</button>
+                <button class="filter-btn" data-filter="Xử lý nước thải">Xử lý nước thải</button>
+                <button class="filter-btn" data-filter="Xử lý nước cấp">Xử lý nước cấp</button>
+                <button class="filter-btn" data-filter="Xử lý khí thải">Xử lý khí thải</button>
+            </div>
+            <div class="projects-gallery" id="home-projects-gallery">
+                <!-- Projects will be loaded dynamically from projects-data.json -->
+                <div class="project-item" data-aos="fade-up">
+                    <div class="project-image">
+                        <img src="images/DJI_0565.jpg" alt="Loading..." class="lazy-load">
+                    </div>
+                    <div class="project-overlay">
+                        <div class="project-info">
+                            <h4>Đang tải dự án...</h4>
+                            <p>Vui lòng đợi trong giây lát</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;" data-aos="fade-up">
+                <a href="projects.html" class="btn-primary" style="display: inline-flex; align-items: center; gap: 10px; padding: 15px 30px; background: linear-gradient(135deg, #195927 0%, #0d3316 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
+                    <span>Xem tất cả dự án</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="news">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Tin tức & Sự kiện</h2>
+                <p class="section-subtitle">Cập nhật mới nhất từ ERATECH</p>
+            </div>
+            <div class="news-container" id="news-container">
+                <!-- Dynamic content loaded by JS -->
+            </div>
+            <div class="news-footer" data-aos="fade-up" data-aos-delay="200">
+                <a href="news.html" class="btn btn-primary">Xem tất cả tin tức</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="partners">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Đối tác của chúng tôi</h2>
+                <p class="section-subtitle">Các đối tác tin cậy</p>
+            </div>
+            <div class="partners-carousel">
+                <div class="partners-track">
+                    <div class="partner-item">
+                        <img src="logoDT/AES.svg" alt="AES">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/BongMai.svg" alt="BongMai">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Busadco.svg" alt="Busadco">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Chengchia.svg" alt="Chengchia">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Chengloong.svg" alt="Chengloong">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Conco.svg" alt="Conco">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/CPVN.svg" alt="CPVN">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Deheus.svg" alt="Deheus">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Delta.svg" alt="Delta">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/DHV.svg" alt="DHV">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Duytan.svg" alt="Duytan">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/DWS.svg" alt="DWS">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/GWE.svg" alt="GWE">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Hanes.svg" alt="Hanes">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Hasan.svg" alt="Hasan">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Heineken.svg" alt="Heineken">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Idemitsu-Kosan.svg" alt="Idemitsu-Kosan">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/IID.svg" alt="IID">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Infoma.svg" alt="Infoma">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/ITE.svg" alt="ITE">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Jotun.svg" alt="Jotun">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Lafarge.svg" alt="Lafarge">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/LEGO.svg" alt="LEGO">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Leow.svg" alt="Leow">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Leowfoods.svg" alt="Leowfoods">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/LinhTrung.svg" alt="LinhTrung">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Lixco.svg" alt="Lixco">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Lixil.svg" alt="Lixil">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Masan.svg" alt="Masan">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Nafoods.svg" alt="Nafoods">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Onsemi.svg" alt="Onsemi">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Orgalife.svg" alt="Orgalife">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Pepsi.svg" alt="Pepsi">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Petrolimex.svg" alt="Petrolimex">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Phatdat.svg" alt="Phatdat">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/RDG.svg" alt="RDG">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Saintgobain.svg" alt="Saintgobain">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Sanest.svg" alt="Sanest">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Sanna.svg" alt="Sanna">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Sanofi.svg" alt="Sanofi">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Shinryo.svg" alt="Shinryo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/SIPA.svg" alt="SIPA">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Sonadezi.svg" alt="Sonadezi">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/TH.svg" alt="TH">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/ThaiUnion.svg" alt="ThaiUnion">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/ThuducHouse.svg" alt="ThuducHouse">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/TVC.svg" alt="TVC">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Unilever.svg" alt="Unilever">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Vicem.svg" alt="Vicem">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/VinaPride.svg" alt="VinaPride">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/Waterleau.svg" alt="Waterleau">
+                    </div>
+                    <div class="partner-item">
+                        <img src="logoDT/WLBL.svg" alt="WLBL">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Include Footer -->
+    <div w3-include-html="includes/footer.html"></div>
+
+    <script src="js/include.js"></script>
+    <script>
+        includeHTML();
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/hero-banner.js"></script>
+    <script src="js/hero-media.js"></script>
+    <script src="js/about-video.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/script.js"></script>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</body>
+</html>
